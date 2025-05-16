@@ -14,13 +14,13 @@ switch ($request) {
         include 'views/home.view.php';
         break;
     case $me . '/home':
-        require "home.view.php";
+        require "views/home.view.php";
         break;
     case $me . '/logout':
         require "proses/logout.php";
         break;
-    case $me . '/register':
-        require "views/register.view.php";
+    case $me . '/news':
+        require "views/berita.view.php";
         break;
     case $me . '/tagihan':
         include 'views/mocking/spm.view.php';
