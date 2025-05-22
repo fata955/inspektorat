@@ -1,5 +1,5 @@
 <body class="index-page">
- <main class="main">
+  <main class="main">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section">
@@ -9,7 +9,7 @@
         <div class="carousel-item active">
           <img src="assets/img/hero-carousel/hero-carousel-1.jpg" alt="">
           <div class="carousel-container">
-            <h2>Welcome to <span>Eterna</span></h2>
+            <h2>Selamat Datang website resmi <span>Inspektorat Kota Palu</span></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <a href="about.html" class="btn-get-started">Get Started</a>
           </div>
@@ -49,25 +49,25 @@
 
           <div class="col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="featured-item position-relative">
-              <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-              <h4><a href="" class="stretched-link">Sed ut perspici</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <div class="icon"><i class="bi bi-person-check"></i></div>
+              <h4><a href="" class="stretched-link">Profesional</a></h4>
+              <p>Memiliki kompetensi dan keahlian khusus di bidang pengawasan internal untuk menjalankan tugas secara efektif dan efisien</p>
             </div>
           </div><!-- End Featured Item -->
 
           <div class="col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="featured-item position-relative">
-              <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-              <h4><a href="" class="stretched-link">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <div class="icon"><i class="bi bi-hand-thumbs-up"></i></div>
+              <h4><a href="" class="stretched-link">Berintegritas</a></h4>
+              <p>Selalu bertindak jujur, transparan, dan mematuhi prinsip etika dalam menjalankan tugas pengawasan.</p>
             </div>
           </div><!-- End Featured Item -->
 
           <div class="col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="300">
             <div class="featured-item position-relative">
               <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-              <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <h4><a href="" class="stretched-link">Independen</a></h4>
+              <p>Menjalankan tugas tanpa adanya tekanan atau intervensi dari pihak lain, sehingga mampu memberikan penilaian yang objektif dan adil.</p>
             </div>
           </div><!-- End Featured Item -->
 
@@ -76,6 +76,8 @@
       </div>
 
     </section><!-- /Hero Section -->
+
+
 
     <!-- About Section -->
     <section id="about" class="section about">
@@ -87,7 +89,7 @@
             <img src="assets/img/about.jpg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 order-2 order-lg-1 content">
-            <h3>Voluptatem dignissimos provident</h3>
+            <h3>Tentang Kami</h3>
             <p class="fst-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
@@ -108,10 +110,63 @@
 
     </section><!-- /About Section -->
 
+    <!-- Stats Section -->
+    <section id="stats" class="stats section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Statistik Pegawai</h2>
+          <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas</p> -->
+        </div><!-- End Section Title -->
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <!-- <i class="bi bi-emoji-smile"></i> -->
+              <span data-purecounter-start="0" data-purecounter-end="8" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>STRUKTURAL</strong> </p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <!-- <i class="bi bi-journal-richtext"></i> -->
+              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>AUDITOR</strong></p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <!-- <i class="bi bi-headset"></i> -->
+              <span data-purecounter-start="0" data-purecounter-end="14" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>PPUD</strong></p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item">
+              <!-- <i class="bi bi-people"></i> -->
+              <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>PELAKSANA</strong> </p>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Section -->
+
     <!-- Services Section -->
     <section id="services" class="services section">
 
       <div class="container">
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Berita Terkini</h2>
+          <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas</p> -->
+        </div><!-- End Section Title -->
 
         <div class="row gy-4">
 
