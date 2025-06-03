@@ -36,7 +36,7 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="/inspektorat">Home</a></li>
+          <li class="active"><a href="/inspektorat">Home</a></li>
           <li class="dropdown">
             <a href="#"
               ><span>Profil</span>
