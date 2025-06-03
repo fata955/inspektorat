@@ -17,7 +17,7 @@ if (!empty($_SESSION['username']) and !empty($_SESSION['nama'])) {
   include 'component/footer.php';
 } else {
 
-  header("Location: /inspektorat/admin/login");
+  header("Location: /inspektorat/admin/login.view.php");
   exit;
 }
 ?>
