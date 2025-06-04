@@ -19,14 +19,14 @@ switch ($request) {
     case $me . '/logout':
         require "proses/logout.php";
         break;
-    case $me . '/news':
-        require "views/berita.view.php";
+    case $me . '/galeri':
+        require "views/galeri.view.php";
         break;
-    case $me . '/tagihan':
-        include 'views/mocking/spm.view.php';
+    case $me . '/contact':
+        include 'views/contact.view.php';
         break;
-    case $me . '/skpd':
-        include 'views/master/opd.view.php';
+    case $me . '/berita':
+        include 'views/news.view.php';
         break;
     case $me . '/sumberdana':
         include 'views/master/sumberdana.view.php';

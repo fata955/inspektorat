@@ -274,12 +274,12 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Clients</h2>
+        <h2>Program Unggulan</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
+<!-- 
         <div class="swiper init-swiper">
           <script type="application/json" class="swiper-config">
             {
@@ -325,7 +325,7 @@
             <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
           </div>
           <div class="swiper-pagination"></div>
-        </div>
+        </div> -->
 
       </div>
 
