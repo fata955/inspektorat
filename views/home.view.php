@@ -1,3 +1,7 @@
+<?php 
+include 'components/header.comp.php';
+include 'components/navbar.comp.php';
+?>
 <body class="index-page">
   <main class="main">
 
@@ -332,3 +336,7 @@
     </section><!-- /Clients Section -->
 
   </main>
+
+<?php
+include 'components/footer.comp.php';
+?>

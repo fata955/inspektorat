@@ -1,6 +1,9 @@
+
+<?php 
+include 'components/header.comp.php';
+include 'components/navbar.comp.php';
+?>
 <body class="blog-page">
-
-
   <main class="main">
 
     <!-- Page Title -->
@@ -291,5 +294,7 @@
     </div>
 
   </main>
-
+<?php
+include 'components/footer.comp.php';
+?>
   
