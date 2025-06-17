@@ -15,14 +15,14 @@
     </div>
   </div> -->
   <!-- End Top Bar -->
-<div class="branding text-dark" style="background-image: url('assets/img/kelor.png'); background-size: 20%">
+  <div class="branding text-dark" style="background-image: url('assets/img/kelor.png'); background-size: 20%">
     <div class="container position-relative d-flex align-items-center justify-content-center">
       <a href="/inspektorat" class="logo d-flex align-items-center">
         <img src="assets/img/palu.png" alt="" />
         <h1 class="sitename">Inspektorat Daerah Kota Palu<br /></h1>
       </a>
 
-      
+
     </div>
   </div>
 
