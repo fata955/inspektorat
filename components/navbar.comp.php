@@ -75,7 +75,7 @@
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="/inspektorat/gratifikasi/knowledge">Mengenal Gratifikasi</a></li>
-         
+
               <li><a href="/inspektorat/gratifikasi/laporan">Mekanisme Pelaporan Gratifikasi</a></li>
               <li><a href="/inspektorat/gratifikasi/penggantian">Mekanisme Penggantian Barang Gratifikasi</a></li>
             </ul>
@@ -84,20 +84,19 @@
             <a href="#"><span>Pengaduan Masyarakat</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/galeri">Mekanisme Pengaduan Masyarakat</a></li>
-              <!-- <li class="dropdown">
-                <a href="#"
-                  ><span>Deep Dropdown</span>
-                  <i class="bi bi-chevron-down toggle-dropdown"></i
-                ></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li> -->
+              <li><a href="/inspektorat"> Mekanisme Pengaduan Masyarakat</a></li>
+
+              <li class="dropdown">
+                  <a href="#"><span>Deep Dropdown</span>
+                    <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                  <ul>
+                    <li><a href="#">Deep Dropdown 1</a></li>
+                    <li><a href="#">Deep Dropdown 2</a></li>
+                    <li><a href="#">Deep Dropdown 3</a></li>
+                    <li><a href="#">Deep Dropdown 4</a></li>
+                    <li><a href="#">Deep Dropdown 5</a></li>
+                  </ul>
+              </li>
               <li><a href="#">Pengaduan Masyarakat Online</a></li>
               <!-- <li><a href="#">Mekanisme Penggantian Barang Gratifikasi</a></li> -->
             </ul>
@@ -106,7 +105,7 @@
             <a href="#"><span>Sistem Manajemen</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/galeri">Kebijakan SMAP</a></li>
+              <li><a href="/inspektorat">Kebijakan SMAP</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>
@@ -136,7 +135,7 @@
             <a href="#"><span>Layanan Konsultasi</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/galeri">Mekanisme Konsultasi</a></li>
+              <li><a href="/inspektorat">Mekanisme Konsultasi</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>

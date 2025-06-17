@@ -96,7 +96,7 @@
             <a href="#"><span>Pengaduan Masyarakat</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/galeri">Mekanisme Pengaduan Masyarakat</a></li>
+              <li><a href="/inspektorat">Mekanisme Pengaduan Masyarakat</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>
@@ -118,7 +118,7 @@
             <a href="#"><span>Sistem Manajemen</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/galeri">Kebijakan SMAP</a></li>
+              <li><a href="/inspektorat/">Kebijakan SMAP</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>
@@ -148,7 +148,7 @@
             <a href="#"><span>Layanan Konsultasi</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/galeri">Mekanisme Konsultasi</a></li>
+              <li><a href="/inspektorat">Mekanisme Konsultasi</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>
