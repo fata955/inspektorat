@@ -11,6 +11,7 @@ include 'components/navbar.comp.php';
       <div id="hero-carousel" class="carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <div class="carousel-item active">
+          
           <img src="assets/img/hero-carousel/hero-carousel-1.png" alt="">
           <!-- <div class="carousel-container">
             <h2>Selamat Datang website resmi <span>Inspektorat Kota Palu</span></h2>
@@ -20,6 +21,7 @@ include 'components/navbar.comp.php';
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
+
           <img src="assets/img/hero-carousel/hero-carousel-2.png" alt="">
           <div class="carousel-container">
             <!-- <h2>At vero eos et accusamus</h2> -->
@@ -29,6 +31,7 @@ include 'components/navbar.comp.php';
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
+
           <img src="assets/img/hero-carousel/hero-carousel-3.png" alt="">
           <div class="carousel-container">
             <!-- <h2>Temporibus autem quibusdam</h2> -->
@@ -38,6 +41,7 @@ include 'components/navbar.comp.php';
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
+
           <img src="assets/img/hero-carousel/hero-carousel-4.png" alt="">
           <div class="carousel-container">
             <!-- <h2>Temporibus autem quibusdam</h2> -->

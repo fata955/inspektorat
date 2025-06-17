@@ -1,7 +1,8 @@
 <?php
-include 'components/header.comp.php';
-include 'components/navbar.comp.php';
+include '../componentsub/header.comp.php';
+include '../componentsub/navbar.comp.php';
 ?>
+
 
 <body class="about-page">
     <main class="main">
@@ -73,5 +74,5 @@ include 'components/navbar.comp.php';
     </main>
 
     <?php
-    include 'components/footer.comp.php';
+    include '../componentsub/footer.comp.php';
     ?>

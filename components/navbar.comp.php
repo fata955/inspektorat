@@ -65,9 +65,9 @@
             <a href="#"><span>Publikasi & Informasi</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/berita">Berita</a></li>
-              <li><a href="#">Dokumen</a></li>
-              <li><a href="#">Galeri</a></li>
+              <li><a href="/inspektorat/publik/berita">Berita</a></li>
+              <li><a href="/inspektorat/publik/dokumen">Dokumen</a></li>
+              <li><a href="/inspektorat/publik/galeri">Galeri</a></li>
             </ul>
           </li>
           <li class="dropdown">

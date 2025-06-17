@@ -1,3 +1,8 @@
+
+<?php 
+include '../componentsub/header.comp.php';
+include '../componentsub/navbar.comp.php';
+?>
 <body class="portfolio-page">
 
 
@@ -249,3 +254,7 @@
 
   </main>
 
+  <?php
+include '../componentsub/footer.comp.php';
+?>
+  
