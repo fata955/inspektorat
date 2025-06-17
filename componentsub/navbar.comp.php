@@ -74,7 +74,7 @@
             <a href="#"><span>Gratifikasi</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/galeri">Mengenal Gratifikasi</a></li>
+              <li><a href="/inspektorat/gratifikasi/knowledge">Mengenal Gratifikasi</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>
@@ -88,8 +88,8 @@
                   <li><a href="#">Deep Dropdown 5</a></li>
                 </ul>
               </li> -->
-              <li><a href="#">Mekanisme Pelaporan Gratifikasi</a></li>
-              <li><a href="#">Mekanisme Penggantian Barang Gratifikasi</a></li>
+              <li><a href="/inspektorat/gratifikasi/laporan">Mekanisme Pelaporan Gratifikasi</a></li>
+              <li><a href="/inspektorat/gratifikasi/penggantian">Mekanisme Penggantian Barang Gratifikasi</a></li>
             </ul>
           </li>
           <li class="dropdown">

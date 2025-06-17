@@ -807,9 +807,9 @@ section,
 }
 
 .hero img {
-  position: absolute;
+  position:absolute;
   inset: 0;
-  display: block;
+  /* display: block; */
   width: 100%;
   height: 100%;
   object-fit: cover;
