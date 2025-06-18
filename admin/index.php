@@ -3,21 +3,20 @@
 <!--begin::Sidebar-->
 
 <?php
-session_start();
+// session_start();
 
-if (!empty($_SESSION['username']) and !empty($_SESSION['nama'])) {
-  include("../lib/dbh.inc.php");
+// if (!empty($_SESSION['username']) and !empty($_SESSION['nama'])) {
+//   include("../lib/dbh.inc.php");
 
-  define("INDEX", true);
+//   define("INDEX", true);
 
 
-  include 'component/header.php';
-  include 'component/navbar.php';
+ 
   include 'route.php';
   include 'component/footer.php';
-} else {
+// } else {
 
-  header("Location: /inspektorat/admin/login.view.php");
-  exit;
-}
+//   header("Location: /inspektorat/admin/login.view.php");
+//   exit;
+// }
 ?>
