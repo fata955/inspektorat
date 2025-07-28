@@ -1,6 +1,6 @@
 <?php
 
-$project_location = "/inspektorat/content";
+$project_location = "/content";
 $me = $project_location;
 
 // For get URL PATH

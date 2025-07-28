@@ -1,6 +1,6 @@
 <?php
 
-$project_location = "/inspektorat/about";
+$project_location = "/about";
 $me = $project_location;
 
 // For get URL PATH
@@ -17,8 +17,6 @@ switch ($request) {
     case $me . '/tugas':
         require "../views/work.view.php";
         break;
-
- 
     default:
         http_response_code(404);
         echo 'Halaman Tidak Ditemukan';

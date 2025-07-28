@@ -1,6 +1,6 @@
 <?php
 
-$project_location = "/inspektorat/gratifikasi";
+$project_location = "/gratifikasi";
 $me = $project_location;
 
 // For get URL PATH
@@ -20,8 +20,6 @@ switch ($request) {
     case $me . '/penggantian':
         require "../views/penggatiangratifikasi.view.php";
         break;
-
-
  
     default:
         http_response_code(404);

@@ -13,7 +13,7 @@
 
  
   include 'route.php';
-  include 'component/footer.php';
+  // include 'component/footer.php';
 // } else {
 
 //   header("Location: /inspektorat/admin/login.view.php");

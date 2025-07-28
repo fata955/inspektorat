@@ -1,13 +1,13 @@
 <?php
 
-$project_location = "/inspektorat/publik";
+$project_location = "/publik";
 $me = $project_location;
 
 // For get URL PATH
 $request = $_SERVER['REQUEST_URI'];
 switch ($request) {
 
-    case $me . '/':
+    case $me . '':
         require "../views/news.view.php";
         break;
 

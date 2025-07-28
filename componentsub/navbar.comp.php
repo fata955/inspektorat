@@ -17,7 +17,7 @@
   <!-- End Top Bar -->
   <div class="branding text-dark" style="background-image: url('../assets/img/kelor.png'); background-size: 20%">
     <div class="container position-relative d-flex align-items-center justify-content-center">
-      <a href="/inspektorat" class="logo d-flex align-items-center">
+      <a href="/" class="logo d-flex align-items-center">
         <img src="../assets/img/palu.png" alt="" />
         <h1 class="sitename">Inspektorat Daerah Kota Palu<br /></h1>
       </a>
@@ -36,13 +36,13 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li class="active"><a href="/inspektorat">Home</a></li>
+          <li class="active"><a href="/">Home</a></li>
           <li class="dropdown">
             <a href="#"><span>Tentang Kami</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/about/visimisi">Visi Misi</a></li>
-              <li><a href="/inspektorat/about/tugas">Tugas Pokok & Fungsi</a></li>
+              <li><a href="/about/visimisi">Visi Misi</a></li>
+              <li><a href="/about/tugas">Tugas Pokok & Fungsi</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>
@@ -65,16 +65,16 @@
             <a href="#"><span>Publikasi & Informasi</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/publik/berita">Berita</a></li>
-              <li><a href="/inspektorat/publik/dokumen">Dokumen</a></li>
-              <li><a href="/inspektorat/publik/galeri">Galeri</a></li>
+              <li><a href="/publik/berita">Berita</a></li>
+              <li><a href="/publik/dokumen">Dokumen</a></li>
+              <li><a href="/publik/galeri">Galeri</a></li>
             </ul>
           </li>
           <li class="dropdown">
             <a href="#"><span>Gratifikasi</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/gratifikasi/knowledge">Mengenal Gratifikasi</a></li>
+              <li><a href="/gratifikasi/knowledge">Mengenal Gratifikasi</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>
@@ -88,8 +88,8 @@
                   <li><a href="#">Deep Dropdown 5</a></li>
                 </ul>
               </li> -->
-              <li><a href="/inspektorat/gratifikasi/laporan">Mekanisme Pelaporan Gratifikasi</a></li>
-              <li><a href="/inspektorat/gratifikasi/penggantian">Mekanisme Penggantian Barang Gratifikasi</a></li>
+              <li><a href="/gratifikasi/laporan">Mekanisme Pelaporan Gratifikasi</a></li>
+              <li><a href="/gratifikasi/penggantian">Mekanisme Penggantian Barang Gratifikasi</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -118,7 +118,7 @@
             <a href="#"><span>Sistem Manajemen</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="/inspektorat/">Kebijakan SMAP</a></li>
+              <li><a href="/">Kebijakan SMAP</a></li>
               <!-- <li class="dropdown">
                 <a href="#"
                   ><span>Deep Dropdown</span>
