@@ -13,30 +13,13 @@ switch ($request) {
     case $me . '/':
         include 'content/home.view.php';
         break;
-    case $me . '/home':
-        require "content/home.view.php";
-        break;
-    case $me . '/menu':
+    case $me . '/inputmenu':
         require "content/menu.view.php";
         break;
-    case $me . '/logout':
-        require "content/logout.view.php";
-        break;
-    case $me . '/login':
-        require "content/login.view.php";
+    case $me . '/inputsubmenu':
+        require "content/submenu.view.php";
         break;
    
-    case $me . '/route':
-        include 'routeaccess.php';
-        break;
-    case $me . '/perubahan':
-        include 'views/master/perubahan.view.php';
-        break;
-  
-    case $me . '/signup':
-        include 'views/register.view.php';
-        break;
- 
     default:
         http_response_code(404);
         require "views/about.view.php";

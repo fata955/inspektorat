@@ -43,7 +43,7 @@
     <!-- Choices Css -->
     <link rel="stylesheet" href="assets/libs/choices.js/public/assets/styles/choices.min.css">
 
-
+    <link rel="stylesheet" href="assets/libs/prismjs/themes/prism-coy.min.css">
 </head>
 
 <body>
