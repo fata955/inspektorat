@@ -45,7 +45,7 @@ include 'component/pengaturantampilan.view.php';
 
                 <div class="d-flex my-xl-auto right-content align-items-center">
                     <div class="pe-1 mb-xl-0">
-                        <a href="#modaldemo8" class="modal-effect btn btn-primary d-grid mb-3" data-bs-effect="effect-rotate-left" data-bs-toggle="modal">
+                        <a href="#modaldemo8insert" class="modal-effect btn btn-primary d-grid mb-3" data-bs-effect="effect-rotate-left" data-bs-toggle="modal">
                             Tambah
                         </a>
                         <!-- <button type="button" class="btn btn-info btn-icon me-2 btn-b">
@@ -83,7 +83,7 @@ include 'component/pengaturantampilan.view.php';
                                 <table class="table card-table table-vcenter text-nowrap mb-0">
                                     <thead>
                                         <tr>
-                                           
+
                                             <th><span>No</span></th>
                                             <th><span>Judul Menu</span></th>
                                             <th><span>Link</span></th>
@@ -95,7 +95,7 @@ include 'component/pengaturantampilan.view.php';
                                         <tr>
                                             <td>01</td>
                                             <td>
-                                               Beranda 
+                                                Beranda
                                             </td>
                                             <td>
                                                 /
@@ -141,18 +141,31 @@ include 'component/pengaturantampilan.view.php';
         </div>
     </div>
     <!-- End::app-content -->
-    <div class="modal fade" id="modaldemo8">
+    <div class="modal fade" id="modaldemo8insert">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
                     <div class="modal-title">
-                        Message Preview
+                        <!-- <h1>Input Menu</h1> -->
                     </div>
                     <div class="modal-body text-start">
-                        TES
+                        <form action="" method="post">
+                            <div class="input-group">
+                                <input type="text" class="form-control " placeholder="Judul Menu" name="judul_menu">
+                                <!-- <button type="button" class="btn btn-primary ">
+                                <i class="far fa-paper-plane" aria-hidden="true"></i>
+                            </button>  -->
+                            </div><br>
+                            <div class="input-group">
+                                <input type="text" class="form-control " placeholder="Isi Link" name="link_menu">
+                            </div><br>
+                            <div class="input-group">
+                                <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan_menu">
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" id="simpan_menu">
                             Simpan
                         </button>
                     </div>
@@ -165,3 +178,176 @@ include 'component/pengaturantampilan.view.php';
     <?php
     include 'component/footer.view.php';
     ?>
+
+    <script>
+        $(document).ready(function() {
+            fetchData();
+
+            let table = new DataTable("#myTableopd");
+
+            // function to fetch data from database
+            function fetchData() {
+                $.ajax({
+                    url: "proses/menu/executemenu.php?action=fetchData",
+                    type: "POST",
+                    dataType: "json",
+                    success: function(response) {
+                        var data = response.data;
+                        table.clear().draw();
+                        var counter = 1;
+                        $.each(data, function(index, value) {
+
+                            table.row
+                                .add([
+                                    counter,
+                                    // value.id,
+                                    value.id_sipd,
+                                    value.nama_opd,
+                                    value.kode_skpd,
+                                    '<Button type="button" class="btn btn-primary btn-sm editBtn" value="' +
+                                    value.id +
+                                    '"><i class="zmdi zmdi-edit"></i></Button>' +
+                                    '<Button type="button" class="btn btn-danger btn-sm deleteBtn" value="' +
+                                    value.id +
+                                    '"><i class="zmdi zmdi-delete"></i></Button>'
+                                ])
+
+                                .draw(false);
+                            counter++;
+                        });
+                    }
+                });
+            }
+
+            // function to insert data to database
+            $("#simpan_menu").on("submit", function(e) {
+                $("#insertBtn").attr("disabled", "disabled");
+                e.preventDefault();
+                $.ajax({
+                    url: "proses/opd/executeopd.php?action=insertData",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        var response = JSON.parse(response);
+                        if (response.statusCode == 200) {
+                            $("#offcanvasAddUser").offcanvas("hide");
+                            $("#insertBtn").removeAttr("disabled");
+                            $("#insertForm")[0].reset();
+                            //   $(".preview_img").attr("src", "images/default_profile.jpg");
+                            // $("#successToast").toast("show");
+                            // $("#successMsg").html(response.message);
+                            Swal.fire("!", "Data Sukses Tersimpan", "success");
+                            fetchData();
+                        } else if (response.statusCode == 500) {
+                            $("#offcanvasAddUser").offcanvas("hide");
+                            $("#insertBtn").removeAttr("disabled");
+                            $("#insertForm")[0].reset();
+                            Swal.fire("!", "Data Erro Disimpan", "Warning");
+                            fetchData();
+                            //   $(".preview_img").attr("src", "images/default_profile.jpg");
+                            // $("#errorToast").toast("show");
+                            // $("#errorMsg").html(response.message);
+                        } else if (response.statusCode == 400) {
+                            $("#insertBtn").removeAttr("disabled");
+                            Swal.fire("!", "Data Masih Kosong", "Warning");
+                            // $("#errorToast").toast("show");
+                            // $("#errorMsg").html(response.message);
+                        }
+                    }
+                });
+            });
+
+            // function to edit data
+            $("#myTableopd").on("click", ".editBtn", function() {
+                var id = $(this).val();
+                $.ajax({
+                    url: "proses/opd/executeopd.php?action=fetchSingle",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: id
+                    },
+                    success: function(response) {
+                        var data = response.data;
+                        $("#editForm #id").val(data.id);
+                        $("#editForm input[name='idsipd']").val(data.id_sipd);
+                        $("#editForm input[name='namaopd']").val(data.nama_opd);
+                        $("#editForm input[name='kodeopd']").val(data.kode_skpd);
+                        // $("#editForm select[name='country']").val(data.country);
+                        // $("#editForm .preview_img").attr("src", "uploads/" + data.image + "");
+                        // $("#editForm #image_old").val(data.image);
+                        // if (data.gender === "male") {
+                        //   $("#editForm input[name='gender'][value='male']").attr("checked", true);
+                        // } else if(data.gender === "female") {
+                        //   $("#editForm input[name='gender'][value='female']").attr("checked", true);
+                        // }
+                        // show the edit user offcanvas
+                        $("#offcanvasEditUser").modal("show");
+                    }
+                });
+            });
+
+            // function to update data in database
+            $("#editForm").on("submit", function(e) {
+                $("#editBtn").attr("disabled");
+                e.preventDefault();
+                $.ajax({
+                    url: "proses/opd/executeopd.php?action=updateData",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(response) {
+                        var response = JSON.parse(response);
+                        if (response.statusCode == 200) {
+                            Swal.fire("!", "Data Sukses Terupdate", "success");
+                            fetchData();
+                            $("#offcanvasEditUser").modal("hide");
+                        } else if (response.statusCode == 500) {
+                            $("#offcanvasEditUser").offcanvas("hide");
+                            $("#editBtn").removeAttr("disabled");
+                            $("#editForm")[0].reset();
+                            //   $(".preview_img").attr("src", "images/default_profile.jpg");
+                            $("#errorToast").toast("show");
+                            $("#errorMsg").html(response.message);
+                        } else if (response.statusCode == 400) {
+                            // $("#editBtn").removeAttr("disabled");
+                            $("#errorToast").toast("show");
+                            $("#errorMsg").html(response.message);
+                        }
+                    }
+                });
+            });
+
+            // function to delete data
+            $("#myTableopd").on("click", ".deleteBtn", function() {
+                if (confirm("Apakah yakin Menghapus Data Ini?")) {
+                    var id = $(this).val();
+                    //   var delete_image = $(this).closest("td").find(".delete_image").val();
+                    $.ajax({
+                        url: "proses/opd/executeopd.php?action=deleteData",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            id
+                            //   delete_image
+                        },
+                        success: function(response) {
+                            if (response.statusCode == 200) {
+                                fetchData();
+                                $("#successToast").toast("show");
+                                $("#successMsg").html(response.message);
+                            } else if (response.statusCode == 500) {
+                                $("#errorToast").toast("show");
+                                $("#errorMsg").html(response.message);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
