@@ -224,7 +224,7 @@ include 'component/pengaturantampilan.view.php';
             fetchData();
 
             let table = new DataTable("#mytablemenu");
-            $("#success").toast("show");
+            
             // function to fetch data from database
             function fetchData() {
                 $.ajax({
@@ -258,7 +258,7 @@ include 'component/pengaturantampilan.view.php';
             }
 
             // function to insert data to database
-            $("#topleftToastBtn").on("submit", function(e) {
+            $("#simpan").on("submit", function(e) {
                 // $("#insertBtn").attr("disabled", "disabled");
                 e.preventDefault();
                 $.ajax({
