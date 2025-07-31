@@ -1,6 +1,7 @@
 <?php
 include 'component/header.view.php';
 include 'component/pengaturantampilan.view.php';
+
 ?>
 <div class="page">
     <?php
@@ -80,7 +81,7 @@ include 'component/pengaturantampilan.view.php';
                         </div> -->
                         <div class="card-body">
                             <div class="table-responsive border border-bottom-0 userlist-table">
-                                <table class="table card-table table-vcenter text-nowrap mb-0">
+                                <table class="table card-table table-vcenter text-nowrap mb-0" id="mytablemenu">
                                     <thead>
                                         <tr>
 
@@ -92,7 +93,7 @@ include 'component/pengaturantampilan.view.php';
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>01</td>
                                             <td>
                                                 Beranda
@@ -104,9 +105,7 @@ include 'component/pengaturantampilan.view.php';
                                                 1
                                             </td>
                                             <td>
-                                                <!-- <a href="javascript:void(0);" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="" data-bs-original-title="search">
-                                                    <i class="las la-search"></i>
-                                                </a> -->
+                                            
                                                 <a href="javascript:void(0);" class="btn btn-sm btn-info btn-b" data-bs-toggle="tooltip" title="" data-bs-original-title="edit">
                                                     <i class="las la-pen"></i>
                                                 </a>
@@ -114,7 +113,7 @@ include 'component/pengaturantampilan.view.php';
                                                     <i class="las la-trash"></i>
                                                 </a>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -152,9 +151,6 @@ include 'component/pengaturantampilan.view.php';
                         <form action="" method="post">
                             <div class="input-group">
                                 <input type="text" class="form-control " placeholder="Judul Menu" name="judul_menu">
-                                <!-- <button type="button" class="btn btn-primary ">
-                                <i class="far fa-paper-plane" aria-hidden="true"></i>
-                            </button>  -->
                             </div><br>
                             <div class="input-group">
                                 <input type="text" class="form-control " placeholder="Isi Link" name="link_menu">
@@ -165,7 +161,7 @@ include 'component/pengaturantampilan.view.php';
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="simpan_menu">
+                        <button class="btn btn-primary" id="simpan">
                             Simpan
                         </button>
                     </div>
@@ -179,12 +175,56 @@ include 'component/pengaturantampilan.view.php';
     include 'component/footer.view.php';
     ?>
 
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="success" class="toast colored-toast bg-primary-transparent text-secondary" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header bg-secondary text-fixed-white">
+                <img class="bd-placeholder-img rounded me-2" src="assets/images/brand-logos/toggle-white.png" alt="...">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Data Sukses Tersimpan
+            </div>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="error" class="toast colored-toast bg-primary-transparent text-secondary" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header bg-secondary text-fixed-white">
+                <img class="bd-placeholder-img rounded me-2" src="assets/images/brand-logos/toggle-white.png" alt="...">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Data Error
+            </div>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="kosong" class="toast colored-toast bg-primary-transparent text-secondary" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header bg-secondary text-fixed-white">
+                <img class="bd-placeholder-img rounded me-2" src="assets/images/brand-logos/toggle-white.png" alt="...">
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Data Sukses Tersimpan
+            </div>
+        </div>
+    </div>
+
+
     <script>
         $(document).ready(function() {
             fetchData();
 
-            let table = new DataTable("#myTableopd");
-
+            let table = new DataTable("#mytablemenu");
+            $("#success").toast("show");
             // function to fetch data from database
             function fetchData() {
                 $.ajax({
@@ -196,20 +236,18 @@ include 'component/pengaturantampilan.view.php';
                         table.clear().draw();
                         var counter = 1;
                         $.each(data, function(index, value) {
-
                             table.row
                                 .add([
                                     counter,
-                                    // value.id,
-                                    value.id_sipd,
-                                    value.nama_opd,
-                                    value.kode_skpd,
-                                    '<Button type="button" class="btn btn-primary btn-sm editBtn" value="' +
+                                    value.judul,
+                                    value.link,
+                                    value.urutan,
+                                    '<Button type="button" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
-                                    '"><i class="zmdi zmdi-edit"></i></Button>' +
-                                    '<Button type="button" class="btn btn-danger btn-sm deleteBtn" value="' +
+                                    '"><i class="las la-pen"></i></Button>' +
+                                    '<Button type="button" class="btn btn-sm btn-danger deleteBtn" value="' +
                                     value.id +
-                                    '"><i class="zmdi zmdi-delete"></i></Button>'
+                                    '"><i class="las la-trash"></i></Button>'
                                 ])
 
                                 .draw(false);
@@ -220,11 +258,11 @@ include 'component/pengaturantampilan.view.php';
             }
 
             // function to insert data to database
-            $("#simpan_menu").on("submit", function(e) {
-                $("#insertBtn").attr("disabled", "disabled");
+            $("#topleftToastBtn").on("submit", function(e) {
+                // $("#insertBtn").attr("disabled", "disabled");
                 e.preventDefault();
                 $.ajax({
-                    url: "proses/opd/executeopd.php?action=insertData",
+                    url: "proses/menu/executemenu.php?action=insertData",
                     type: "POST",
                     data: new FormData(this),
                     contentType: false,
@@ -236,9 +274,6 @@ include 'component/pengaturantampilan.view.php';
                             $("#offcanvasAddUser").offcanvas("hide");
                             $("#insertBtn").removeAttr("disabled");
                             $("#insertForm")[0].reset();
-                            //   $(".preview_img").attr("src", "images/default_profile.jpg");
-                            // $("#successToast").toast("show");
-                            // $("#successMsg").html(response.message);
                             Swal.fire("!", "Data Sukses Tersimpan", "success");
                             fetchData();
                         } else if (response.statusCode == 500) {
@@ -261,7 +296,7 @@ include 'component/pengaturantampilan.view.php';
             });
 
             // function to edit data
-            $("#myTableopd").on("click", ".editBtn", function() {
+            $("#mytablemenu").on("click", ".editBtn", function() {
                 var id = $(this).val();
                 $.ajax({
                     url: "proses/opd/executeopd.php?action=fetchSingle",

@@ -1,6 +1,7 @@
 <?php
 include 'component/header.view.php';
 include 'component/pengaturantampilan.view.php';
+$page = "beranda";
 ?>
 <div class="page">
     <?php
