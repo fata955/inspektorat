@@ -4,7 +4,7 @@ include '../../../lib/dbh.inc.php';
 
 
 if ($_GET["action"] === "fetchData") {
-  $sql = "SELECT * FROM rsapkota_anutapura23.menu";
+  $sql = "SELECT * FROM menu";
   $result = mysqli_query($koneksi, $sql);
   $data = [];
   while ($row = mysqli_fetch_assoc($result)) {

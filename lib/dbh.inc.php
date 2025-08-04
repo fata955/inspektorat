@@ -2,8 +2,8 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "nadirad3mi208";
-$database = "rsapkota_anutapura23";
+$password = "";
+$database = "inspektorat";
 // $servername = "localhost";
 // $username = "root";
 // $password = "nadirad3mi208";
@@ -13,7 +13,7 @@ $koneksi = new mysqli($servername, $username, $password,$database);
 
 // Check connection
 if ($koneksi->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die("Connection failed: " . $koneksi->connect_error);
 }
 // echo "Connected successfully";
 ?>
