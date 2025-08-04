@@ -1,7 +1,11 @@
 <?php
 include 'component/header.view.php';
+
 include 'component/pengaturantampilan.view.php';
+
 ?>
+
+
 <div class="page">
     <?php
     include 'component/header2.view.php';
@@ -34,11 +38,11 @@ include 'component/pengaturantampilan.view.php';
             <!-- Page Header -->
             <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
                 <div class="my-auto">
-                    <h5 class="page-title fs-21 mb-1">Sub Menu List</h5>
+                    <h5 class="page-title fs-21 mb-1">Carousel List</h5>
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Menu Utama</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Input SubMenu</li>
+                            <li class="breadcrumb-item active" aria-current="page">Input carousel</li>
                         </ol>
                     </nav>
                 </div>
@@ -81,15 +85,14 @@ include 'component/pengaturantampilan.view.php';
                         </div> -->
                         <div class="card-body">
                             <div class="table-responsive border border-bottom-0 userlist-table">
-                                <table class="table card-table table-vcenter text-nowrap mb-0" id="mytablesubmenu">
+                                <table class="table card-table table-vcenter text-nowrap mb-0" id="mytablecarousel">
                                     <thead>
                                         <tr>
 
                                             <th><span>No</span></th>
-                                            <th><span>judul menu</span></th>
-                                            <th><span>Judul sub Menu</span></th>
-                                            <th><span>Link</span></th>
-                                            <th><span>Urutan</span></th>
+                                            <th><span>Judul gambar</span></th>
+                                            <th><span>Image</span></th>
+                                            <!-- <th><span>tanggal</span></th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -127,32 +130,21 @@ include 'component/pengaturantampilan.view.php';
 
 
     <div class="modal fade" id="modaldemo8insert">
-        <form method="post" id="form_inputsubmenu">
+        <form method="post" id="form_inputcarousel" enctype="multipart/form-data">
             <div class="modal-dialog modal-dialog-centered text-center" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">Form Input Menu</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                        <h6 class="modal-title">Form Input gambar slide</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body text-start">
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name ="menujudul" id="menujudul">
-                                <?php
-                                // include '../../lib/conn.php';
-                                $menu= mysqli_query($koneksi, "SELECT * from menu");
-                                while ($fetch = mysqli_fetch_array($menu)) {
-                                    echo '<option value="' . $fetch['id'] . '">' . $fetch['judul'] . '</option>';
-                                }
-                                ?>
-                            </select>
+                            <input type="text" class="form-control " placeholder="Judul Menu" name="judul" id="judul">
                         </div><br>
                         <div class="input-group">
-                            <input type="text" class="form-control " placeholder="Judul Sub Menu" name="submenujudul" id="submenujudul">
+                           <input class="form-control form-control-sm" name="filegambar" id="filegambar" type="file">
                         </div><br>
                         <div class="input-group">
-                            <input type="text" class="form-control " placeholder="Isi Link" name="link" id="link">
-                        </div><br>
-                        <div class="input-group">
-                            <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan" id="urutan">
+                            <!-- <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan" id="urutan"> -->
                         </div>
 
 
@@ -189,35 +181,24 @@ include 'component/pengaturantampilan.view.php';
 
 
     <div class="modal fade" id="modaldemo8edit">
-        <form method="post" id="editForm">
+        <form method="post" id="editForm" enctype="multipart/form-data">
             <div class="modal-dialog modal-dialog-centered text-center" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">Form edit subMenu</h6>
+                        <h6 class="modal-title">Form edit gambar slide</h6>
                         <!-- <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button> -->
                     </div>
                     <div class="modal-body text-start">
                         <input type="hidden" class="form-control " id="id" name="id">
                         <div class="input-group">
-                         <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name ="menujudul" id="menujudul">
-                                <?php
-                                // include '../../lib/conn.php';
-                                $menu= mysqli_query($koneksi, "SELECT * from menu");
-                                while ($fetch = mysqli_fetch_array($menu)) {
-                                    echo '<option value="' . $fetch['id'] . '">' . $fetch['judul'] . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div><br>
-                        <div class="input-group">
 
-                            <input type="text" class="form-control " name="submenujudul" id="submenujudul">
+                            <input type="text" class="form-control " name="judul">
                         </div><br>
                         <div class="input-group">
-                            <input type="text" class="form-control " name="link" id="link">
+                           <input class="form-control form-control-sm" name="filegambar" id="filegambar" type="file">
                         </div><br>
                         <div class="input-group">
-                            <input type="text" class="form-control " name="urutan" id="urutan">
+                            <!-- <input type="text" class="form-control " name="urutan"> -->
                         </div>
 
 
@@ -245,12 +226,12 @@ include 'component/pengaturantampilan.view.php';
             fetchData();
             kosong();
 
-            let table = new DataTable("#mytablesubmenu");
+            let table = new DataTable("#mytablecarousel");
 
             // function to fetch data from database
             function fetchData() {
                 $.ajax({
-                    url: "proses/menu/executesubmenu.php?action=fetchData",
+                    url: "proses/carousel/executecarousel.php?action=fetchData",
                     type: "POST",
                     dataType: "json",
                     success: function(response) {
@@ -261,10 +242,9 @@ include 'component/pengaturantampilan.view.php';
                             table.row
                                 .add([
                                     counter,
-                                    value.id_menu,
                                     value.judul,
-                                    value.link,
-                                    value.urutan,
+                                    value.gambar,
+                                    // value.urutan,
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
                                     '"><i class="las la-pen"></i></button>' +
@@ -281,21 +261,20 @@ include 'component/pengaturantampilan.view.php';
             }
 
             function kosong() {
-                $("#menujudul").val('');
-                $("#submenujudul").val('');
-                $("#link").val('');
-                $("#urutan").val('');
+                $("#judul").val('');
+                $("#filegambar").val('');
+                // $("#urutan").val('');
                 $("#error").hide();
             }
             $("#tambah").on("click", function() {
                 kosong();
             })
             // function to insert data to database
-            $("#form_inputsubmenu").on("submit", function(e) {
+            $("#form_inputcarousel").on("submit", function(e) {
                 // $("#insertBtn").attr("disabled", "disabled");
                 e.preventDefault();
                 $.ajax({
-                    url: "proses/menu/executesubmenu.php?action=insertData",
+                    url: "proses/carousel/executecarousel.php?action=insertData",
                     type: "POST",
                     data: new FormData(this),
                     contentType: false,
@@ -341,11 +320,11 @@ include 'component/pengaturantampilan.view.php';
             });
 
             // function to edit data
-            $("#mytablesubmenu").on("click", ".editBtn", function() {
+            $("#mytablecarousel").on("click", ".editBtn", function() {
                 var id = $(this).val();
                 // console.log(id);
                 $.ajax({
-                    url: "proses/menu/executesubmenu.php?action=fetchSingle",
+                    url: "proses/carousel/executecarousel.php?action=fetchSingle",
                     type: "POST",
                     dataType: "json",
                     data: {
@@ -355,9 +334,8 @@ include 'component/pengaturantampilan.view.php';
                         var data = response.data;
 
                         $(" #modaldemo8edit #editForm #id").val(data.id);
-                        $("#modaldemo8edit #editForm select[name='menujudul']").val(data.id_menu);
-                        $("#modaldemo8edit #editForm input[name='submenujudul']").val(data.judul);
-                        $("#modaldemo8edit #editForm input[name='link']").val(data.link);
+                        $("#modaldemo8edit #editForm input[name='judul']").val(data.judul);
+                        $("#modaldemo8edit #editForm input[name='filegambar']").val(data.gambar);
                         $("#modaldemo8edit #editForm input[name='urutan']").val(data.urutan);
 
                         $("#modaldemo8edit").modal("show");
@@ -371,7 +349,7 @@ include 'component/pengaturantampilan.view.php';
                 // $("#editBtn").attr("disabled");
                 e.preventDefault();
                 $.ajax({
-                    url: "proses/menu/executesubmenu.php?action=updateData",
+                    url: "proses/carousel/executecarousel.php?action=updateData",
                     type: "POST",
                     data: new FormData(this),
                     contentType: false,
@@ -396,12 +374,12 @@ include 'component/pengaturantampilan.view.php';
             });
 
             // function to delete data
-            $("#mytablesubmenu").on("click", ".deleteBtn", function() {
+            $("#mytablecarousel").on("click", ".deleteBtn", function() {
                 if (confirm("Apakah yakin Menghapus Data Ini?")) {
                     var id = $(this).val();
                     //   var delete_image = $(this).closest("td").find(".delete_image").val();
                     $.ajax({
-                        url: "proses/menu/executesubmenu.php?action=deleteData",
+                        url: "proses/carousel/executecarousel.php?action=deleteData",
                         type: "POST",
                         dataType: "json",
                         data: {
@@ -422,3 +400,6 @@ include 'component/pengaturantampilan.view.php';
             });
         });
     </script>
+
+
+    

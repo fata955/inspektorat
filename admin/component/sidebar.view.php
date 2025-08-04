@@ -106,7 +106,7 @@
                              <a href="javascript:void(0);">Carousel</a>
                          </li>
                          <li class="slide">
-                             <a href="alerts.html" class="side-menu__item">Tampilan carousel</a>
+                             <a href="/admin/carousel" class="side-menu__item">Tampilan carousel</a>
                          </li>
 
                      </ul>

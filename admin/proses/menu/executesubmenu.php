@@ -4,7 +4,7 @@ include '../../../lib/dbh.inc.php';
 
 
 if ($_GET["action"] === "fetchData") {
-  $sql = "SELECT * FROM rsapkota_anutapura23.menu";
+  $sql = "SELECT * FROM submenu";
   $result = mysqli_query($koneksi, $sql);
   $data = [];
   while ($row = mysqli_fetch_assoc($result)) {
@@ -19,9 +19,9 @@ if ($_GET["action"] === "fetchData") {
 
 if ($_GET["action"] === "insertData") {
 
-
-  if (!empty($_POST["judul"]) && !empty($_POST["link"]) && !empty($_POST["urutan"]) != 0) {
-    $judul = mysqli_real_escape_string($koneksi, $_POST["judul"]);
+  if (!empty($_POST["menujudul"]) && !empty($_POST["submenujudul"]) && !empty($_POST["link"]) && !empty($_POST["urutan"]) != 0) {
+    $menu = mysqli_real_escape_string($koneksi, $_POST["menujudul"]);
+    $submenu = mysqli_real_escape_string($koneksi, $_POST["submenujudul"]);
     $link = mysqli_real_escape_string($koneksi, $_POST["link"]);
     $urutan = mysqli_real_escape_string($koneksi, $_POST["urutan"]);
 
@@ -29,10 +29,10 @@ if ($_GET["action"] === "insertData") {
     // $link = $_POST["link"];
     // $urutan = $_POST["urutan"];
 
-    $cek = mysqli_query($koneksi, "SELECT * FROM menu where judul='$judul'");
+    $cek = mysqli_query($koneksi, "SELECT * FROM submenu where judul='$submenu'");
     $double = mysqli_num_rows($cek);
     if ($double == null) {
-      $sql = "INSERT INTO menu (judul,link,urutan) VALUES ('$judul','$link','$urutan')";
+      $sql = "INSERT INTO submenu (id_menu,judul,link,urutan) VALUES ('$menu','$submenu','$link','$urutan')";
       // header("Content-Type: application/json");
       if (mysqli_query($koneksi, $sql)) {
         echo json_encode([
@@ -62,7 +62,7 @@ if ($_GET["action"] === "insertData") {
 
 if ($_GET["action"] === "fetchSingle") {
   $id = $_POST["id"];
-  $sql = "SELECT * FROM menu WHERE id='$id'";
+  $sql = "SELECT * FROM submenu WHERE id='$id'";
   $result = mysqli_query($koneksi, $sql);
   if (mysqli_num_rows($result) > 0) {
     $data = mysqli_fetch_assoc($result);
@@ -82,15 +82,12 @@ if ($_GET["action"] === "fetchSingle") {
 
 // function to update data
 if ($_GET["action"] === "updateData") {
-    $id = $_POST["id"];
-  if (!empty($_POST["judul"]) && !empty($_POST["link"]) && !empty($_POST["urutan"])) {
-    // $id = mysqli_real_escape_string($conn, $_POST["id"]);
-    $judul = mysqli_real_escape_string($koneksi, $_POST["judul"]);
+  $id = $_POST["id"];
+  if (!empty($_POST["menujudul"]) && !empty($_POST["submenujudul"]) && !empty($_POST["link"]) && !empty($_POST["urutan"])) {
+    $menu = mysqli_real_escape_string($koneksi, $_POST["menujudul"]);
+    $submenu = mysqli_real_escape_string($koneksi, $_POST["submenujudul"]);
     $link = mysqli_real_escape_string($koneksi, $_POST["link"]);
     $urutan = mysqli_real_escape_string($koneksi, $_POST["urutan"]);
-    // $email = mysqli_real_escape_string($conn, $_POST["email"]);
-    // $country = mysqli_real_escape_string($conn, $_POST["country"]);
-    // $gender = mysqli_real_escape_string($conn, $_POST["gender"]);
 
     // if ($_FILES["image"]["size"] != 0) {
     //   // rename the image before saving to database
@@ -102,7 +99,7 @@ if ($_GET["action"] === "updateData") {
     // } else {
     //   $new_name = mysqli_real_escape_string($conn, $_POST["image_old"]);
     // }
-    $sql = "UPDATE menu SET judul='$judul',link='$link', urutan='$urutan' WHERE id=$id";
+    $sql = "UPDATE submenu SET id_menu='$menu',judul='$submenu',link='$link', urutan='$urutan' WHERE id=$id";
     if (mysqli_query($koneksi, $sql)) {
       echo json_encode([
         "statusCode" => 200,
@@ -129,7 +126,7 @@ if ($_GET["action"] === "deleteData") {
   $id = $_POST["id"];
   // $delete_image = $_POST["delete_image"];
 
-  $sql = "DELETE FROM menu WHERE id=$id";
+  $sql = "DELETE FROM submenu WHERE id=$id";
 
   if (mysqli_query($koneksi, $sql)) {
     // remove the image
@@ -138,7 +135,6 @@ if ($_GET["action"] === "deleteData") {
       "statusCode" => 200,
       "message" => "Data deleted successfully 😀"
     ]);
-    
   } else {
     echo json_encode([
       "statusCode" => 500,
@@ -146,6 +142,3 @@ if ($_GET["action"] === "deleteData") {
     ]);
   }
 }
-
-
-

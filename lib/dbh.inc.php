@@ -1,8 +1,13 @@
 <?php
+
 $servername = "localhost";
 $username = "root";
 $password = "nadirad3mi208";
-$database = "inspektorat";
+$database = "rsapkota_anutapura23";
+// $servername = "localhost";
+// $username = "root";
+// $password = "nadirad3mi208";
+// $database = "inspektorat";
 
 $koneksi = new mysqli($servername, $username, $password,$database);
 

@@ -46,9 +46,10 @@ include 'component/pengaturantampilan.view.php';
 
                 <div class="d-flex my-xl-auto right-content align-items-center">
                     <div class="pe-1 mb-xl-0">
-                        <a href="#modaldemo8insert" class="modal-effect btn btn-primary d-grid mb-3" data-bs-effect="effect-rotate-left" data-bs-toggle="modal">
+                        <!-- <a href="#modaldemo8insert" id="tambah" class="modal-effect btn btn-primary d-grid mb-3" data-bs-effect="effect-fall" data-bs-toggle="modal">
                             Tambah
-                        </a>
+                        </a> -->
+                        <a class="modal-effect btn btn-primary d-grid mb-3" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8insert" id="tambah">tambah</a>
                         <!-- <button type="button" class="btn btn-info btn-icon me-2 btn-b">
                             <i class="bx bx-file-blank"></i></i>
                          
@@ -93,27 +94,7 @@ include 'component/pengaturantampilan.view.php';
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- <tr>
-                                            <td>01</td>
-                                            <td>
-                                                Beranda
-                                            </td>
-                                            <td>
-                                                /
-                                            </td>
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>
-                                            
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-info btn-b" data-bs-toggle="tooltip" title="" data-bs-original-title="edit">
-                                                    <i class="las la-pen"></i>
-                                                </a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" title="" data-bs-original-title="delete">
-                                                    <i class="las la-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr> -->
+
                                     </tbody>
                                 </table>
                             </div>
@@ -137,94 +118,113 @@ include 'component/pengaturantampilan.view.php';
             </div>
             <!--End::row-1 -->
 
+
         </div>
     </div>
+
+
     <!-- End::app-content -->
+
+
     <div class="modal fade" id="modaldemo8insert">
-        <div class="modal-dialog modal-dialog-centered text-center" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <div class="modal-title">
-                        <!-- <h1>Input Menu</h1> -->
+        <form method="post" id="form_inputmenu">
+            <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                <div class="modal-content modal-content-demo">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Form Input Menu</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body text-start">
-                        <form action="" method="post">
-                            <div class="input-group">
-                                <input type="text" class="form-control " placeholder="Judul Menu" name="judul_menu">
-                            </div><br>
-                            <div class="input-group">
-                                <input type="text" class="form-control " placeholder="Isi Link" name="link_menu">
-                            </div><br>
-                            <div class="input-group">
-                                <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan_menu">
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Judul Menu" name="judul" id="judul">
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Isi Link" name="link" id="link">
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan" id="urutan">
+                        </div>
+
+
+                        <!-- //MESSAGE -->
+
+                        <div class="alert custom-alert1 alert-secondary" id="error">
+                            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x"></i></button>
+                            <div class="text-center px-5 pb-0">
+                                <svg class="custom-alert-icon svg-secondary" xmlns="http://www.w3.org/2000/svg" height="1.5rem" viewBox="0 0 24 24" width="1.5rem" fill="#000000">
+                                    <path d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                </svg>
+                                <h5>Confirmed</h5>
+                                <p class="">This alert is created to just show the confirmation message.</p>
+                                <div class="">
+                                    <button class="btn btn-sm btn-secondary m-1">Close</button>
+                                </div>
                             </div>
-                        </form>
+                        </div>
+                        <!-- ENDMESSAGE -->
+
+
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="simpan">
+                        <button type="submit" class="btn btn-primary" id="simpan">
                             Simpan
                         </button>
+                        <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
                     </div>
                 </div>
             </div>
+        </form>
+    </div>
 
-        </div>
+
+    <div class="modal fade" id="modaldemo8edit">
+        <form method="post" id="editForm">
+            <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                <div class="modal-content modal-content-demo">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Form edit Menu</h6>
+                        <!-- <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button> -->
+                    </div>
+                    <div class="modal-body text-start">
+                        <input type="hidden" class="form-control " id="id" name="id">
+                        <div class="input-group">
+
+                            <input type="text" class="form-control " name="judul">
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control " name="link">
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control " name="urutan">
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="update">
+                            Update
+                        </button>
+                        <!-- <button class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <?php
     include 'component/footer.view.php';
     ?>
 
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="success" class="toast colored-toast bg-primary-transparent text-secondary" role="alert" aria-live="assertive"
-            aria-atomic="true">
-            <div class="toast-header bg-secondary text-fixed-white">
-                <img class="bd-placeholder-img rounded me-2" src="assets/images/brand-logos/toggle-white.png" alt="...">
-                <strong class="me-auto">Success</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Data Sukses Tersimpan
-            </div>
-        </div>
-    </div>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="error" class="toast colored-toast bg-primary-transparent text-secondary" role="alert" aria-live="assertive"
-            aria-atomic="true">
-            <div class="toast-header bg-secondary text-fixed-white">
-                <img class="bd-placeholder-img rounded me-2" src="assets/images/brand-logos/toggle-white.png" alt="...">
-                <strong class="me-auto">Success</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Data Error
-            </div>
-        </div>
-    </div>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="kosong" class="toast colored-toast bg-primary-transparent text-secondary" role="alert" aria-live="assertive"
-            aria-atomic="true">
-            <div class="toast-header bg-secondary text-fixed-white">
-                <img class="bd-placeholder-img rounded me-2" src="assets/images/brand-logos/toggle-white.png" alt="...">
-                <strong class="me-auto">Success</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Data Sukses Tersimpan
-            </div>
-        </div>
-    </div>
 
 
     <script>
         $(document).ready(function() {
             fetchData();
+            kosong();
 
             let table = new DataTable("#mytablemenu");
-            
+
             // function to fetch data from database
             function fetchData() {
                 $.ajax({
@@ -242,9 +242,9 @@ include 'component/pengaturantampilan.view.php';
                                     value.judul,
                                     value.link,
                                     value.urutan,
-                                    '<Button type="button" class="btn btn-sm btn-info btn-b  editBtn" value="' +
+                                    '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
-                                    '"><i class="las la-pen"></i></Button>' +
+                                    '"><i class="las la-pen"></i></button>' +
                                     '<Button type="button" class="btn btn-sm btn-danger deleteBtn" value="' +
                                     value.id +
                                     '"><i class="las la-trash"></i></Button>'
@@ -257,8 +257,17 @@ include 'component/pengaturantampilan.view.php';
                 });
             }
 
+            function kosong() {
+                $("#judul").val('');
+                $("#link").val('');
+                $("#urutan").val('');
+                $("#error").hide();
+            }
+            $("#tambah").on("click", function() {
+                kosong();
+            })
             // function to insert data to database
-            $("#simpan").on("submit", function(e) {
+            $("#form_inputmenu").on("submit", function(e) {
                 // $("#insertBtn").attr("disabled", "disabled");
                 e.preventDefault();
                 $.ajax({
@@ -271,14 +280,14 @@ include 'component/pengaturantampilan.view.php';
                     success: function(response) {
                         var response = JSON.parse(response);
                         if (response.statusCode == 200) {
-                            $("#offcanvasAddUser").offcanvas("hide");
-                            $("#insertBtn").removeAttr("disabled");
-                            $("#insertForm")[0].reset();
-                            Swal.fire("!", "Data Sukses Tersimpan", "success");
+                            alert('Data Sukses tersimpan');
+                            // $('#modaldemo8insert').fadeOut("close");
+                            // window.location.replace("/admin/inputmenu");
                             fetchData();
+                            kosong();
                         } else if (response.statusCode == 500) {
                             $("#offcanvasAddUser").offcanvas("hide");
-                            $("#insertBtn").removeAttr("disabled");
+                            $("#simpan").removeAttr("disabled");
                             $("#insertForm")[0].reset();
                             Swal.fire("!", "Data Erro Disimpan", "Warning");
                             fetchData();
@@ -286,11 +295,23 @@ include 'component/pengaturantampilan.view.php';
                             // $("#errorToast").toast("show");
                             // $("#errorMsg").html(response.message);
                         } else if (response.statusCode == 400) {
-                            $("#insertBtn").removeAttr("disabled");
+                            $("#simpan").removeAttr("disabled");
                             Swal.fire("!", "Data Masih Kosong", "Warning");
                             // $("#errorToast").toast("show");
                             // $("#errorMsg").html(response.message);
+                        } else if (response.statusCode == 800) {
+                            $("#error").show();
+                            alert('Data Sudah Ada yang sama')
+                            // window.location.replace("/admin/inputmenu");
+                            fetchData();
+
+                            // $("#simpan").removeAttr("disabled");
+                            // Swal.fire("!", "Data Masih Kosong", "Warning");
+                            // $("#errorToast").toast("show");
+                            kosong();
+                            // $("#errorMsg").html(response.message);
                         }
+
                     }
                 });
             });
@@ -298,8 +319,9 @@ include 'component/pengaturantampilan.view.php';
             // function to edit data
             $("#mytablemenu").on("click", ".editBtn", function() {
                 var id = $(this).val();
+                // console.log(id);
                 $.ajax({
-                    url: "proses/opd/executeopd.php?action=fetchSingle",
+                    url: "proses/menu/executemenu.php?action=fetchSingle",
                     type: "POST",
                     dataType: "json",
                     data: {
@@ -307,30 +329,24 @@ include 'component/pengaturantampilan.view.php';
                     },
                     success: function(response) {
                         var data = response.data;
-                        $("#editForm #id").val(data.id);
-                        $("#editForm input[name='idsipd']").val(data.id_sipd);
-                        $("#editForm input[name='namaopd']").val(data.nama_opd);
-                        $("#editForm input[name='kodeopd']").val(data.kode_skpd);
-                        // $("#editForm select[name='country']").val(data.country);
-                        // $("#editForm .preview_img").attr("src", "uploads/" + data.image + "");
-                        // $("#editForm #image_old").val(data.image);
-                        // if (data.gender === "male") {
-                        //   $("#editForm input[name='gender'][value='male']").attr("checked", true);
-                        // } else if(data.gender === "female") {
-                        //   $("#editForm input[name='gender'][value='female']").attr("checked", true);
-                        // }
-                        // show the edit user offcanvas
-                        $("#offcanvasEditUser").modal("show");
+
+                        $(" #modaldemo8edit #editForm #id").val(data.id);
+                        $("#modaldemo8edit #editForm input[name='judul']").val(data.judul);
+                        $("#modaldemo8edit #editForm input[name='link']").val(data.link);
+                        $("#modaldemo8edit #editForm input[name='urutan']").val(data.urutan);
+
+                        $("#modaldemo8edit").modal("show");
+
                     }
                 });
             });
 
             // function to update data in database
             $("#editForm").on("submit", function(e) {
-                $("#editBtn").attr("disabled");
+                // $("#editBtn").attr("disabled");
                 e.preventDefault();
                 $.ajax({
-                    url: "proses/opd/executeopd.php?action=updateData",
+                    url: "proses/menu/executemenu.php?action=updateData",
                     type: "POST",
                     data: new FormData(this),
                     contentType: false,
@@ -339,32 +355,28 @@ include 'component/pengaturantampilan.view.php';
                     success: function(response) {
                         var response = JSON.parse(response);
                         if (response.statusCode == 200) {
-                            Swal.fire("!", "Data Sukses Terupdate", "success");
+                            alert('Data Sukses terupdate')
+                            // Swal.fire("!", "Data Sukses Terupdate", "success");
                             fetchData();
-                            $("#offcanvasEditUser").modal("hide");
+                            kosong();
+                            // $("#offcanvasEditUser").modal("hide");
                         } else if (response.statusCode == 500) {
-                            $("#offcanvasEditUser").offcanvas("hide");
-                            $("#editBtn").removeAttr("disabled");
-                            $("#editForm")[0].reset();
-                            //   $(".preview_img").attr("src", "images/default_profile.jpg");
-                            $("#errorToast").toast("show");
-                            $("#errorMsg").html(response.message);
+                            alert('Failed to update data');
+                            kosong();
                         } else if (response.statusCode == 400) {
-                            // $("#editBtn").removeAttr("disabled");
-                            $("#errorToast").toast("show");
-                            $("#errorMsg").html(response.message);
+                            alert('isi Yang Kosong');
                         }
                     }
                 });
             });
 
             // function to delete data
-            $("#myTableopd").on("click", ".deleteBtn", function() {
+            $("#mytablemenu").on("click", ".deleteBtn", function() {
                 if (confirm("Apakah yakin Menghapus Data Ini?")) {
                     var id = $(this).val();
                     //   var delete_image = $(this).closest("td").find(".delete_image").val();
                     $.ajax({
-                        url: "proses/opd/executeopd.php?action=deleteData",
+                        url: "proses/menu/executemenu.php?action=deleteData",
                         type: "POST",
                         dataType: "json",
                         data: {
@@ -373,12 +385,11 @@ include 'component/pengaturantampilan.view.php';
                         },
                         success: function(response) {
                             if (response.statusCode == 200) {
+                                alert('Data Sukses Terhapus')
                                 fetchData();
-                                $("#successToast").toast("show");
-                                $("#successMsg").html(response.message);
+
                             } else if (response.statusCode == 500) {
-                                $("#errorToast").toast("show");
-                                $("#errorMsg").html(response.message);
+                                alert('Penghapusan data error, Jaringan Anda');
                             }
                         }
                     });
