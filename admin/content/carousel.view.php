@@ -195,7 +195,9 @@ include 'component/pengaturantampilan.view.php';
                             <input type="text" class="form-control " name="judul">
                         </div><br>
                         <div class="input-group">
-                           <input class="form-control form-control-sm" name="filegambar" id="filegambar" type="file">
+                            <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr">
+                            <!-- <img src="" alt="" class="form-control form-control-sm" name="filegambar"> -->
+                           <input class="form-control form-control-sm" name="filegambar1" id="filegambar1" type="file">
                         </div><br>
                         <div class="input-group">
                             <!-- <input type="text" class="form-control " name="urutan"> -->
@@ -243,7 +245,7 @@ include 'component/pengaturantampilan.view.php';
                                 .add([
                                     counter,
                                     value.judul,
-                                    value.gambar,
+                                    '<img src="uploads/'+ value.gambar+'" alt="img" width="100" height="100">',
                                     // value.urutan,
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
@@ -289,10 +291,7 @@ include 'component/pengaturantampilan.view.php';
                             fetchData();
                             kosong();
                         } else if (response.statusCode == 500) {
-                            $("#offcanvasAddUser").offcanvas("hide");
-                            $("#simpan").removeAttr("disabled");
-                            $("#insertForm")[0].reset();
-                            Swal.fire("!", "Data Erro Disimpan", "Warning");
+                            alert('Data Harus jpg,png dan jpeg');
                             fetchData();
                             //   $(".preview_img").attr("src", "images/default_profile.jpg");
                             // $("#errorToast").toast("show");
@@ -333,11 +332,11 @@ include 'component/pengaturantampilan.view.php';
                     success: function(response) {
                         var data = response.data;
 
-                        $(" #modaldemo8edit #editForm #id").val(data.id);
+                        $("#modaldemo8edit #editForm #id").val(data.id);
                         $("#modaldemo8edit #editForm input[name='judul']").val(data.judul);
-                        $("#modaldemo8edit #editForm input[name='filegambar']").val(data.gambar);
+                        $('#previewing').attr('src','http://www.bazaardaily.co.uk/wp-content/uploads/2017/06/Logo-Menu.png');
+                        $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src","/uploads/'+data.gambar +'");
                         $("#modaldemo8edit #editForm input[name='urutan']").val(data.urutan);
-
                         $("#modaldemo8edit").modal("show");
 
                     }

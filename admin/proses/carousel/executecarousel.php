@@ -35,7 +35,7 @@ if ($_GET["action"] === "insertData") {
 
     if ($ukuran < 5000000) {
 
-      if ($format === 'jpg' || $format === 'png') {
+      if ($format === 'jpg' || $format === 'png' || $format === 'jpeg') {
         move_uploaded_file($asal, "../../uploads/$name");
         $query  = "INSERT INTO carousel(judul,gambar) VALUES('$judul','$name')";
         $result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
@@ -79,3 +79,24 @@ if ($_GET["action"] === "insertData") {
   // }
 
 }
+
+if ($_GET["action"] === "fetchSingle") {
+  $id = $_POST["id"];
+  $sql = "SELECT * FROM carousel WHERE id='$id'";
+  $result = mysqli_query($koneksi, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    $data = mysqli_fetch_assoc($result);
+    header("Content-Type: application/json");
+    echo json_encode([
+      "statusCode" => 200,
+      "data" => $data
+    ]);
+  } else {
+    echo json_encode([
+      "statusCode" => 404,
+      "message" => "No user found with this id 😓"
+    ]);
+  }
+  mysqli_close($koneksi);
+}
+
