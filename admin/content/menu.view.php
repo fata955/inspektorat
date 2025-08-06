@@ -244,10 +244,10 @@ include 'component/pengaturantampilan.view.php';
                                     value.urutan,
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
-                                    '"><i class="las la-pen"></i></button>' +
+                                    '"><i class="ri-edit-line"></i></button>' +
                                     '<Button type="button" class="btn btn-sm btn-danger deleteBtn" value="' +
                                     value.id +
-                                    '"><i class="las la-trash"></i></Button>'
+                                    '"><i class="ri-delete-bin-line"></i></Button>'
                                 ])
 
                                 .draw(false);

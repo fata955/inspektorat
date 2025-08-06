@@ -192,7 +192,7 @@ include 'component/pengaturantampilan.view.php';
                         <input type="hidden" class="form-control " id="id" name="id">
                         <div class="input-group">
 
-                            <input type="text" class="form-control " name="judul">
+                            <input type="text" class="form-control " name="judul" id="judul">
                         </div><br>
                         <div class="input-group">
                             <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr" width="100%" height="100%">
@@ -245,7 +245,7 @@ include 'component/pengaturantampilan.view.php';
                                 .add([
                                     counter,
                                     value.judul,
-                                    '<img src="uploads/'+ value.gambar+'" alt="img" width="100" height="100">',
+                                    '<img src="uploads/'+value.gambar+'" alt="img" width="100" height="100">',
                                     // value.urutan,
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
@@ -363,7 +363,7 @@ include 'component/pengaturantampilan.view.php';
                             kosong();
                             // $("#offcanvasEditUser").modal("hide");
                         } else if (response.statusCode == 500) {
-                            alert('Failed to update data');
+                            alert('File Yang Dimasukan Harus JPG atau PNG');
                             kosong();
                         } else if (response.statusCode == 400) {
                             alert('isi Yang Kosong');

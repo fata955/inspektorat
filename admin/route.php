@@ -23,6 +23,9 @@ switch ($request) {
     case $me . '/carousel':
         require "content/carousel.view.php";
         break;
+    case $me . '/berita':
+        require "content/berita.view.php";
+        break;
    
     default:
         http_response_code(404);

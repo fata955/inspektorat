@@ -121,7 +121,7 @@
                              <path d="M6.26 9L12 13.47 17.74 9 12 4.53z" opacity=".3" />
                              <path d="M19.37 12.8l-7.38 5.74-7.37-5.73L3 14.07l9 7 9-7zM12 2L3 9l1.63 1.27L12 16l7.36-5.73L21 9l-9-7zm0 11.47L6.26 9 12 4.53 17.74 9 12 13.47z" />
                          </svg>
-                         <span class="side-menu__label">Halaman</span>
+                         <span class="side-menu__label">Management Page</span>
                          <i class="fe fe-chevron-right side-menu__angle"></i>
                      </a>
                      <ul class="slide-menu child1 mega-menu">
@@ -129,7 +129,10 @@
                              <a href="javascript:void(0);">Berita</a>
                          </li>
                          <li class="slide">
-                             <a href="/admin/carousel" class="side-menu__item">Berita Terkini</a>
+                             <a href="/admin/halaman" class="side-menu__item">Halaman</a>
+                         </li>
+                           <li class="slide">
+                             <a href="/admin/berita" class="side-menu__item">Berita Terkini</a>
                          </li>
 
                      </ul>

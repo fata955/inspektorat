@@ -44,7 +44,7 @@
     <link rel="stylesheet" href="assets/libs/choices.js/public/assets/styles/choices.min.css">
 
     <link rel="stylesheet" href="assets/libs/prismjs/themes/prism-coy.min.css">
-    
+     
  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css">
@@ -52,6 +52,12 @@
 <link rel="stylesheet" href="assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
 <link rel="stylesheet" href="assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.css">
 <link rel="stylesheet" href="assets/libs/dropzone/dropzone.css">
+ <!-- <link href="../assets/summernote/summernote-bs5.css" rel="stylesheet">
+    <script src="../assets/summernote/summernote-bs5.js"></script> -->
+<script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+
+ 
+
 </head>
 
 <body>

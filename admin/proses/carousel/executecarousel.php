@@ -101,44 +101,60 @@ if ($_GET["action"] === "fetchSingle") {
 }
 
 // function to update data
-if ($_GET["action"] === "updateData") {
-  $id = $_POST["id"];
- $judul = mysqli_real_escape_string($koneksi, $_POST["judul"]);
 
-  $name     = $_FILES['filegambar']['name'];
-  $masalah  = $_FILES['filegambar']['error'];
-  $ukuran   = $_FILES['filegambar']['size'];
-  $asal     = $_FILES['filegambar']['tmp_name'];
-    // if ($_FILES["image"]["size"] != 0) {
-    //   // rename the image before saving to database
-    //   $original_name = $_FILES["image"]["name"];
-    //   $new_name = uniqid() . time() . "." . pathinfo($original_name, PATHINFO_EXTENSION);
-    //   move_uploaded_file($_FILES["image"]["tmp_name"], "uploads/" . $new_name);
-    //   // remove the old image from uploads directory
-    //   unlink("uploads/" . $_POST["image_old"]);
-    // } else {
-    //   $new_name = mysqli_real_escape_string($conn, $_POST["image_old"]);
-    // }
-    $sql = "UPDATE submenu SET id_menu='$menu',judul='$submenu',link='$link', urutan='$urutan' WHERE id=$id";
-    if (mysqli_query($koneksi, $sql)) {
-      echo json_encode([
-        "statusCode" => 200,
-        "message" => "Data updated successfully 😀"
-      ]);
+if ($_GET["action"] === "updateData"){
+  $id = $_POST["id"];
+  $judul = $_POST["judul"];
+  $name = $_FILES["filegambar1"]["name"];
+  $ukuran = $_FILES["filegambar1"]["size"];
+  $asal = $_FILES["filegambar1"]["tmp_name"];
+  $masalah = $_FILES["filegambar1"]["error"];
+
+   $format = pathinfo($name, PATHINFO_EXTENSION);
+  if ($masalah === 0) {
+
+    if ($ukuran < 5000000) {
+
+      if ($format === 'jpg' || $format === 'png' || $format === 'jpeg') {
+        $data = mysqli_fetch_array(mysqli_query($koneksi, "select * from carousel where id=$id"));
+        if ($data['gambar'] != "") unlink("../../uploads/".$data['gambar']);
+
+        $edit = move_uploaded_file($asal, '../../uploads/'.$name);
+        mysqli_query($koneksi, "UPDATE carousel SET judul='$judul', gambar='$name' WHERE id='$id'") or die(mysqli_error($koneksi));
+        if ($edit) {
+          echo json_encode([
+            "statusCode" => 200,
+            "message" => "Data Berhasil tersimpan"
+          ]);
+        } else {
+          echo json_encode([
+            "statusCode" => 404,
+            "message" => "Data Gagal Tersimpan"
+          ]);
+        }
+      } else {
+        echo json_encode([
+          "statusCode" => 500,
+          "message" => "File Yang Dimasukan Harus JPG atau PNG"
+        ]);
+        // echo "<script>alert('File Yang Dimasukan Harus JPG atau PNG');</script>";
+      }
     } else {
       echo json_encode([
-        "statusCode" => 500,
-        "message" => "Failed to update data 😓"
+        "statusCode" => 501,
+        "message" => "File Yang Dimasukan Terlalu Besar"
       ]);
+      // echo "<script>alert('File Yang Dimasukan Terlalu Besar');</script>";
     }
-    mysqli_close($koneksi);
   } else {
     echo json_encode([
-      "statusCode" => 400,
-      "message" => "Please fill all the required fields 🙏"
-    ]);
+        "statusCode" => 600,
+        "message" => "Ada Masalah Saat Menambah Gambar"
+      ]);
+    // echo "<script>alert('Ada Masalah Saat Menambah Gambar');</script>";
   }
 }
+
 
 
 // function to delete data
