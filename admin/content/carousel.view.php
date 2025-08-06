@@ -186,7 +186,7 @@ include 'component/pengaturantampilan.view.php';
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
                         <h6 class="modal-title">Form edit gambar slide</h6>
-                        <!-- <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button> -->
+                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body text-start">
                         <input type="hidden" class="form-control " id="id" name="id">
@@ -195,7 +195,7 @@ include 'component/pengaturantampilan.view.php';
                             <input type="text" class="form-control " name="judul">
                         </div><br>
                         <div class="input-group">
-                            <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr">
+                            <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr" width="100%" height="100%">
                             <!-- <img src="" alt="" class="form-control form-control-sm" name="filegambar"> -->
                            <input class="form-control form-control-sm" name="filegambar1" id="filegambar1" type="file">
                         </div><br>
@@ -334,8 +334,8 @@ include 'component/pengaturantampilan.view.php';
 
                         $("#modaldemo8edit #editForm #id").val(data.id);
                         $("#modaldemo8edit #editForm input[name='judul']").val(data.judul);
-                        $('#previewing').attr('src','http://www.bazaardaily.co.uk/wp-content/uploads/2017/06/Logo-Menu.png');
-                        $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src","/uploads/'+data.gambar +'");
+                        // $('#previewing').attr('src','http://www.bazaardaily.co.uk/wp-content/uploads/2017/06/Logo-Menu.png');
+                        $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src",'uploads/'+ data.gambar );
                         $("#modaldemo8edit #editForm input[name='urutan']").val(data.urutan);
                         $("#modaldemo8edit").modal("show");
 
