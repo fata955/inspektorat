@@ -131,7 +131,8 @@ include 'component/pengaturantampilan.view.php';
             <div class="modal-dialog modal-dialog-centered text-center" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">Form Input Menu</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                        <h6 class="modal-title">Form Input Menu</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-start">
                         <div class="input-group">
@@ -166,7 +167,7 @@ include 'component/pengaturantampilan.view.php';
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="simpan">
+                        <button  class="btn btn-primary" id="simpan">
                             Simpan
                         </button>
                         <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
@@ -202,7 +203,7 @@ include 'component/pengaturantampilan.view.php';
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="update">
+                        <button class="btn btn-primary" id="update">
                             Update
                         </button>
                         <!-- <button class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
@@ -263,11 +264,11 @@ include 'component/pengaturantampilan.view.php';
                 $("#urutan").val('');
                 $("#error").hide();
             }
-            $("#tambah").on("click", function() {
-                kosong();
-            })
+            // $("#tambah").on("click", function() {
+            //     kosong();
+            // })
             // function to insert data to database
-            $("#form_inputmenu").on("submit", function(e) {
+            $("#form_inputmenu").on("simpan", function(e) {
                 // $("#insertBtn").attr("disabled", "disabled");
                 e.preventDefault();
                 $.ajax({

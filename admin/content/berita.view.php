@@ -5,7 +5,7 @@ include 'component/pengaturantampilan.view.php';
 
 ?>
 
-
+<script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
 <div class="page">
     <?php
     include 'component/header2.view.php';
@@ -133,74 +133,9 @@ include 'component/pengaturantampilan.view.php';
     <!-- End::app-content -->
 
 
-    <div class="modal fade" id="modaldemo8insert">
-        <form method="post" id="form_inputnews" enctype="multipart/form-data">
-            <div class="modal-dialog modal-dialog-centered text-center" role="document">
-                <div class="modal-content modal-content-demo">
-                    <div class="modal-header">
-                        <h6 class="modal-title">Form Input Berita</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body text-start">
-                        <div class="input-group">
-                            <input type="text" class="form-control " placeholder="Judul Berita" name="judul_berita" id="judul_berita">
-                        </div><br>
-                        <div class="input-group">
-                            <textarea  class="ckeditor" name="isi" id="isi" class="form-control"  ></textarea>
-                        </div><br>
-                        <div class="input-group">
-                            <input type="text" class="form-control " placeholder="User" name="user" id="user">
-                        </div><br>
-                        <div class="input-group">
-                            <input type="date" class="form-control" value="now();" name="tanggal" id="tanggal">
-                        </div><br>
-                        <div class="input-group">
-                            <input class="form-control form-control-sm" name="filegambar" id="filegambar" type="file">
-                        </div><br>
-                        <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="status" id="status">
-                                <option value="1">AKTIF</option>
-                                <option value="2">NON AKTIF</option>
-                            </select>
-                        </div><br>
-                        <div class="input-group">
-                            <!-- <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan" id="urutan"> -->
-                        </div>
-
-
-                        <!-- //MESSAGE -->
-
-                        <div class="alert custom-alert1 alert-secondary" id="error">
-                            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x"></i></button>
-                            <div class="text-center px-5 pb-0">
-                                <svg class="custom-alert-icon svg-secondary" xmlns="http://www.w3.org/2000/svg" height="1.5rem" viewBox="0 0 24 24" width="1.5rem" fill="#000000">
-                                    <path d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                </svg>
-                                <h5>Confirmed</h5>
-                                <p class="">This alert is created to just show the confirmation message.</p>
-                                <div class="">
-                                    <button class="btn btn-sm btn-secondary m-1">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ENDMESSAGE -->
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="simpan">
-                            Simpan
-                        </button>
-                        <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
 
     <div class="modal fade" id="modaldemo8edit">
-        <form method="post" id="editForm" enctype="multipart/form-data">
+        <form action="" method="post" id="editForm" enctype="multipart/form-data">
             <div class="modal-dialog modal-dialog-centered text-center" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
@@ -213,7 +148,7 @@ include 'component/pengaturantampilan.view.php';
                             <input type="text" class="form-control " placeholder="Judul Berita" name="judul_berita" id="judul_berita">
                         </div><br>
                         <div class="input-group">
-                            <textarea class="ckeditor" name="isi" id="isi" class="ckeditor"></textarea>
+                            <textarea name="editor1" id="editor1" class="form-control"></textarea>
                         </div><br>
                         <div class="input-group">
                             <input type="text" class="form-control " placeholder="User" name="user" id="user">
@@ -257,13 +192,18 @@ include 'component/pengaturantampilan.view.php';
     <script>
         $(document).ready(function() {
 
+            // CKEDITOR.replace('editor1', {
+            //     removeButtons: 'PasteFromWord'
+            // });
+
             fetchData();
             kosong();
 
             let table = new DataTable("#mytablenews");
-            CKEDITOR.replace( 'editor' ); 
+
             // function to fetch data from database
             function fetchData() {
+
                 $.ajax({
                     url: "proses/berita/news.php?action=fetchData",
                     type: "POST",
@@ -280,8 +220,8 @@ include 'component/pengaturantampilan.view.php';
                                     value.isi,
                                     value.user,
                                     value.tanggal,
-                                    '<img src="uploads/' + value.gambar + '" alt="img" width="100" height="100">',
-                                    value, status,
+                                    '<img src="imageberita/' + value.gambar + '" alt="img" width="100" height="100">',
+                                    value.status,
                                     // value.urutan,
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
@@ -301,7 +241,7 @@ include 'component/pengaturantampilan.view.php';
             function kosong() {
                 $("#judul_berita").val('');
                 $("#filegambar").val('');
-                $("#isi").val('');
+                // $("#isi").val('');
                 $("#user").val('');
                 $("#status").val('');
                 $("#tanggal").val('');
@@ -309,12 +249,12 @@ include 'component/pengaturantampilan.view.php';
                 $("#error").hide();
             }
             $("#tambah").on("click", function() {
-                kosong();
+                CKEDITOR.replace('isi');
             })
             // function to insert data to database
             $("#form_inputnews").on("submit", function(e) {
-                // $("#insertBtn").attr("disabled", "disabled");
                 e.preventDefault();
+
                 $.ajax({
                     url: "proses/berita/news.php?action=insertData",
                     type: "POST",
@@ -325,7 +265,7 @@ include 'component/pengaturantampilan.view.php';
                     success: function(response) {
                         var response = JSON.parse(response);
                         if (response.statusCode == 200) {
-                            alert('Data Sukses tersimpan');
+                            // alert('Data Sukses tersimpan');
                             // $('#modaldemo8insert').fadeOut("close");
                             // window.location.replace("/admin/inputmenu");
                             fetchData();
@@ -441,4 +381,57 @@ include 'component/pengaturantampilan.view.php';
             });
         });
     </script>
+
+    <script>
+        // editor1 adalah value attribute name dari textarea yang mau dipasangkan ckeditor4
+        CKEDITOR.replace('isi');
+    </script>
     <!--<script> CKEDITOR.replace( 'editor' ); </script>-->
+
+    
+    <div class="modal fade" id="modaldemo8insert">
+
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+            <div class="modal-content modal-content-demo">
+                <form action="admin/berita/" method="POST" id="form_inputnews" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Form Input Berita</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-start">
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Judul Berita" name="judul_berita" id="judul_berita">
+                        </div><br>
+                        <div class="input-group">
+                            <textarea name="isi"></textarea>
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="User" name="user" id="user">
+                        </div><br>
+                        <div class="input-group">
+                            <input type="date" class="form-control" name="tanggal" id="tanggal">
+                        </div><br>
+                        <div class="input-group">
+                            <input type="file" class="form-control form-control-sm" name="filegambar" id="filegambar">
+                        </div><br>
+                        <div class="input-group">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="status" id="status">
+                                <option value="1">AKTIF</option>
+                                <option value="2">NON AKTIF</option>
+                            </select>
+                        </div><br>
+                        <div class="input-group">
+                            <!-- <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan" id="urutan"> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="simpan">
+                            Simpan
+                        </button>
+                        <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
