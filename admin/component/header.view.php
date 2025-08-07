@@ -52,9 +52,13 @@
     <link rel="stylesheet" href="assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
     <link rel="stylesheet" href="assets/libs/filepond-plugin-image-edit/filepond-plugin-image-edit.min.css">
     <link rel="stylesheet" href="assets/libs/dropzone/dropzone.css">
+    <script src="assets/js/show-password.js"></script>
+    <script src="assets/js/authentication-main.js"></script>
+    <!-- <link rel="stylesheet" href="../assets/ckeditor/content.css"> -->
+       
     
-    <!-- <link href="../assets/summernote/summernote-bs5.css" rel="stylesheet">
-    <script src="../assets/summernote/summernote-bs5.js"></script> -->
+     <!-- <link href="../assets/summernote/summernote-bs5.css" rel="stylesheet"> -->
+    
 
 
 

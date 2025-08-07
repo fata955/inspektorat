@@ -26,6 +26,12 @@ switch ($request) {
     case $me . '/berita':
         require "content/berita.view.php";
         break;
+   case $me . '/login':
+        require "content/login.view.php";
+        break;
+      case $me . '/signup':
+        require "content/signup.view.php";
+        break;
    
     default:
         http_response_code(404);
