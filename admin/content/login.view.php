@@ -478,17 +478,17 @@ include 'component/pengaturantampilan.view.php';
                                     <div class="main-signup-header">
                                         <h3>Welcome Login to Administrator Website</h3>
                                         <h6 class="fw-medium mb-4 fs-17">Please sign in to continue.</h6>
-                                        <form>
+                                        <form method="POST" id="form_inputsubmenu">
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Username</label> <input class="form-control"
-                                                    placeholder="Username" type="text">
+                                                    placeholder="Username" type="text" name="username" id="username">
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Password</label> <input class="form-control"
-                                                    placeholder="Enter your password" type="password">
+                                                    placeholder="Enter your password" type="password" name="password" id="password">
                                             </div>
-                                            <a href="index.html" class="btn btn-primary btn-block w-100">Sign In</a>
-                                            
+                                            <button type="submit" class="btn btn-primary btn-block w-100">Sign In</button>
+
                                         </form>
                                         <div class="main-signin-footer mt-5">
                                             <p class="mb-1"><a href="forgot.html">Forgot password?</a></p>
@@ -506,7 +506,161 @@ include 'component/pengaturantampilan.view.php';
     </div>
 </div>
 
+<div id="result"></div>
+
 
 <?php
 include 'component/footer.view.php';
 ?>
+
+
+<script>
+    $(document).ready(function() {
+        // fetchData();
+        kosong();
+
+        let table = new DataTable("#mytablesubmenu");
+
+        // function to fetch data from database
+        function fetchData() {
+            $.ajax({
+                url: "proses/menu/executesubmenu.php?action=fetchData",
+                type: "POST",
+                dataType: "json",
+                success: function(response) {
+                    var data = response.data;
+                    table.clear().draw();
+                    var counter = 1;
+                    $.each(data, function(index, value) {
+                        table.row
+                            .add([
+                                counter,
+                                value.id_menu,
+                                value.judul,
+                                value.link,
+                                value.urutan,
+                                '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
+                                value.id +
+                                '"><i class="las la-pen"></i></button>' +
+                                '<Button type="button" class="btn btn-sm btn-danger deleteBtn" value="' +
+                                value.id +
+                                '"><i class="las la-trash"></i></Button>'
+                            ])
+
+                            .draw(false);
+                        counter++;
+                    });
+                }
+            });
+        }
+
+        function kosong() {
+            $("#username").val('');
+            $("#password").val('');
+
+        }
+        $("#tambah").on("click", function() {
+            kosong();
+        })
+
+
+        // function to insert data to database
+        $("#form_inputsubmenu").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'proses/login/page.php?action=loginData',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    $('#result').html(response);
+                    if (response.includes("berhasil")) {
+                        window.location.href = '/admin/home';
+                        // setTimeout(() => window.location.href = "/admin/home", 1500);
+                    }
+                }
+            });
+
+        });
+
+        // function to edit data
+        $("#mytablesubmenu").on("click", ".editBtn", function() {
+            var id = $(this).val();
+            // console.log(id);
+            $.ajax({
+                url: "proses/menu/executesubmenu.php?action=fetchSingle",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    var data = response.data;
+
+                    $(" #modaldemo8edit #editForm #id").val(data.id);
+                    $("#modaldemo8edit #editForm select[name='menujudul']").val(data.id_menu);
+                    $("#modaldemo8edit #editForm input[name='submenujudul']").val(data.judul);
+                    $("#modaldemo8edit #editForm input[name='link']").val(data.link);
+                    $("#modaldemo8edit #editForm input[name='urutan']").val(data.urutan);
+
+                    $("#modaldemo8edit").modal("show");
+
+                }
+            });
+        });
+
+        // function to update data in database
+        $("#editForm").on("submit", function(e) {
+            // $("#editBtn").attr("disabled");
+            e.preventDefault();
+            $.ajax({
+                url: "proses/menu/executesubmenu.php?action=updateData",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response) {
+                    var response = JSON.parse(response);
+                    if (response.statusCode == 200) {
+                        alert('Data Sukses terupdate')
+                        // Swal.fire("!", "Data Sukses Terupdate", "success");
+                        fetchData();
+                        kosong();
+                        // $("#offcanvasEditUser").modal("hide");
+                    } else if (response.statusCode == 500) {
+                        alert('Failed to update data');
+                        kosong();
+                    } else if (response.statusCode == 400) {
+                        alert('isi Yang Kosong');
+                    }
+                }
+            });
+        });
+
+        // function to delete data
+        $("#mytablesubmenu").on("click", ".deleteBtn", function() {
+            if (confirm("Apakah yakin Menghapus Data Ini?")) {
+                var id = $(this).val();
+                //   var delete_image = $(this).closest("td").find(".delete_image").val();
+                $.ajax({
+                    url: "proses/menu/executesubmenu.php?action=deleteData",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id
+                        //   delete_image
+                    },
+                    success: function(response) {
+                        if (response.statusCode == 200) {
+                            alert('Data Sukses Terhapus')
+                            fetchData();
+
+                        } else if (response.statusCode == 500) {
+                            alert('Penghapusan data error, Jaringan Anda');
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

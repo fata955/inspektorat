@@ -1,4 +1,5 @@
-    <!-- app-header -->
+
+<!-- app-header -->
     <header class="app-header">
         <!-- Start::main-header-container -->
         <div class="main-header-container container-fluid">
@@ -99,7 +100,7 @@
                         <li>
                             <div class="main-header-profile bg-primary menu-header-content text-fixed-white">
                                 <div class="my-auto">
-                                    <h6 class="mb-0 lh-1 text-fixed-white">Petey Cruiser</h6><span class="fs-11 op-7 lh-1">Premium Member</span>
+                                    <h6 class="mb-0 lh-1 text-fixed-white"><?=$_SESSION['username'];?></h6><span class="fs-11 op-7 lh-1">Premium Member</span>
                                 </div>
                             </div>
                         </li>
@@ -108,7 +109,7 @@
                         <li><a class="dropdown-item d-flex border-block-end" href="mail.html"><i class="bx bxs-inbox fs-18 me-2 op-7"></i>Inbox</a></li>
                         <li><a class="dropdown-item d-flex" href="chat.html"><i class="bx bx-envelope fs-18 me-2 op-7"></i>Messages</a></li>
                         <li><a class="dropdown-item d-flex border-block-end" href="editprofile.html"><i class="bx bx-slider-alt fs-18 me-2 op-7"></i>Account Settings</a></li>
-                        <li><a class="dropdown-item d-flex" href="signin.html"><i class="bx bx-log-out fs-18 me-2 op-7"></i>Sign Out</a></li>
+                        <li><a class="dropdown-item d-flex" href="/admin/logout"><i class="bx bx-log-out fs-18 me-2 op-7"></i>Sign Out</a></li>
                     </ul>
                 </div>
                 <!-- End::header-element -->

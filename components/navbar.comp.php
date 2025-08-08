@@ -1,3 +1,6 @@
+<?php 
+  include_once 'lib/dbh.inc.php';
+?>
 <header id="header" class="header sticky-top">
   <!-- <div class="topbar d-flex align-items-center dark-background">
     <div
@@ -35,125 +38,41 @@
       </a> -->
 
       <nav id="navmenu" class="navmenu">
+
         <ul>
-          <li class="active"><a href="/">Home</a></li>
-          <li class="dropdown">
-            <a href="#"><span>Tentang Kami</span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="/about/visimisi">Visi Misi</a></li>
-              <li><a href="/about/tugas">Tugas Pokok & Fungsi</a></li>
-              <!-- <li class="dropdown">
-                <a href="#"
-                  ><span>Deep Dropdown</span>
-                  <i class="bi bi-chevron-down toggle-dropdown"></i
-                ></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li> -->
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#"><span>Publikasi & Informasi</span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="/publik/berita">Berita</a></li>
-              <li><a href="/publik/dokumen">Dokumen</a></li>
-              <li><a href="/publik/galeri">Galeri</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#"><span>Gratifikasi</span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="/gratifikasi/knowledge">Mengenal Gratifikasi</a></li>
+            <?php 
+          $menu = mysqli_query($koneksi,"SELECT * FROM menu order by urutan");
+          while($data=mysqli_fetch_array($menu)){
+              $submenu = mysqli_query($koneksi,"SELECT * FROM submenu where id_menu='$data[id]'");
+              $jmlsub = mysqli_num_rows($submenu);
+              if($jmlsub < 1 ){
+          ?>
+            <li class="active"><a href="<?= $data['link'];?>"><?= $data['judul']; ?></a></li>
+          <?php
+              }else{
+          ?>
 
-              <li><a href="/gratifikasi/laporan">Mekanisme Pelaporan Gratifikasi</a></li>
-              <li><a href="/gratifikasi/penggantian">Mekanisme Penggantian Barang Gratifikasi</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#"><span>Pengaduan Masyarakat</span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="/"> Mekanisme Pengaduan Masyarakat</a></li>
+            <li class="dropdown">
+              <a href="<?= $data['link'];?>"><span><?=$data['judul'];?></span>
+                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+          <?php 
+            while($datasub=mysqli_fetch_array($submenu)){
+          ?>
 
-              <li class="dropdown">
-                  <a href="#"><span>Deep Dropdown</span>
-                    <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                  <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                  </ul>
-              </li>
-              <li><a href="#">Pengaduan Masyarakat Online</a></li>
-              <!-- <li><a href="#">Mekanisme Penggantian Barang Gratifikasi</a></li> -->
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#"><span>Sistem Manajemen</span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="/">Kebijakan SMAP</a></li>
-              <!-- <li class="dropdown">
-                <a href="#"
-                  ><span>Deep Dropdown</span>
-                  <i class="bi bi-chevron-down toggle-dropdown"></i
-                ></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li> -->
-              <li><a href="#">Ruang Lingkup & Sasaran SMAP</a></li>
-              <li><a href="#">Pakta Integritas</a></li>
-            </ul>
-          </li>
-          <!-- <li class="dropdown">
-            <a href="#"><span>Dukungan & Komitmen</span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="/inspektorat/galeri">Online</a></li>
-              <li><a href="#">Offline</a></li>
-            </ul>
-          </li> -->
-          <li class="dropdown">
-            <a href="#"><span>Layanan Konsultasi</span>
-              <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="/">Mekanisme Konsultasi</a></li>
-              <!-- <li class="dropdown">
-                <a href="#"
-                  ><span>Deep Dropdown</span>
-                  <i class="bi bi-chevron-down toggle-dropdown"></i
-                ></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li> -->
-              <li><a href="#">Konsultasi Via Zoom</a></li>
-              <li><a href="#">Konsultasi Online</a></li>
-            </ul>
-          </li>
-          <!-- <li><a href="/inspektorat/contact">Survei</a></li> -->
+              
+                <li><a href="<?= $datasub['link'];?>"><?=$datasub['judul'];?></a></li>
+          <?php
+              }
+          ?>
+              </ul>
+            </li>
+            <!-- <li><a href="/inspektorat/contact">Survei</a></li> -->
+                  <?php
+            }
+        }
+    
+            ?>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

@@ -478,25 +478,27 @@ include 'component/pengaturantampilan.view.php';
                                     <div class="main-signup-header">
                                         <h3>Get Started</h3>
                                         <h6 class="fw-medium mb-4 fs-17">It's free to signup and only takes a minute.</h6>
-                                        <form>
+                                        <form method="POST" id="registerForm">
                                             <div class="form-group mb-3">
-                                                <label class="form-label">First Name and last Name</label> <input class="form-control"
-                                                    placeholder="Enter your first Name and last Name" type="text">
+                                                <label class="form-label">Nama Lengkap</label> <input class="form-control"
+                                                    placeholder="Enter your first Name and last Name" type="text" name="namalengkap">
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label class="form-label">Email</label> <input class="form-control"
-                                                    placeholder="Enter your email" type="text">
+                                                <label class="form-label">username</label> <input class="form-control"
+                                                    placeholder="Enter your email" type="text" name="username">
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Password</label> <input class="form-control"
-                                                    placeholder="Enter your password" type="password">
+                                                    placeholder="Enter your password" type="password" name="password">
                                             </div>
-                                            <a href="index.html" class="btn btn-primary btn-block w-100">Create Account</a>
-                                            
+                                            <button type submit class="btn btn-primary btn-block w-100">Create Account</button>
+
                                         </form>
                                         <div class="main-signin-footer mt-5">
                                             <p>Already have an account? <a href="/admin/login">Sign In</a></p>
                                         </div>
+                                        <div id="result"></div>
+
                                     </div>
                                 </div>
                             </div>
@@ -512,3 +514,17 @@ include 'component/pengaturantampilan.view.php';
 <?php
 include 'component/footer.view.php';
 ?>
+
+<script>
+    $('#registerForm').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'proses/signup/page.php?action=registerData',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#result').html(response);
+            }
+        });
+    });
+</script>

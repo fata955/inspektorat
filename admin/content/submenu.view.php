@@ -135,10 +135,10 @@ include 'component/pengaturantampilan.view.php';
                     </div>
                     <div class="modal-body text-start">
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name ="menujudul" id="menujudul">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="menujudul" id="menujudul">
                                 <?php
                                 // include '../../lib/conn.php';
-                                $menu= mysqli_query($koneksi, "SELECT * from menu");
+                                $menu = mysqli_query($koneksi, "SELECT * from menu");
                                 while ($fetch = mysqli_fetch_array($menu)) {
                                     echo '<option value="' . $fetch['id'] . '">' . $fetch['judul'] . '</option>';
                                 }
@@ -199,10 +199,10 @@ include 'component/pengaturantampilan.view.php';
                     <div class="modal-body text-start">
                         <input type="hidden" class="form-control " id="id" name="id">
                         <div class="input-group">
-                         <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name ="menujudul" id="menujudul">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="menujudul" id="menujudul">
                                 <?php
                                 // include '../../lib/conn.php';
-                                $menu= mysqli_query($koneksi, "SELECT * from menu");
+                                $menu = mysqli_query($koneksi, "SELECT * from menu");
                                 while ($fetch = mysqli_fetch_array($menu)) {
                                     echo '<option value="' . $fetch['id'] . '">' . $fetch['judul'] . '</option>';
                                 }

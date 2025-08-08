@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'component/header.view.php';
 
 include 'component/pengaturantampilan.view.php';
@@ -284,7 +285,7 @@ include 'component/pengaturantampilan.view.php';
                         $("#modaldemo8edit #editForm #id").val(data.id);
                         $("#modaldemo8edit #editForm input[name='judul_berita']").val(data.judul_berita);
                         $("#modaldemo8edit #editForm textarea[name='isi']").val(data.isi);
-                        $("#modaldemo8edit #editForm input[name='user']").val(data.user);
+                        // $("#modaldemo8edit #editForm input[name='user']").val(data.user);
                         $("#modaldemo8edit #editForm input[name='tanggal']").val(data.tanggal);
                         $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src", 'imageberita/' + data.gambar);
                         $("#modaldemo8edit #editForm select[name='status']").val(data.status);
@@ -368,9 +369,7 @@ include 'component/pengaturantampilan.view.php';
                         <div class="input-group">
                             <textarea class="form-control" name="isi" id="isi"></textarea>
                         </div><br>
-                        <div class="input-group">
-                            <input type="text" class="form-control " placeholder="User" name="user" id="user">
-                        </div><br>
+      
                         <div class="input-group">
                             <input type="date" class="form-control" name="tanggal" id="tanggal">
                         </div><br>

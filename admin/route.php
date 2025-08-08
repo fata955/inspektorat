@@ -13,6 +13,9 @@ switch ($request) {
     case $me . '/':
         include 'content/home.view.php';
         break;
+    case $me . '/home':
+        include 'content/home.view.php';
+        break;
     case $me . '/inputmenu':
         require "content/menu.view.php";
         break;
@@ -31,6 +34,9 @@ switch ($request) {
         break;
       case $me . '/signup':
         require "content/signup.view.php";
+        break;
+    case $me . '/logout':
+        require "proses/logout/page.php";
         break;
    
     default:

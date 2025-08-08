@@ -1,18 +1,17 @@
 <?php
 session_start();
-if (!empty($_SESSION['username']) and !empty($_SESSION['nama'])) {
+if (!isset($_SESSION['username'])) {
+  header("Location: /admin/login");
+  exit();
+}
     include("../lib/dbh.inc.php");
 
-    define("/", true);
+    // define("/", true);
     include 'component/header.view.php';
     include 'component/pengaturantampilan.view.php';
     $page = "beranda";
 ?>
-    <?php
 
-
-
-    ?>
     <div class="page">
         <?php
         include 'component/header2.view.php';
@@ -291,9 +290,9 @@ if (!empty($_SESSION['username']) and !empty($_SESSION['nama'])) {
 
     <?php
     include 'component/footer.view.php';
-} else {
-    // echo "Dilarang membuka halaman ini!";
-    echo "<meta http-equiv='refresh' content='1; url=/admin/login'>";
-}
+// } else {
+//     // echo "Dilarang membuka halaman ini!";
+//     echo "<meta http-equiv='refresh' content='1; url=/admin/login'>";
+// }
     ?>
 

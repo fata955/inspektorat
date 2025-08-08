@@ -1,4 +1,6 @@
 <?php
+session_start();
+$username = $_SESSION['username'];
 // include '../../../lib/dbh.inc.php';
 include '../../../lib/dbh.inc.php';
 
@@ -24,7 +26,7 @@ if ($_GET["action"] === "insertData") {
     $isi = mysqli_real_escape_string($koneksi, $_POST["isi"]);
     // $isi2 = mysqli_real_escape_string($koneksi, $_POST["artikel"]);
 
-    $user = mysqli_real_escape_string($koneksi, $_POST["user"]);
+    // $user = mysqli_real_escape_string($koneksi, $_POST["user"]);
     $tanggal = mysqli_real_escape_string($koneksi, $_POST["tanggal"]);
     $status = mysqli_real_escape_string($koneksi, $_POST["status"]);
     // $isi = $_POST["editor1"];
@@ -41,7 +43,7 @@ if ($_GET["action"] === "insertData") {
         ]);
     } else {
         move_uploaded_file($asal, "../../imageberita/$name");
-        $query  = "INSERT INTO berita(judul_berita,isi,user,tanggal,gambar,status) VALUES('$judul','$isi','$user','$tanggal','$name','$status')";
+        $query  = "INSERT INTO berita(judul_berita,isi,user,tanggal,gambar,status) VALUES('$judul','$isi','$username','$tanggal','$name','$status')";
         $result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
     }
     if ($result) {
