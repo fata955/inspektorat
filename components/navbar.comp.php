@@ -39,6 +39,7 @@ include_once 'lib/dbh.inc.php';
       <form action="" method="post">
 
 
+<<<<<<< HEAD
         <nav id="navmenu" class="navmenu">
 
           <ul>
@@ -79,6 +80,42 @@ include_once 'lib/dbh.inc.php';
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
       </form>
+=======
+        <ul>
+          <?php
+          $menu = mysqli_query($koneksi, "SELECT * FROM menu order by urutan");
+          while ($data = mysqli_fetch_array($menu)) {
+            $submenu = mysqli_query($koneksi, "SELECT * FROM submenu where id_menu='$data[id]'");
+            $jmlsub = mysqli_num_rows($submenu);
+            if ($jmlsub < 1) {
+          ?>
+              <li class="active"><a href="<?= $data['link']; ?>"><?= $data['judul']; ?></a></li>
+            <?php
+            } else {
+            ?>
+
+              <li class="dropdown">
+                <a href="<?= $data['link']; ?>"><span><?= $data['judul']; ?></span>
+                  <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <?php
+                  while ($datasub = mysqli_fetch_array($submenu)) {
+                  ?>
+                    <li><a href="<?= $datasub['link']; ?>"><?= $datasub['judul']; ?></a></li>
+                  <?php
+                  }
+                  ?>
+                </ul>
+              </li>
+          <?php
+            }
+          }
+
+          ?>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+>>>>>>> f9e57c6c5268bd9e6c43fb56abb3571b01e8c244
     </div>
   </div>
 </header>
