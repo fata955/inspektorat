@@ -1,5 +1,5 @@
-<?php 
-  include_once 'lib/dbh.inc.php';
+<?php
+include_once 'lib/dbh.inc.php';
 ?>
 <header id="header" class="header sticky-top">
   <!-- <div class="topbar d-flex align-items-center dark-background">
@@ -40,39 +40,36 @@
       <nav id="navmenu" class="navmenu">
 
         <ul>
-            <?php 
-          $menu = mysqli_query($koneksi,"SELECT * FROM menu order by urutan");
-          while($data=mysqli_fetch_array($menu)){
-              $submenu = mysqli_query($koneksi,"SELECT * FROM submenu where id_menu='$data[id]'");
-              $jmlsub = mysqli_num_rows($submenu);
-              if($jmlsub < 1 ){
-          ?>
-            <li class="active"><a href="<?= $data['link'];?>"><?= $data['judul']; ?></a></li>
           <?php
-              }else{
+          $menu = mysqli_query($koneksi, "SELECT * FROM menu order by urutan");
+          while ($data = mysqli_fetch_array($menu)) {
+            $submenu = mysqli_query($koneksi, "SELECT * FROM submenu where id_menu='$data[id]'");
+            $jmlsub = mysqli_num_rows($submenu);
+            if ($jmlsub < 1) {
           ?>
-
-            <li class="dropdown">
-              <a href="<?= $data['link'];?>"><span><?=$data['judul'];?></span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-          <?php 
-            while($datasub=mysqli_fetch_array($submenu)){
-          ?>
-
-              
-                <li><a href="<?= $datasub['link'];?>"><?=$datasub['judul'];?></a></li>
-          <?php
-              }
-          ?>
-              </ul>
-            </li>
-            <!-- <li><a href="/inspektorat/contact">Survei</a></li> -->
-                  <?php
-            }
-        }
-    
+              <li class="active"><a href="<?= $data['link']; ?>"><?= $data['judul']; ?></a></li>
+            <?php
+            } else {
             ?>
+
+              <li class="dropdown">
+                <a href="<?= $data['link']; ?>"><span><?= $data['judul']; ?></span>
+                  <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <?php
+                  while ($datasub = mysqli_fetch_array($submenu)) {
+                  ?>
+                    <li><a href="<?= $datasub['link']; ?>"><?= $datasub['judul']; ?></a></li>
+                  <?php
+                  }
+                  ?>
+                </ul>
+              </li>
+          <?php
+            }
+          }
+
+          ?>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
