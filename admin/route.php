@@ -2,7 +2,7 @@
 // include 'lib/conn.php';
 // Define your location project directory in htdocs (EX THE FULL PATH: D:\xampp\htdocs\x-kang\simple-routing-with-php)
 // if (isset($_SESSION['user'])) {
-include '../../lib/dbh.inc.php';
+include '../lib/dbh.inc.php';
 $project_location = "/admin";
 $me = $project_location;
 

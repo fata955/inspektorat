@@ -68,22 +68,6 @@ include 'component/pengaturantampilan.view.php';
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
                     <div class="card">
-                        <!-- <div class="card-header pb-0">
-                            <div class="d-flex justify-content-between">
-                                <h4 class="card-title mb-0">USERS TABLE</h4>
-                                <a href="javascript:void(0);" class="tx-inverse" data-bs-toggle="dropdown"><i
-                                        class="mdi mdi-dots-horizontal text-gray"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="javascript:void(0);">Action</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Another
-                                        Action</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Something Else
-                                        Here</a>
-                                </div>
-                            </div>
-                            <p class="fs-12 text-gray-5 mb-2">Example of Valex Simple Table. <a href="">Learn
-                                    more</a></p>
-                        </div> -->
                         <div class="card-body">
                             <div class="table-responsive border border-bottom-0 userlist-table">
                                 <table class="table card-table table-vcenter text-nowrap mb-0" id="mytablehalaman">
@@ -103,20 +87,6 @@ include 'component/pengaturantampilan.view.php';
                                     </tbody>
                                 </table>
                             </div>
-
-                            <!-- Pagination -->
-                            <!-- <ul class="pagination mt-4 mb-0 float-end flex-wrap">
-                                <li class="page-item page-prev disabled">
-                                    <a class="page-link" href="javascript:void(0);" tabindex="-1">Prev</a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
-                                <li class="page-item page-next">
-                                    <a class="page-link" href="javascript:void(0);">Next</a>
-                                </li>
-                            </ul> -->
                         </div>
                     </div>
                 </div><!-- COL END -->
