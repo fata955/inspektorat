@@ -5,6 +5,15 @@ include '../componentsub/navbar.comp.php';
 $request = $_SERVER['REQUEST_URI'];
 $judul = substr($request, 9);
 
+$sql = mysqli_query($koneksi, "SELECT * FROM halaman where nama_link='$judul'") or die(mysqli_error($koneksi));
+$hitung = mysqli_num_rows($sql);
+if (!empty($hitung)){
+$data = mysqli_fetch_array($sql);
+$isi = $data['judul'];
+$image = $data['gambar'];
+
+
+
 ?>
 
 <body class="about-page">
@@ -32,10 +41,13 @@ $judul = substr($request, 9);
                         <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                             <div class="row gy-4">
-                                 <img src="../assets/img/about.jpg" class="img-fluid" alt="">
-                           
+                                <img src="../admin/imagehalaman/<?=$image;?>" class="img-fluid" alt="" width="20" height="50">
+
                                 <div class="col-lg-12 order-2 order-lg-1 content">
-                                    <h3>MENGENAL GRATIFIKASI</h3> <br>
+                                    <?php
+
+                                    ?>
+                                    <h3><?= $isi; ?></h3> <br>
                                     <p>
                                         <b>Gratifikasi</b> adalah semua pemberian yang diterima oleh Pegawai Negeri atau
                                         Penyelenggara Negara (Pn/PN). Oleh karena itu gratifikasi memiliki arti yang netral,
@@ -182,4 +194,8 @@ $judul = substr($request, 9);
 
     <?php
     include '../componentsub/footer.comp.php';
+
+    }else{
+        echo '<h2 class="m-5">Halaman Tidak Ditemukan</h2>';
+    }
     ?>

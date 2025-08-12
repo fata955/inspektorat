@@ -369,17 +369,24 @@ include 'component/pengaturantampilan.view.php';
                         <div class="input-group">
                             <textarea class="form-control" name="isi" id="isi"></textarea>
                         </div><br>
-      
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Judul Berita" name="user" id="user" hidden>
+                        </div><br>
+                        <label for="">Tanggal</label><br>
                         <div class="input-group">
                             <input type="date" class="form-control" name="tanggal" id="tanggal">
                         </div><br>
+                        <label for="">Pilih Gambar</label><br>
                         <div class="input-group">
                             <input type="file" class="form-control form-control-sm" name="filegambar" id="filegambar">
                         </div><br>
+                        <label for="">Pilih Status</label><br>
                         <div class="input-group">
                             <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="status" id="status">
+                                <!-- <option value="0">PILIH STATUS</option> -->
                                 <option value="1">AKTIF</option>
                                 <option value="2">NON AKTIF</option>
+
                             </select>
                         </div><br>
                         <div class="input-group">

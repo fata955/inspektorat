@@ -76,7 +76,9 @@ include 'component/pengaturantampilan.view.php';
 
                                             <th><span>No</span></th>
                                             <th><span>Judul</span></th>
-                                            <th><span>Isi</span></th>
+                                            <!-- <th><span>Isi</span></th> -->
+                                            <th><span>Image</span></th>
+                                            <th><span>Nama link</span></th>
                                             <!-- <th><span>Status</span></th> -->
                                             <!-- <th><span>tanggal</span></th> -->
                                             <th>Action</th>
@@ -99,7 +101,71 @@ include 'component/pengaturantampilan.view.php';
 
 
     <!-- End::app-content -->
+    <div class="modal fade" id="modaldemo8edit">
 
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+
+            <div class="modal-content modal-content-demo">
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                <form method="post" id="editForm" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Form edit halaman</h6>
+
+                    </div>
+                    <div class="modal-body text-start">
+                        <input type="hidden" class="form-control " id="id" name="id">
+                        <div class="input-group">
+                            <input type="text" class="form-control " name="judul" id="judul">
+                        </div><br>
+                        <div class="input-group">
+                            <textarea class="form-control" name="isihalaman" id="isihalaman"></textarea>
+                        </div><br>
+                        <div class="input-group">
+                            <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr" width="100%" height="100%">
+  
+                        </div><br>
+                         <div class="input-group">
+                            <input class="form-control" name="filegambar" id="filegambar" type="file">
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="link" id="link">
+                        </div><br>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="update">
+                            Update
+                        </button>
+
+                        <!-- <button class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="modal fade" id="tampilisi">
+
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">Isi Halaman</h6>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="editFormlagi">
+                    <div class="modal-body text-start">
+                        <div class="input-group">
+                            <textarea class="form-control" name="halamanisi" id="halamanisi" rows="100" disabled></textarea>
+                        </div><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 
 
     <?php
@@ -124,6 +190,30 @@ include 'component/pengaturantampilan.view.php';
 
 
             });
+            $('#modaldemo8edit').on('shown.bs.modal', function() {
+                CKEDITOR.replace('isihalaman', {
+                    filebrowserBrowseUrl: 'assets/ckfinder/ckfinder.html',
+                    filebrowserImageBrowseUrl: 'assets/ckfinder/ckfinder.html?Type=Images',
+                    filebrowserFlashBrowseUrl: 'assets/ckfinder/ckfinder.html?Type=Flash',
+                    filebrowserUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                    filebrowserImageUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                    filebrowserFlashUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+                });
+
+
+
+            });
+            //  $('#tampil').on('shown.bs.modal', function() {
+            //     CKEDITOR.replace('halamanisi', {
+            //         filebrowserBrowseUrl: 'assets/ckfinder/ckfinder.html',
+            //         filebrowserImageBrowseUrl: 'assets/ckfinder/ckfinder.html?Type=Images',
+            //         filebrowserFlashBrowseUrl: 'assets/ckfinder/ckfinder.html?Type=Flash',
+            //         filebrowserUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+            //         filebrowserImageUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+            //         filebrowserFlashUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+            //     });
+
+            // });
 
             fetchData();
             kosong();
@@ -146,7 +236,12 @@ include 'component/pengaturantampilan.view.php';
                                 .add([
                                     counter,
                                     value.judul,
-                                    value.isi,
+                                    // value.isi,
+                                    '<img src="imagehalaman/' + value.gambar + '" alt="img" width="100" height="100">',
+                                    value.nama_link,
+                                    '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#tampilisi" class="btn btn-sm btn-success btn-b liat"  value="' +
+                                    value.id +
+                                    '"><i class="las la-eye"></i></button>' +
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
                                     '"><i class="las la-pen"></i></button>' +
@@ -165,6 +260,8 @@ include 'component/pengaturantampilan.view.php';
             function kosong() {
                 $("#judul").val('');
                 $("#isi").val('');
+                $("#image").val('');
+                $("#nama_link").val('');
                 $("#error").hide();
             }
             $("#tambah").on("click", function() {
@@ -175,6 +272,22 @@ include 'component/pengaturantampilan.view.php';
                     });
                 });
             })
+            $("#update").on("click", function() {
+                $('#modaldemo8edit').on('shown.bs.modal', function() {
+                    CKEDITOR.replace('isihalaman', {
+                        filebrowserBrowserUrl: '../../assets/ckfinder/ckfinder.html',
+                        filebrowserBrowserUrl: '../../assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+                    });
+                });
+            })
+            // $("#tampilBtn").on("click", function() {
+            //     $('#tampil').on('shown.bs.modal', function() {
+            //         CKEDITOR.replace('halamanisi', {
+            //             filebrowserBrowserUrl: '../../assets/ckfinder/ckfinder.html',
+            //             filebrowserBrowserUrl: '../../assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+            //         });
+            //     });
+            // })
             // function to insert data to database
             $("#form_inputhalaman").on("submit", function(e) {
                 var isi = $('textarea#isi').value();
@@ -240,9 +353,33 @@ include 'component/pengaturantampilan.view.php';
                         var data = response.data;
 
                         $("#modaldemo8edit #editForm #id").val(data.id);
-                        $("#modaldemo8edit #editForm input[name='judul']").val(data.judul_berita);
-                        $("#modaldemo8edit #editForm textarea[name='isi']").val(data.isi);
+                        $("#modaldemo8edit #editForm input[name='judul']").val(data.judul);
+                        $("#modaldemo8edit #editForm textarea[name='isihalaman']").val(data.isi);
+                        $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src", 'imagehalaman/' + data.gambar);
+                        // $("#modaldemo8edit #editForm input[name='filegambar']").val(data.gambar);
+                        $("#modaldemo8edit #editForm input[name='link']").val(data.nama_link);
                         $("#modaldemo8edit").modal("show");
+
+                    }
+                });
+            });
+
+            $("#mytablehalaman").on("click", ".liat", function() {
+                var id = $(this).val();
+                // console.log(id);
+                $.ajax({
+                    url: "proses/page/halaman.php?action=fetchIsi",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: id
+                    },
+                    success: function(response) {
+                        var data = response.data;
+
+                        $("#tampilisi #editFormlagi textarea[name='halamanisi']").val(data.isihalaman);
+
+                        $("#tampilisi").modal("show");
 
                     }
                 });
@@ -251,6 +388,7 @@ include 'component/pengaturantampilan.view.php';
             // function to update data in database
             $("#editForm").on("submit", function(e) {
                 // $("#editBtn").attr("disabled");
+                // window.location.replace("/admin/halaman");
                 e.preventDefault();
                 $.ajax({
                     url: "proses/page/halaman.php?action=updateData",
@@ -321,6 +459,12 @@ include 'component/pengaturantampilan.view.php';
                         </div><br>
                         <div class="input-group">
                             <textarea class="form-control" name="isi" id="isi"></textarea>
+                        </div><br>
+                        <div class="input-group">
+                            <input type="file" class="form-control form-control-sm" name="filegambar" id="filegambar">
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Nama Link" name="nama_link" id="nama_link">
                         </div><br>
                     </div>
                     <div class="modal-footer">
