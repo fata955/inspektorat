@@ -92,7 +92,7 @@ include 'component/pengaturantampilan.view.php';
 
                                             <th><span>No</span></th>
                                             <th><span>Judul Berita</span></th>
-                                            <th><span>Isi</span></th>
+                                            <!-- <th><span>Isi</span></th> -->
                                             <th><span>User</span></th>
                                             <th><span>Tanggal</span></th>
                                             <th><span>Gambar</span></th>
@@ -133,7 +133,87 @@ include 'component/pengaturantampilan.view.php';
 
     <!-- End::app-content -->
 
+    <!-- End::app-content -->
+    <div class="modal fade" id="modaldemo8edit">
 
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+
+            <div class="modal-content modal-content-demo">
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                <form action="proses/berita/news.php?action=updateData" method="post" id="editForm" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Form edit halaman</h6>
+
+                    </div>
+                    <div class="modal-body text-start">
+                          <input type="hidden" class="form-control " id="id" name="id">
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Judul Berita" name="judul_berita" id="judul_berita">
+                        </div><br>
+                        <div class="input-group">
+                            <textarea class="form-control" name="isihalaman" id="isihalaman"></textarea>
+                        </div><br>
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="" name="user" id="user" hidden>
+                        </div><br>
+                        <label for="">Tanggal</label><br>
+                        <div class="input-group">
+                            <input type="date" class="form-control" name="tanggal" id="tanggal">
+                        </div><br>
+                        <div class="input-group">
+                            <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr" width="100%" height="100%">
+
+                        </div><br>
+                        <label for="">Pilih Gambar</label><br>
+                        <div class="input-group">
+                            <input type="file" class="form-control form-control-sm" name="filegambar" id="filegambar">
+                        </div><br>
+                        <label for="">Pilih Status</label><br>
+                        <div class="input-group">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="status" id="status">
+                                <!-- <option value="0">PILIH STATUS</option> -->
+                                <option value="1">AKTIF</option>
+                                <option value="2">NON AKTIF</option>
+
+                            </select>
+                        </div><br>
+                        <div class="input-group">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="update">
+                            Update
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="modal fade" id="tampilisi">
+
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">Isi Halaman</h6>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="editFormlagi">
+                    <div class="modal-body text-start">
+                        <div class="input-group">
+                            <textarea class="form-control" name="halamanisi" id="halamanisi" rows="100" disabled></textarea>
+                        </div><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 
     <?php
     include 'component/footer.view.php';
@@ -146,6 +226,19 @@ include 'component/pengaturantampilan.view.php';
 
             $('#modaldemo8insert').on('shown.bs.modal', function() {
                 CKEDITOR.replace('isi', {
+                    filebrowserBrowseUrl: 'assets/ckfinder/ckfinder.html',
+                    filebrowserImageBrowseUrl: 'assets/ckfinder/ckfinder.html?Type=Images',
+                    filebrowserFlashBrowseUrl: 'assets/ckfinder/ckfinder.html?Type=Flash',
+                    filebrowserUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+                    filebrowserImageUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+                    filebrowserFlashUploadUrl: 'assets/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+                });
+
+
+
+            });
+            $('#modaldemo8edit').on('shown.bs.modal', function() {
+                CKEDITOR.replace('isihalaman', {
                     filebrowserBrowseUrl: 'assets/ckfinder/ckfinder.html',
                     filebrowserImageBrowseUrl: 'assets/ckfinder/ckfinder.html?Type=Images',
                     filebrowserFlashBrowseUrl: 'assets/ckfinder/ckfinder.html?Type=Flash',
@@ -179,12 +272,15 @@ include 'component/pengaturantampilan.view.php';
                                 .add([
                                     counter,
                                     value.judul_berita,
-                                    value.isi,
+                                    // value.isi,
                                     value.user,
                                     value.tanggal,
                                     '<img src="imageberita/' + value.gambar + '" alt="img" width="100" height="100">',
                                     value.status,
                                     // value.urutan,
+                                    '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#tampilisi" class="btn btn-sm btn-success btn-b liat"  value="' +
+                                    value.id +
+                                    '"><i class="las la-eye"></i></button>' +
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
                                     '"><i class="las la-pen"></i></button>' +
@@ -284,7 +380,7 @@ include 'component/pengaturantampilan.view.php';
 
                         $("#modaldemo8edit #editForm #id").val(data.id);
                         $("#modaldemo8edit #editForm input[name='judul_berita']").val(data.judul_berita);
-                        $("#modaldemo8edit #editForm textarea[name='isi']").val(data.isi);
+                        $("#modaldemo8edit #editForm textarea[name='isihalaman']").val(data.isi);
                         // $("#modaldemo8edit #editForm input[name='user']").val(data.user);
                         $("#modaldemo8edit #editForm input[name='tanggal']").val(data.tanggal);
                         $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src", 'imageberita/' + data.gambar);
@@ -294,9 +390,34 @@ include 'component/pengaturantampilan.view.php';
                     }
                 });
             });
+            
+            $("#mytablenews").on("click", ".liat", function() {
+                var id = $(this).val();
+                // console.log(id);
+                $.ajax({
+                    url: "proses/berita/news.php?action=fetchIsi",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        id: id
+                    },
+                    success: function(response) {
+                        var data = response.data;
+
+                        $("#tampilisi #editFormlagi textarea[name='halamanisi']").val(data.isihalaman);
+
+                        $("#tampilisi").modal("show");
+
+                    }
+                });
+            });
+
 
             // function to update data in database
             $("#editForm").on("submit", function(e) {
+                 var isi = $('textarea#isihalaman').value();
+                // var isi = $("#isi").val('');
+                window.location.replace("/admin/berita");
                 // $("#editBtn").attr("disabled");
                 e.preventDefault();
                 $.ajax({
@@ -309,7 +430,7 @@ include 'component/pengaturantampilan.view.php';
                     success: function(response) {
                         var response = JSON.parse(response);
                         if (response.statusCode == 200) {
-                            alert('Data Sukses terupdate')
+                            // alert('Data Sukses terupdate')
                             // Swal.fire("!", "Data Sukses Terupdate", "success");
                             fetchData();
                             kosong();

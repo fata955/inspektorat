@@ -130,18 +130,20 @@ include 'component/pengaturantampilan.view.php';
 
 
     <div class="modal fade" id="modaldemo8insert">
-        <form method="post" id="form_inputcarousel" enctype="multipart/form-data">
-            <div class="modal-dialog modal-dialog-centered text-center" role="document">
+
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+            <form method="post" id="form_inputcarousel" enctype="multipart/form-data">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">Form Input gambar slide</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+                        <h6 class="modal-title">Form Input gambar slide</h6>
                     </div>
                     <div class="modal-body text-start">
                         <div class="input-group">
                             <input type="text" class="form-control " placeholder="Judul Menu" name="judul" id="judul">
                         </div><br>
                         <div class="input-group">
-                           <input class="form-control form-control-sm" name="filegambar" id="filegambar" type="file">
+                            <input class="form-control form-control-sm" name="filegambar" id="filegambar" type="file">
                         </div><br>
                         <div class="input-group">
                             <!-- <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan" id="urutan"> -->
@@ -175,18 +177,21 @@ include 'component/pengaturantampilan.view.php';
                         <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+
     </div>
 
 
     <div class="modal fade" id="modaldemo8edit">
-        <form method="post" id="editForm" enctype="multipart/form-data">
-            <div class="modal-dialog modal-dialog-centered text-center" role="document">
+
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+            <form method="post" id="editForm" enctype="multipart/form-data">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
                         <h6 class="modal-title">Form edit gambar slide</h6>
-                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+
                     </div>
                     <div class="modal-body text-start">
                         <input type="hidden" class="form-control " id="id" name="id">
@@ -197,7 +202,7 @@ include 'component/pengaturantampilan.view.php';
                         <div class="input-group">
                             <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr" width="100%" height="100%">
                             <!-- <img src="" alt="" class="form-control form-control-sm" name="filegambar"> -->
-                           <input class="form-control form-control-sm" name="filegambar1" id="filegambar1" type="file">
+                            <input class="form-control form-control-sm" name="filegambar1" id="filegambar1" type="file">
                         </div><br>
                         <div class="input-group">
                             <!-- <input type="text" class="form-control " name="urutan"> -->
@@ -213,8 +218,9 @@ include 'component/pengaturantampilan.view.php';
                         <!-- <button class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+
     </div>
 
     <?php
@@ -245,7 +251,7 @@ include 'component/pengaturantampilan.view.php';
                                 .add([
                                     counter,
                                     value.judul,
-                                    '<img src="uploads/'+value.gambar+'" alt="img" width="100" height="100">',
+                                    '<img src="uploads/' + value.gambar + '" alt="img" width="100" height="100">',
                                     // value.urutan,
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
@@ -335,7 +341,7 @@ include 'component/pengaturantampilan.view.php';
                         $("#modaldemo8edit #editForm #id").val(data.id);
                         $("#modaldemo8edit #editForm input[name='judul']").val(data.judul);
                         // $('#previewing').attr('src','http://www.bazaardaily.co.uk/wp-content/uploads/2017/06/Logo-Menu.png');
-                        $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src",'uploads/'+ data.gambar );
+                        $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src", 'uploads/' + data.gambar);
                         $("#modaldemo8edit #editForm input[name='urutan']").val(data.urutan);
                         $("#modaldemo8edit").modal("show");
 
@@ -399,6 +405,3 @@ include 'component/pengaturantampilan.view.php';
             });
         });
     </script>
-
-
-    

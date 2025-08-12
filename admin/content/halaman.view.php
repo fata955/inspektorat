@@ -107,7 +107,7 @@ include 'component/pengaturantampilan.view.php';
 
             <div class="modal-content modal-content-demo">
                 <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
-                <form method="post" id="editForm" enctype="multipart/form-data">
+                <form action="proses/page/halaman.php?action=updateData" method="post" id="editForm" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h6 class="modal-title">Form edit halaman</h6>
 
@@ -389,6 +389,9 @@ include 'component/pengaturantampilan.view.php';
             $("#editForm").on("submit", function(e) {
                 // $("#editBtn").attr("disabled");
                 // window.location.replace("/admin/halaman");
+                var isi = $('textarea#isihalaman').value();
+                window.location.replace("/admin/halaman");
+
                 e.preventDefault();
                 $.ajax({
                     url: "proses/page/halaman.php?action=updateData",
@@ -400,7 +403,7 @@ include 'component/pengaturantampilan.view.php';
                     success: function(response) {
                         var response = JSON.parse(response);
                         if (response.statusCode == 200) {
-                            alert('Data Sukses terupdate')
+                            // alert('Data Sukses terupdate')
                             // Swal.fire("!", "Data Sukses Terupdate", "success");
                             fetchData();
                             kosong();
@@ -448,10 +451,11 @@ include 'component/pengaturantampilan.view.php';
 
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content modal-content-demo">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <form action="proses/page/halaman.php?action=insertData" method="POST" id="form_inputnews" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h6 class="modal-title">Form Input Berita</h6>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      
                     </div>
                     <div class="modal-body text-start">
                         <div class="input-group">
