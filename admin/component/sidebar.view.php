@@ -5,7 +5,7 @@
         $tes = $_SERVER['REQUEST_URI'];
         $get = "/admin/";
         $get1 = "/admin/inputmenu";
-     ?>
+        ?>
      <div class="main-sidebar" id="sidebar-scroll">
          <!-- Start::nav -->
          <nav class="main-menu-container nav nav-pills flex-column sub-open">
@@ -23,11 +23,11 @@
                  <li class="slide ">
                      <a href="/admin" class='
                         <?php
-                            if ($get === $tes) {
-                                echo 'side-menu__item active';
-                            }else{
-                                echo 'side-menu__item';
-                            }
+                        if ($get === $tes) {
+                            echo 'side-menu__item active';
+                        } else {
+                            echo 'side-menu__item';
+                        }
                         ?>
                      '>
                          <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@
                          <!-- <span class="badge bg-success ms-auto menu-badge">1</span> -->
                      </a>
                  </li>
-                
+
                  <!-- End::slide -->
 
                  <!-- End::slide -->
@@ -52,14 +52,14 @@
                  <li class="slide has-sub">
                      <a href="javascript:void(0);" class="
                              <?php
-                            if ($get1 === $tes) {
-                                echo 'side-menu__item active';
-                            }else{
-                                echo 'side-menu__item';
-                            }
-                        ?>
+                                if ($get1 === $tes) {
+                                    echo 'side-menu__item active';
+                                } else {
+                                    echo 'side-menu__item';
+                                }
+                                ?>
                      ">
-                  
+
                          <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
                              <path d="M0 0h24v24H0V0z" fill="none" />
                              <path d="M4 12c0 4.08 3.06 7.44 7 7.93V4.07C7.05 4.56 4 7.92 4 12z" opacity=".3" />
@@ -75,12 +75,12 @@
                          <li class="slide">
                              <a href="/admin/inputmenu" class="
                                <?php
-                            if ($get1 === $tes) {
-                                echo 'side-menu__item active';
-                            }else{
-                                echo 'side-menu__item';
-                            }
-                        ?>
+                                if ($get1 === $tes) {
+                                    echo 'side-menu__item active';
+                                } else {
+                                    echo 'side-menu__item';
+                                }
+                                ?>
                              ">Menu Utama</a>
                          </li>
                          <li class="slide">
@@ -113,7 +113,7 @@
                  </li>
                  <!-- End::slide -->
 
-                             <!-- Start::slide -->
+                 <!-- Start::slide -->
                  <li class="slide has-sub">
                      <a href="javascript:void(0);" class="side-menu__item">
                          <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
@@ -131,8 +131,11 @@
                          <li class="slide">
                              <a href="/admin/halaman" class="side-menu__item">Halaman</a>
                          </li>
-                           <li class="slide">
+                         <li class="slide">
                              <a href="/admin/berita" class="side-menu__item">Berita Terkini</a>
+                         </li>
+                         <li class="slide">
+                             <a href="/admin/pegawai" class="side-menu__item">Data Pegawai</a>
                          </li>
 
                      </ul>
@@ -219,6 +222,3 @@
 
      </div>
      <!-- End::main-sidebar -->
-
-
-     

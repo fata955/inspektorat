@@ -1,6 +1,7 @@
 <?php
 include 'components/header.comp.php';
 include 'components/navbar.comp.php';
+
 ?>
 
 <body class="index-page">
@@ -8,49 +9,31 @@ include 'components/navbar.comp.php';
 
     <!-- Hero Section -->
     <section id="hero" class="hero section">
-+
+
       <div class="container-fluid">
+
         <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+          <?php
+          $sql = mysqli_query($koneksi, "SELECT * FROM carousel") or die(mysqli_error($koneksi));
+          $no = 0;
+          while ($data = mysqli_fetch_array($sql)) {
+          ?>
 
+            <div class="carousel-item active">
 
-          <div class="carousel-item active">
+              <img class="img-responsive" src="../admin/uploads/<?= $data['gambar']; ?>" alt="" width="120" height="60">
 
-            <img class="img-responsive" src="assets/img/hero-carousel/hero-carousel-1.png" alt="">
-            <!-- <div class="carousel-container">
-            <h2>Selamat Datang website resmi <span>Inspektorat Kota Palu</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          
-          </div> -->
-          </div><!-- End Carousel Item -->
+            </div>
 
-          <div class="carousel-item">
-
-            <img class="img-responsive" src="assets/img/hero-carousel/hero-carousel-2.png" alt="">
-
-          </div><!-- End Carousel Item -->
-
-          <div class="carousel-item">
-
-            <img class="img-responsive" src="assets/img/hero-carousel/hero-carousel-3.png" alt="">
-
-          </div><!-- End Carousel Item -->
-
-          <div class="carousel-item">
-
-            <img class="img-responsive" src="assets/img/hero-carousel/hero-carousel-4.png" alt="">
-
-          </div><!-- End Carousel Item -->
-
-          <div class="carousel-item">
-            <img class="img-responsive" src="assets/img/hero-carousel/hero-carousel-5.png" alt="">
-
-          </div><!-- End Carousel Item -->
-
-          <a class="carousel-control-prev" href="#carouselExampleSlidesOnly" role="button" data-bs-slide="prev">
+          <?php
+            $no++;
+          }
+          ?>
+          <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
           </a>
 
-          <a class="carousel-control-next" href="#carouselExampleSlidesOnly" role="button" data-bs-slide="next">
+          <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
             <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
           </a>
 
@@ -289,7 +272,7 @@ include 'components/navbar.comp.php';
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Program Unggulan</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas</p>
+        <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas</p> -->
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">

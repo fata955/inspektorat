@@ -1,12 +1,11 @@
 <?php
-session_start();
 include 'component/header.view.php';
 
 include 'component/pengaturantampilan.view.php';
 
 ?>
 
-<!-- <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script> -->
+
 <div class="page">
     <?php
     include 'component/header2.view.php';
@@ -43,7 +42,7 @@ include 'component/pengaturantampilan.view.php';
                     <nav>
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="javascript:void(0);">Menu Utama</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Input Carousel</li>
+                            <li class="breadcrumb-item active" aria-current="page">Input carousel</li>
                         </ol>
                     </nav>
                 </div>
@@ -68,6 +67,22 @@ include 'component/pengaturantampilan.view.php';
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
                     <div class="card">
+                        <!-- <div class="card-header pb-0">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="card-title mb-0">USERS TABLE</h4>
+                                <a href="javascript:void(0);" class="tx-inverse" data-bs-toggle="dropdown"><i
+                                        class="mdi mdi-dots-horizontal text-gray"></i></a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" href="javascript:void(0);">Action</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Another
+                                        Action</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Something Else
+                                        Here</a>
+                                </div>
+                            </div>
+                            <p class="fs-12 text-gray-5 mb-2">Example of Valex Simple Table. <a href="">Learn
+                                    more</a></p>
+                        </div> -->
                         <div class="card-body">
                             <div class="table-responsive border border-bottom-0 userlist-table">
                                 <table class="table card-table table-vcenter text-nowrap mb-0" id="mytablecarousel">
@@ -75,9 +90,9 @@ include 'component/pengaturantampilan.view.php';
                                         <tr>
 
                                             <th><span>No</span></th>
-                                            <th><span>Judul</span></th>
+                                            <th><span>Judul gambar</span></th>
                                             <th><span>Image</span></th>
-                                            
+                                            <!-- <th><span>tanggal</span></th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -86,6 +101,20 @@ include 'component/pengaturantampilan.view.php';
                                     </tbody>
                                 </table>
                             </div>
+
+                            <!-- Pagination -->
+                            <!-- <ul class="pagination mt-4 mb-0 float-end flex-wrap">
+                                <li class="page-item page-prev disabled">
+                                    <a class="page-link" href="javascript:void(0);" tabindex="-1">Prev</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                                <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+                                <li class="page-item page-next">
+                                    <a class="page-link" href="javascript:void(0);">Next</a>
+                                </li>
+                            </ul> -->
                         </div>
                     </div>
                 </div><!-- COL END -->
@@ -98,28 +127,87 @@ include 'component/pengaturantampilan.view.php';
 
 
     <!-- End::app-content -->
+
+
+    <div class="modal fade" id="modaldemo8insert">
+
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+            <form method="post" id="form_inputcarousel" enctype="multipart/form-data">
+                <div class="modal-content modal-content-demo">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Form Input gambar slide</h6>
+                    </div>
+                    <div class="modal-body text-start">
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Judul Menu" name="judul" id="judul">
+                        </div><br>
+                        <div class="input-group">
+                            <input class="form-control form-control-sm" name="filegambar" id="filegambar" type="file">
+                        </div><br>
+                        <div class="input-group">
+                            <!-- <input type="text" class="form-control " placeholder="Isi Urutan Menu" name="urutan" id="urutan"> -->
+                        </div>
+
+
+                        <!-- //MESSAGE -->
+
+                        <div class="alert custom-alert1 alert-secondary" id="error">
+                            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x"></i></button>
+                            <div class="text-center px-5 pb-0">
+                                <svg class="custom-alert-icon svg-secondary" xmlns="http://www.w3.org/2000/svg" height="1.5rem" viewBox="0 0 24 24" width="1.5rem" fill="#000000">
+                                    <path d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                </svg>
+                                <h5>Confirmed</h5>
+                                <p class="">This alert is created to just show the confirmation message.</p>
+                                <div class="">
+                                    <button class="btn btn-sm btn-secondary m-1">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ENDMESSAGE -->
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="simpan">
+                            Simpan
+                        </button>
+                        <!-- <button type="button" class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
     <div class="modal fade" id="modaldemo8edit">
 
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
-
-            <div class="modal-content modal-content-demo">
-                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
-                <form action="proses/carousel/executecarousel.php?action=updateData" method="post" id="editForm" enctype="multipart/form-data">
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
+            <form method="post" id="editForm" enctype="multipart/form-data">
+                <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">Form edit halaman</h6>
+                        <h6 class="modal-title">Form edit gambar slide</h6>
 
                     </div>
                     <div class="modal-body text-start">
                         <input type="hidden" class="form-control " id="id" name="id">
                         <div class="input-group">
+
                             <input type="text" class="form-control " name="judul" id="judul">
                         </div><br>
                         <div class="input-group">
                             <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr" width="100%" height="100%">
+                            <!-- <img src="" alt="" class="form-control form-control-sm" name="filegambar"> -->
+                            <input class="form-control form-control-sm" name="filegambar1" id="filegambar1" type="file">
                         </div><br>
-                         <div class="input-group">
-                            <input class="form-control" name="filegambar1" id="filegambar1" type="file">
-                        </div><br>
+                        <div class="input-group">
+                            <!-- <input type="text" class="form-control " name="urutan"> -->
+                        </div>
+
 
 
                     </div>
@@ -127,49 +215,22 @@ include 'component/pengaturantampilan.view.php';
                         <button type="submit" class="btn btn-primary" id="update">
                             Update
                         </button>
-
                         <!-- <button class="btn btn-light" data-bs-dismiss="modal" >Close</button> -->
                     </div>
-                </form>
-            </div>
-        </div>
-
-
-    </div>
-
-
-    <div class="modal fade" id="tampilisi">
-
-        <div class="modal-dialog modal-dialog-centered text-center" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <h6 class="modal-title">Isi Halaman</h6>
-                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form id="editFormlagi">
-                    <div class="modal-body text-start">
-                        <div class="input-group">
-                            <textarea class="form-control" name="halamanisi" id="halamanisi" rows="100" disabled></textarea>
-                        </div><br>
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
 
     </div>
-
 
     <?php
     include 'component/footer.view.php';
     ?>
 
 
-    <!-- <script src="/admin/assets/ckeditor/ckeditor.js"></script> -->
+
     <script>
         $(document).ready(function() {
-
-       
-
             fetchData();
             kosong();
 
@@ -177,7 +238,6 @@ include 'component/pengaturantampilan.view.php';
 
             // function to fetch data from database
             function fetchData() {
-
                 $.ajax({
                     url: "proses/carousel/executecarousel.php?action=fetchData",
                     type: "POST",
@@ -191,11 +251,8 @@ include 'component/pengaturantampilan.view.php';
                                 .add([
                                     counter,
                                     value.judul,
-                                    // value.isi,
                                     '<img src="uploads/' + value.gambar + '" alt="img" width="100" height="100">',
-                                    '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#tampilisi" class="btn btn-sm btn-success btn-b liat"  value="' +
-                                    value.id +
-                                    '"><i class="las la-eye"></i></button>' +
+                                    // value.urutan,
                                     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
                                     value.id +
                                     '"><i class="las la-pen"></i></button>' +
@@ -213,29 +270,28 @@ include 'component/pengaturantampilan.view.php';
 
             function kosong() {
                 $("#judul").val('');
-                // $("#image").val('');
-                // $("#nama_link").val('');
+                $("#filegambar").val('');
+                // $("#urutan").val('');
                 $("#error").hide();
             }
-           
+            $("#tambah").on("click", function() {
+                kosong();
+            })
             // function to insert data to database
             $("#form_inputcarousel").on("submit", function(e) {
-                // var isi = $('textarea#isi').value();
-                // var isi = $("#isi").val('');
-                window.location.replace("/admin/carousel");
-                // console.log(isi);
+                // $("#insertBtn").attr("disabled", "disabled");
                 e.preventDefault();
                 $.ajax({
                     url: "proses/carousel/executecarousel.php?action=insertData",
                     type: "POST",
                     data: new FormData(this),
                     contentType: false,
-                    cache: true,
+                    cache: false,
                     processData: false,
                     success: function(response) {
                         var response = JSON.parse(response);
                         if (response.statusCode == 200) {
-                            // alert('Data Sukses tersimpan');
+                            alert('Data Sukses tersimpan');
                             // $('#modaldemo8insert').fadeOut("close");
                             // window.location.replace("/admin/inputmenu");
                             fetchData();
@@ -284,29 +340,10 @@ include 'component/pengaturantampilan.view.php';
 
                         $("#modaldemo8edit #editForm #id").val(data.id);
                         $("#modaldemo8edit #editForm input[name='judul']").val(data.judul);
+                        // $('#previewing').attr('src','http://www.bazaardaily.co.uk/wp-content/uploads/2017/06/Logo-Menu.png');
                         $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src", 'uploads/' + data.gambar);
+                        $("#modaldemo8edit #editForm input[name='urutan']").val(data.urutan);
                         $("#modaldemo8edit").modal("show");
-
-                    }
-                });
-            });
-
-            $("#mytablecarousel").on("click", ".liat", function() {
-                var id = $(this).val();
-                // console.log(id);
-                $.ajax({
-                    url: "proses/carousel/executecarousel.php?action=fetchIsi",
-                    type: "POST",
-                    dataType: "json",
-                    data: {
-                        id: id
-                    },
-                    success: function(response) {
-                        var data = response.data;
-
-                        $("#tampilisi #editFormlagi textarea[name='halamanisi']").val(data.isihalaman);
-
-                        $("#tampilisi").modal("show");
 
                     }
                 });
@@ -314,9 +351,7 @@ include 'component/pengaturantampilan.view.php';
 
             // function to update data in database
             $("#editForm").on("submit", function(e) {
-
-                window.location.replace("/admin/carousel");
-
+                // $("#editBtn").attr("disabled");
                 e.preventDefault();
                 $.ajax({
                     url: "proses/carousel/executecarousel.php?action=updateData",
@@ -328,7 +363,7 @@ include 'component/pengaturantampilan.view.php';
                     success: function(response) {
                         var response = JSON.parse(response);
                         if (response.statusCode == 200) {
-                            // alert('Data Sukses terupdate')
+                            alert('Data Sukses terupdate')
                             // Swal.fire("!", "Data Sukses Terupdate", "success");
                             fetchData();
                             kosong();
@@ -370,35 +405,3 @@ include 'component/pengaturantampilan.view.php';
             });
         });
     </script>
-
-
-    <div class="modal fade" id="modaldemo8insert" tabindex="-1" role="dialog">
-
-        <div class="modal-dialog modal-dialog-centered text-center" role="document">
-            <div class="modal-content modal-content-demo">
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <form action="proses/carousel/executecarousel.php?action=insertData" method="POST" id="form_inputcarousel" enctype="multipart/form-data">
-                    <div class="modal-header">
-                        <h6 class="modal-title">Form Input Carousel</h6>
-                      
-                    </div>
-                    <div class="modal-body text-start">
-                        <div class="input-group">
-                            <input type="text" class="form-control " placeholder="Judul Berita" name="judul" id="judul">
-                        </div><br>
-
-                        <div class="input-group">
-                            <input type="file" class="form-control form-control-sm" name="filegambar" id="filegambar">
-                        </div><br>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="simpan">
-                            Simpan
-                        </button>
-
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
