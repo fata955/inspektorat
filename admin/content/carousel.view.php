@@ -118,7 +118,7 @@ include 'component/pengaturantampilan.view.php';
                             <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr" width="100%" height="100%">
                         </div><br>
                          <div class="input-group">
-                            <input class="form-control" name="filegambar1" id="filegambar1" type="file">
+                            <input type="file" class="form-control" name="filegambar1" id="filegambar1" >
                         </div><br>
 
 
@@ -210,7 +210,7 @@ include 'component/pengaturantampilan.view.php';
                     }
                 });
             }
-
+ 
             function kosong() {
                 $("#judul").val('');
                 // $("#image").val('');
@@ -222,7 +222,7 @@ include 'component/pengaturantampilan.view.php';
             $("#form_inputcarousel").on("submit", function(e) {
                 // var isi = $('textarea#isi').value();
                 // var isi = $("#isi").val('');
-                window.location.replace("/admin/carousel");
+                // window.location.replace("/admin/carousel");
                 // console.log(isi);
                 e.preventDefault();
                 $.ajax({
@@ -240,9 +240,11 @@ include 'component/pengaturantampilan.view.php';
                             // window.location.replace("/admin/inputmenu");
                             fetchData();
                             kosong();
+                            window.location.replace("/admin/carousel");
                         } else if (response.statusCode == 500) {
                             alert('Data Harus jpg,png dan jpeg');
                             fetchData();
+                            window.location.replace("/admin/carousel");
                             //   $(".preview_img").attr("src", "images/default_profile.jpg");
                             // $("#errorToast").toast("show");
                             // $("#errorMsg").html(response.message);
@@ -315,7 +317,7 @@ include 'component/pengaturantampilan.view.php';
             // function to update data in database
             $("#editForm").on("submit", function(e) {
 
-                window.location.replace("/admin/carousel");
+                // window.location.replace("/admin/carousel");
 
                 e.preventDefault();
                 $.ajax({
@@ -332,6 +334,7 @@ include 'component/pengaturantampilan.view.php';
                             // Swal.fire("!", "Data Sukses Terupdate", "success");
                             fetchData();
                             kosong();
+                            window.location.replace("/admin/carousel");
                             // $("#offcanvasEditUser").modal("hide");
                         } else if (response.statusCode == 500) {
                             alert('File Yang Dimasukan Harus JPG atau PNG');

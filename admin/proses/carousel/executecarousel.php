@@ -7,7 +7,7 @@ include '../../../lib/dbh.inc.php';
 
 
 if ($_GET["action"] === "fetchData") {
-  $sql = "SELECT * FROM carousel ";
+  $sql = "SELECT * FROM carousel";
   $result = mysqli_query($koneksi, $sql);
   $data = [];
   while ($row = mysqli_fetch_assoc($result)) {
@@ -24,29 +24,59 @@ if ($_GET["action"] === "insertData") {
   // if (!empty($_POST["judul_berita"]) && !empty($_POST["isi"]) && !empty($_POST["status"] && !empty($_POST["tanggal"])) != 0) {
   $judul = $_POST["judul"];
 
-  $name     = $_FILES['filegambar']['name'];
-  $masalah  = $_FILES['filegambar']['error'];
-  $ukuran   = $_FILES['filegambar']['size'];
-  $asal     = $_FILES['filegambar']['tmp_name'];
+  $targetDir = "../../uploads/";
+  $fileName = basename($_FILES["filegambar"]["name"]);
+  $targetFilePath = $targetDir . $fileName;
+  $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-  if ($asal == "") {
-    echo json_encode([
-      "statusCode" => 404,
-      "message" => "Data gambar masih kosong"
-    ]);
+  $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+  if (in_array($fileType, $allowTypes)) {
+    //upload file to server
+    if (move_uploaded_file($_FILES["filegambar"]["tmp_name"], $targetFilePath)) {
+      $query  = "INSERT INTO carousel (judul,gambar) VALUES('$judul','$fileName')";
+      $result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+      echo json_encode([
+        "statusCode" => 200,
+        "message" => "Data " . $fileName . " Berhasil tersimpan"
+      ]);
+      // $statusMsg = "The file " . $fileName . " has been uploaded.";
+    } else {
+      echo json_encode([
+        "statusCode" => 404,
+        "message" => "Data Error Perhatikan data gambar anda"
+      ]);
+    }
   } else {
-    copy($asal, "../../uploads/".$name);
-    $query  = "INSERT INTO carousel (id,judul,gambar) VALUES('?','$judul','$name')";
-    $result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
-  }
-  if ($result) {
     echo json_encode([
-      "statusCode" => 200,
-      "message" => "Data Berhasil tersimpan"
+      "statusCode" => 500,
+      "message" => "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload."
     ]);
-    // header("Location: /admin/carousel");
-    exit();
+    // $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
   }
+
+  // $name     = $_FILES['filegambar']['name'];
+  // $masalah  = $_FILES['filegambar']['error'];
+  // $ukuran   = $_FILES['filegambar']['size'];
+  // $asal     = $_FILES['filegambar']['tmp_name'];
+
+  // if ($asal == "") {
+  //   echo json_encode([
+  //     "statusCode" => 404,
+  //     "message" => "Data gambar masih kosong"
+  //   ]);
+  // } else {
+  //   copy($asal, "../../uploads/" . $name);
+  //   $query  = "INSERT INTO carousel (id,judul,gambar) VALUES('$judul','$name')";
+  //   $result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+  // }
+  // if ($result) {
+  //   echo json_encode([
+  //     "statusCode" => 200,
+  //     "message" => "Data Berhasil tersimpan"
+  //   ]);
+  //   // header("Location: /admin/carousel");
+  //   exit();
+  // }
 }
 
 
@@ -93,80 +123,113 @@ if ($_GET["action"] === "fetchSingle") {
 // function to update data
 if ($_GET["action"] === "updateData") {
   $id = $_POST["id"];
-  //   if (!empty($_POST["judul"]) && !empty($_POST["isihalaman"]) && !empty($_POST["filegambar"])) {
-  // $id = mysqli_real_escape_string($conn, $_POST["id"]);
   $judul = $_POST["judul"];
- 
-  
-  $original_name = $_FILES['filegambar1']['name'];
-  // $masalah  = $_FILES['filegambar']['error'];
-  $ukuran   = $_FILES['filegambar1']['size'];
-  $asal     = $_FILES['filegambar1']['tmp_name'];
-  // $email = mysqli_real_escape_string($conn, $_POST["email"]);
-  // $country = mysqli_real_escape_string($conn, $_POST["country"]);
-  // $gender = mysqli_real_escape_string($conn, $_POST["gender"]);
+  $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM carousel where id=$id"));
+  $gambar = $data['gambar'];
+  $targetDir = "../../uploads/";
+  $fileName = basename($_FILES["filegambar1"]["name"]);
+  $targetFilePath = $targetDir . $fileName;
+  $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-  $format = pathinfo($name, PATHINFO_EXTENSION);
-    if ($ukuran < 10000000) {
 
-      if ($format === 'JPG' ||$format === 'jpg' || $format === 'png' || $format === 'PNG' || $format === 'jpeg') {
-        $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM carousel where id=$id"));
-        if ($data['gambar'] != "") unlink("../../uploads/$data[gambar]");
-
-        $edit = copy($asal, '../../uploads/'.$original_name);
-        mysqli_query($koneksi, "UPDATE carousel SET judul=$judul, gambar=$original_name WHERE id=$id") or die(mysqli_error($koneksi));
-        if ($edit) {
-          echo json_encode([
-            "statusCode" => 200,
-            "message" => "Data Berhasil tersimpan"
-          ]);
-        } else {
-          echo json_encode([
-            "statusCode" => 404,
-            "message" => "Data Gagal Tersimpan"
-          ]);
-        }
-      } else {
-        echo json_encode([
-          "statusCode" => 500,
-          "message" => "File Yang Dimasukan Harus JPG atau PNG"
-        ]);
-        // echo "<script>alert('File Yang Dimasukan Harus JPG atau PNG');</script>";
-      }
+  $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+  // if ($gambar != "") unlink("../../uploads/".$gambar);
+  // $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+  if (in_array($fileType, $allowTypes)) {
+    //upload file to server
+    if (move_uploaded_file($_FILES["filegambar1"]["tmp_name"], $targetFilePath)) {
+      if ($gambar != "") unlink("../../uploads/".$gambar);
+      $query  = "UPDATE carousel SET judul='$judul', gambar='$fileName' where id=$id";
+      $result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+      echo json_encode([
+        "statusCode" => 200,
+        "message" => "Data " . $fileName . " Berhasil tersimpan"
+      ]);
+      // $statusMsg = "The file " . $fileName . " has been uploaded.";
     } else {
       echo json_encode([
-        "statusCode" => 501,
-        "message" => "File Yang Dimasukan Terlalu Besar"
+        "statusCode" => 404,
+        "message" => "Data Error Perhatikan data gambar anda"
       ]);
-      // echo "<script>alert('File Yang Dimasukan Terlalu Besar');</script>";
     }
-  // if ($asal == "") {
-  //   $kirim = mysqli_query($koneksi, "UPDATE carousel SET judul='$judul' WHERE id=$id") or die(mysqli_error($koneksi));
-  // } else {
-  //   $data = mysqli_fetch_array(mysqli_query($koneksi, "select * from carousel where id=$id"));
-  //   if ($data['gambar'] != "") unlink("../../uploads/" .$data['gambar']);
+  } else {
+    echo json_encode([
+      "statusCode" => 500,
+      "message" => "Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload."
+    ]);
+    // $statusMsg = 'Sorry, only JPG, JPEG, PNG, GIF, & PDF files are allowed to upload.';
+  }
 
-  //   $edit = move_uploaded_file($asal, "../../uploads/".$original_name);
-  //   $sql1 = "UPDATE carousel SET judul='$judul', gambar='$original_name' WHERE id=$id";
-  //   $kirim = mysqli_query($koneksi, $sql1) or die(mysqli_error($koneksi));
-  // }
 
-  // if ($kirim) {
-  //   echo json_encode([
-  //     "statusCode" => 200,
-  //     "message" => "Data updated successfully 😀"
-  //   ]);
-  //    header("Location: /admin/carousel");
-  //   exit();
+  // $name = $_FILES['filegambar1']['name'];
+  // // $masalah  = $_FILES['filegambar']['error'];
+  // $ukuran   = $_FILES['filegambar1']['size'];
+  // $asal     = $_FILES['filegambar1']['tmp_name'];
+  // // $email = mysqli_real_escape_string($conn, $_POST["email"]);
+  // // $country = mysqli_real_escape_string($conn, $_POST["country"]);
+  // // $gender = mysqli_real_escape_string($conn, $_POST["gender"]);
+
+  // $format = pathinfo($name, PATHINFO_EXTENSION);
+  // if ($ukuran < 10000000) {
+
+  //   if ($format === 'JPG' || $format === 'jpg' || $format === 'png' || $format === 'PNG' || $format === 'jpeg') {
+  //     $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM carousel where id=$id"));
+  //     if ($data['gambar'] != "") unlink("../../uploads/$data[gambar]");
+
+  //     $edit = copy($asal, "../../uploads/" . $name);
+  //     $edit2 = mysqli_query($koneksi, "UPDATE carousel SET judul=$judul, gambar=$name WHERE id=$id") or die(mysqli_error($koneksi));
+  //     if ($edit2) {
+  //       echo json_encode([
+  //         "statusCode" => 200,
+  //         "message" => "Data Berhasil tersimpan"
+  //       ]);
+  //     } else {
+  //       echo json_encode([
+  //         "statusCode" => 404,
+  //         "message" => "Data Gagal Tersimpan"
+  //       ]);
+  //     }
+  //   } else {
+  //     echo json_encode([
+  //       "statusCode" => 500,
+  //       "message" => "File Yang Dimasukan Harus JPG atau PNG"
+  //     ]);
+  //     // echo "<script>alert('File Yang Dimasukan Harus JPG atau PNG');</script>";
+  //   }
   // } else {
   //   echo json_encode([
-  //     "statusCode" => 500,
-  //     "message" => "Failed to update data 😓"
+  //     "statusCode" => 501,
+  //     "message" => "File Yang Dimasukan Terlalu Besar"
   //   ]);
-  //    header("Location: /admin/carousel");
-  //   exit();
+  //   // echo "<script>alert('File Yang Dimasukan Terlalu Besar');</script>";
   // }
-  mysqli_close($koneksi);
+  // // if ($asal == "") {
+  // //   $kirim = mysqli_query($koneksi, "UPDATE carousel SET judul='$judul' WHERE id=$id") or die(mysqli_error($koneksi));
+  // // } else {
+  // //   $data = mysqli_fetch_array(mysqli_query($koneksi, "select * from carousel where id=$id"));
+  // //   if ($data['gambar'] != "") unlink("../../uploads/" .$data['gambar']);
+
+  // //   $edit = move_uploaded_file($asal, "../../uploads/".$original_name);
+  // //   $sql1 = "UPDATE carousel SET judul='$judul', gambar='$original_name' WHERE id=$id";
+  // //   $kirim = mysqli_query($koneksi, $sql1) or die(mysqli_error($koneksi));
+  // // }
+
+  // // if ($kirim) {
+  // //   echo json_encode([
+  // //     "statusCode" => 200,
+  // //     "message" => "Data updated successfully 😀"
+  // //   ]);
+  // //    header("Location: /admin/carousel");
+  // //   exit();
+  // // } else {
+  // //   echo json_encode([
+  // //     "statusCode" => 500,
+  // //     "message" => "Failed to update data 😓"
+  // //   ]);
+  // //    header("Location: /admin/carousel");
+  // //   exit();
+  // // }
+  // mysqli_close($koneksi);
 }
 
 
