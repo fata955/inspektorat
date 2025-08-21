@@ -7,7 +7,7 @@ include '../../../lib/dbh.inc.php';
 
 
 if ($_GET["action"] === "fetchData") {
-  $sql = "SELECT * FROM carousel ";
+  $sql = "SELECT * FROM tb_pegawai ";
   $result = mysqli_query($koneksi, $sql);
   $data = [];
   while ($row = mysqli_fetch_assoc($result)) {
@@ -22,7 +22,17 @@ if ($_GET["action"] === "fetchData") {
 
 if ($_GET["action"] === "insertData") {
   // if (!empty($_POST["judul_berita"]) && !empty($_POST["isi"]) && !empty($_POST["status"] && !empty($_POST["tanggal"])) != 0) {
-  $judul = $_POST["judul"];
+  $nama = $_POST["namapegawai"];
+  $tempat = $_POST["tl1"];
+  $tanggal = $_POST["tl2"];
+  $kelamin = $_POST["jeniskelamin"];
+  $agama = $_POST["agama"];
+  $nip = $_POST["nippegawai"];
+  $jabatan = $_POST["jabatan"];
+  $pangkat = $_POST["pangkat"];
+  $status = $_POST["status"];
+  $urutan = $_POST["urutan"];
+
 
   $name     = $_FILES['filegambar']['name'];
   $masalah  = $_FILES['filegambar']['error'];
@@ -35,8 +45,8 @@ if ($_GET["action"] === "insertData") {
       "message" => "Data gambar masih kosong"
     ]);
   } else {
-    copy($asal, "../../uploads/".$name);
-    $query  = "INSERT INTO carousel (id,judul,gambar) VALUES('?','$judul','$name')";
+    copy($asal, "../../imagepegawai/" . $name);
+    $query  = "INSERT INTO tb_pegawai (id,nama,tempat,tanggal,jk,Agama,nip,pangkat,jabatan,gambar,status,urutan) VALUES('?','$nama','$tempat','$tanggal','$kelamin','$agama','$nip','$pangkat','$jabatan','$name','$status','$urutan')";
     $result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
   }
   if ($result) {
@@ -52,7 +62,7 @@ if ($_GET["action"] === "insertData") {
 
 if ($_GET["action"] === "fetchIsi") {
   $id = $_POST["id"];
-  $sql = "SELECT isi as isihalaman FROM halaman WHERE id='$id'";
+  $sql = "SELECT isi as isihalaman FROM tb_pegawai WHERE id='$id'";
   $result = mysqli_query($koneksi, $sql);
   if (mysqli_num_rows($result) > 0) {
     $data = mysqli_fetch_assoc($result);
@@ -72,7 +82,7 @@ if ($_GET["action"] === "fetchIsi") {
 
 if ($_GET["action"] === "fetchSingle") {
   $id = $_POST["id"];
-  $sql = "SELECT * FROM carousel WHERE id='$id'";
+  $sql = "SELECT * FROM tb_pegawai WHERE id='$id'";
   $result = mysqli_query($koneksi, $sql);
   if (mysqli_num_rows($result) > 0) {
     $data = mysqli_fetch_assoc($result);
@@ -95,9 +105,18 @@ if ($_GET["action"] === "updateData") {
   $id = $_POST["id"];
   //   if (!empty($_POST["judul"]) && !empty($_POST["isihalaman"]) && !empty($_POST["filegambar"])) {
   // $id = mysqli_real_escape_string($conn, $_POST["id"]);
-  $judul = $_POST["judul"];
- 
-  
+  $nama = $_POST["namapegawai"];
+  $tempat = $_POST["tl1"];
+  $tanggal = $_POST["tl2"];
+  $kelamin = $_POST["jeniskelamin"];
+  $agama = $_POST["agama"];
+  $nip = $_POST["nippegawai"];
+  $jabatan = $_POST["jabatan"];
+  $pangkat = $_POST["pangkat"];
+  $status = $_POST["status"];
+  $urutan = $_POST["urutan"];
+
+
   $original_name = $_FILES['filegambar1']['name'];
   // $masalah  = $_FILES['filegambar']['error'];
   $ukuran   = $_FILES['filegambar1']['size'];
@@ -107,39 +126,40 @@ if ($_GET["action"] === "updateData") {
   // $gender = mysqli_real_escape_string($conn, $_POST["gender"]);
 
   $format = pathinfo($name, PATHINFO_EXTENSION);
-    if ($ukuran < 10000000) {
+  if ($ukuran < 10000000) {
 
-      if ($format === 'JPG' ||$format === 'jpg' || $format === 'png' || $format === 'PNG' || $format === 'jpeg') {
-        $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM carousel where id=$id"));
-        if ($data['gambar'] != "") unlink("../../uploads/$data[gambar]");
+    if ($format === 'JPG' || $format === 'jpg' || $format === 'png' || $format === 'PNG' || $format === 'jpeg') {
+      $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tb_pegawai where id=$id"));
+      if ($data['gambar'] != "") unlink("../../imagepegawai/$data[gambar]");
 
-        $edit = copy($asal, '../../uploads/'.$original_name);
-        mysqli_query($koneksi, "UPDATE carousel SET judul=$judul, gambar=$original_name WHERE id=$id") or die(mysqli_error($koneksi));
-        if ($edit) {
-          echo json_encode([
-            "statusCode" => 200,
-            "message" => "Data Berhasil tersimpan"
-          ]);
-        } else {
-          echo json_encode([
-            "statusCode" => 404,
-            "message" => "Data Gagal Tersimpan"
-          ]);
-        }
+      $edit = copy($asal, '../../imagepegawai/' . $original_name);
+       $query  = "INSERT INTO tb_pegawai (id,nama,tempat,tanggal,jk,Agama,nip,pangkat,jabatan,gambar,status,urutan) VALUES('?','$nama','$tempat','$tanggal','$kelamin','$agama','$nip','$pangkat','$jabatan','$name','$status','$urutan')";
+      mysqli_query($koneksi, "UPDATE tb_pegawai SET judul=$judul, gambar=$original_name WHERE id=$id") or die(mysqli_error($koneksi));
+      if ($edit) {
+        echo json_encode([
+          "statusCode" => 200,
+          "message" => "Data Berhasil tersimpan"
+        ]);
       } else {
         echo json_encode([
-          "statusCode" => 500,
-          "message" => "File Yang Dimasukan Harus JPG atau PNG"
+          "statusCode" => 404,
+          "message" => "Data Gagal Tersimpan"
         ]);
-        // echo "<script>alert('File Yang Dimasukan Harus JPG atau PNG');</script>";
       }
     } else {
       echo json_encode([
-        "statusCode" => 501,
-        "message" => "File Yang Dimasukan Terlalu Besar"
+        "statusCode" => 500,
+        "message" => "File Yang Dimasukan Harus JPG atau PNG"
       ]);
-      // echo "<script>alert('File Yang Dimasukan Terlalu Besar');</script>";
+      // echo "<script>alert('File Yang Dimasukan Harus JPG atau PNG');</script>";
     }
+  } else {
+    echo json_encode([
+      "statusCode" => 501,
+      "message" => "File Yang Dimasukan Terlalu Besar"
+    ]);
+    // echo "<script>alert('File Yang Dimasukan Terlalu Besar');</script>";
+  }
   // if ($asal == "") {
   //   $kirim = mysqli_query($koneksi, "UPDATE carousel SET judul='$judul' WHERE id=$id") or die(mysqli_error($koneksi));
   // } else {
@@ -175,9 +195,9 @@ if ($_GET["action"] === "updateData") {
 if ($_GET["action"] === "deleteData") {
   $id = $_POST["id"];
   // $delete_image = $_POST["delete_image"];
-  $data = mysqli_fetch_array(mysqli_query($koneksi, "select * from carousel where id=$id"));
-  if ($data['gambar'] != "") unlink("../../uploads/" . $data['gambar']);
-  $sql = "DELETE FROM carousel WHERE id=$id";
+  $data = mysqli_fetch_array(mysqli_query($koneksi, "select * from tb_pegawai where id=$id"));
+  if ($data['gambar'] != "") unlink("../../imagepegawai/" . $data['gambar']);
+  $sql = "DELETE FROM tb_pegawai WHERE id=$id";
 
   if (mysqli_query($koneksi, $sql)) {
     // remove the image

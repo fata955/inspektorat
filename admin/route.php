@@ -32,7 +32,7 @@ switch ($request) {
     case $me . '/halaman':
         require "content/halaman.view.php";
         break;
-            case $me . '/pegawai':
+    case $me . '/pegawai':
         require "content/pegawai.view.php";
         break;
    case $me . '/login':
