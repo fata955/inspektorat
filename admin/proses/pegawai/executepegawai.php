@@ -7,7 +7,7 @@ include '../../../lib/dbh.inc.php';
 
 
 if ($_GET["action"] === "fetchData") {
-  $sql = "SELECT * FROM tb_pegawai ";
+  $sql = "select * from tb_pegawai limit 0,500 ";
   $result = mysqli_query($koneksi, $sql);
   $data = [];
   while ($row = mysqli_fetch_assoc($result)) {
@@ -46,7 +46,7 @@ if ($_GET["action"] === "insertData") {
     ]);
   } else {
     copy($asal, "../../imagepegawai/" . $name);
-    $query  = "INSERT INTO tb_pegawai (id,nama,tempat,tanggal,jk,Agama,nip,pangkat,jabatan,gambar,status,urutan) VALUES('?','$nama','$tempat','$tanggal','$kelamin','$agama','$nip','$pangkat','$jabatan','$name','$status','$urutan')";
+    $query  = "INSERT INTO tb_pegawai (nama,tempat,tanggal,jk,nip,pangkat,jabatan,gambar,status,urutan,agama) VALUES('$nama','$tempat','$tanggal','$kelamin','$nip','$pangkat','$jabatan','$name','$status','$urutan','$agama')";
     $result = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
   }
   if ($result) {
@@ -103,89 +103,63 @@ if ($_GET["action"] === "fetchSingle") {
 // function to update data
 if ($_GET["action"] === "updateData") {
   $id = $_POST["id"];
-  //   if (!empty($_POST["judul"]) && !empty($_POST["isihalaman"]) && !empty($_POST["filegambar"])) {
-  // $id = mysqli_real_escape_string($conn, $_POST["id"]);
-  $nama = $_POST["namapegawai"];
-  $tempat = $_POST["tl1"];
-  $tanggal = $_POST["tl2"];
-  $kelamin = $_POST["jeniskelamin"];
-  $agama = $_POST["agama"];
-  $nip = $_POST["nippegawai"];
-  $jabatan = $_POST["jabatan"];
-  $pangkat = $_POST["pangkat"];
-  $status = $_POST["status"];
-  $urutan = $_POST["urutan"];
+  $nama = $_POST["namapegawai1"];
+  $tempat = $_POST["tl11"];
+  $tanggal = $_POST["tl21"];
+  $kelamin = $_POST["jeniskelamin1"];
+  $agama = $_POST["agama1"];
+  $nip = $_POST["nippegawai1"];
+  $jabatan = $_POST["jabatan1"];
+  $pangkat = $_POST["pangkat1"];
+  $status = $_POST["status1"];
+  $urutan = $_POST["urutan1"];
 
-
-  $original_name = $_FILES['filegambar1']['name'];
+  
+  $original_name = $_FILES['filegambar11']['name'];
   // $masalah  = $_FILES['filegambar']['error'];
-  $ukuran   = $_FILES['filegambar1']['size'];
-  $asal     = $_FILES['filegambar1']['tmp_name'];
+  $ukuran   = $_FILES['filegambar11']['size'];
+  $asal     = $_FILES['filegambar11']['tmp_name'];
   // $email = mysqli_real_escape_string($conn, $_POST["email"]);
   // $country = mysqli_real_escape_string($conn, $_POST["country"]);
   // $gender = mysqli_real_escape_string($conn, $_POST["gender"]);
 
-  $format = pathinfo($name, PATHINFO_EXTENSION);
-  if ($ukuran < 10000000) {
+  if ($asal == "") {
+    $kirim = mysqli_query($koneksi, "UPDATE tb_pegawai SET nama='$nama',tempat='$tempat', tanggal='$tanggal',jk='$kelamin',nip='$nip',pangkat='$pangkat',jabatan='$jabatan',status='$status',urutan='$urutan',agama='$agama' WHERE id=$id") or die(mysqli_error($koneksi));
+  } else {
+    $data = mysqli_fetch_array(mysqli_query($koneksi, "select * from tb_pegawai where id=$id"));
+    if ($data['gambar'] != "") unlink("../../imagepegawai/$data[gambar]");
 
-    if ($format === 'JPG' || $format === 'jpg' || $format === 'png' || $format === 'PNG' || $format === 'jpeg') {
-      $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tb_pegawai where id=$id"));
-      if ($data['gambar'] != "") unlink("../../imagepegawai/$data[gambar]");
+    $edit = move_uploaded_file($asal, "../../imagepegawai/$original_name");
+    $sql1 = "UPDATE tb_pegawai SET nama='$nama',tempat='$tempat', tanggal='$tanggal',jk='$kelamin',nip='$nip',pangkat='$pangkat',jabatan='$jabatan',gambar='$original_name',status='$status',urutan='$urutan',agama='$agama' WHERE id=$id";
+    $kirim = mysqli_query($koneksi, $sql1) or die(mysqli_error($koneksi));
+  }
 
-      $edit = copy($asal, '../../imagepegawai/' . $original_name);
-       $query  = "INSERT INTO tb_pegawai (id,nama,tempat,tanggal,jk,Agama,nip,pangkat,jabatan,gambar,status,urutan) VALUES('?','$nama','$tempat','$tanggal','$kelamin','$agama','$nip','$pangkat','$jabatan','$name','$status','$urutan')";
-      mysqli_query($koneksi, "UPDATE tb_pegawai SET judul=$judul, gambar=$original_name WHERE id=$id") or die(mysqli_error($koneksi));
-      if ($edit) {
-        echo json_encode([
-          "statusCode" => 200,
-          "message" => "Data Berhasil tersimpan"
-        ]);
-      } else {
-        echo json_encode([
-          "statusCode" => 404,
-          "message" => "Data Gagal Tersimpan"
-        ]);
-      }
-    } else {
-      echo json_encode([
-        "statusCode" => 500,
-        "message" => "File Yang Dimasukan Harus JPG atau PNG"
-      ]);
-      // echo "<script>alert('File Yang Dimasukan Harus JPG atau PNG');</script>";
-    }
+  // if ($_FILES["filegambar"]["size"] != 0) {
+  //   // rename the image before saving to database
+  //   //   $original_name = $_FILES["filegambar"]["name"];
+  //   $new_name = time() . "." . pathinfo($original_name, PATHINFO_EXTENSION);
+  //   move_uploaded_file($_FILES["filegambar"]["tmp_name"], "../../imagehalaman" . $new_name);
+  //   // remove the old image from uploads directory
+  //   unlink("../../imagehalaman/" . $original_name);
+  // } else {
+  //   $new_name = mysqli_real_escape_string($koneksi, $original_name);
+  // }
+  // $sql = "UPDATE halaman SET judul='$judul',isi='$isi', gambar='$new_name',nama_link='$nama_link' WHERE id=$id";
+  if ($kirim) {
+    echo json_encode([
+      "statusCode" => 200,
+      "message" => "Data updated successfully 😀"
+    ]);
+     header("Location: /admin/pegawai");
+    exit();
   } else {
     echo json_encode([
-      "statusCode" => 501,
-      "message" => "File Yang Dimasukan Terlalu Besar"
+      "statusCode" => 500,
+      "message" => "Failed to update data 😓"
     ]);
-    // echo "<script>alert('File Yang Dimasukan Terlalu Besar');</script>";
+     header("Location: /admin/pegawai");
+    exit();
   }
-  // if ($asal == "") {
-  //   $kirim = mysqli_query($koneksi, "UPDATE carousel SET judul='$judul' WHERE id=$id") or die(mysqli_error($koneksi));
-  // } else {
-  //   $data = mysqli_fetch_array(mysqli_query($koneksi, "select * from carousel where id=$id"));
-  //   if ($data['gambar'] != "") unlink("../../uploads/" .$data['gambar']);
-
-  //   $edit = move_uploaded_file($asal, "../../uploads/".$original_name);
-  //   $sql1 = "UPDATE carousel SET judul='$judul', gambar='$original_name' WHERE id=$id";
-  //   $kirim = mysqli_query($koneksi, $sql1) or die(mysqli_error($koneksi));
-  // }
-
-  // if ($kirim) {
-  //   echo json_encode([
-  //     "statusCode" => 200,
-  //     "message" => "Data updated successfully 😀"
-  //   ]);
-  //    header("Location: /admin/carousel");
-  //   exit();
-  // } else {
-  //   echo json_encode([
-  //     "statusCode" => 500,
-  //     "message" => "Failed to update data 😓"
-  //   ]);
-  //    header("Location: /admin/carousel");
-  //   exit();
-  // }
   mysqli_close($koneksi);
 }
 

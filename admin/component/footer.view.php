@@ -2,9 +2,9 @@
     <footer class="footer mt-auto py-3 bg-white text-center">
         <div class="container">
             <span class="text-muted"> Copyright © <span id="year"></span> <a
-                    href="javascript:void(0);" class="text-dark fw-semibold">Valex</a>.
+                    href="javascript:void(0);" class="text-dark fw-semibold">Inspektorat</a>.
                 Designed with <span class="bi bi-heart-fill text-danger"></span> by <a href="javascript:void(0);">
-                    <span class="fw-semibold text-primary text-decoration-underline">Spruko</span>
+                    <span class="fw-semibold text-primary text-decoration-underline"></span>
                 </a> All
                 rights
                 reserved
@@ -81,11 +81,6 @@
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
  
-    
-
-    <script>
-          
-    </script>
 
 </body>
 

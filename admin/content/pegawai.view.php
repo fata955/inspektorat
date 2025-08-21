@@ -64,22 +64,6 @@ include 'component/pengaturantampilan.view.php';
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
                     <div class="card">
-                        <!-- <div class="card-header pb-0">
-                            <div class="d-flex justify-content-between">
-                                <h4 class="card-title mb-0">USERS TABLE</h4>
-                                <a href="javascript:void(0);" class="tx-inverse" data-bs-toggle="dropdown"><i
-                                        class="mdi mdi-dots-horizontal text-gray"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="javascript:void(0);">Action</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Another
-                                        Action</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Something Else
-                                        Here</a>
-                                </div>
-                            </div>
-                            <p class="fs-12 text-gray-5 mb-2">Example of Valex Simple Table. <a href="">Learn
-                                    more</a></p>
-                        </div> -->
                         <div class="card-body">
                             <div class="table-responsive border border-bottom-0 userlist-table">
                                 <table class="table card-table table-vcenter text-nowrap mb-0" id="mytablepegawai">
@@ -134,6 +118,11 @@ include 'component/pengaturantampilan.view.php';
     <!-- End::app-content -->
 
 
+
+
+    <?php
+    include 'component/footer.view.php';
+    ?>
     <div class="modal fade" id="modaldemo8insert">
 
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
@@ -141,25 +130,24 @@ include 'component/pengaturantampilan.view.php';
                 <div class="modal-header">
                     <h6 class="modal-title">Form Input Pegawai</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form method="post" id="form_inputpegawai">
+                <form action="proses/pegawai/executepegawai.php?action=insertData" method="post" id="form_inputpegawai" enctype="multipart/form-data">
                     <div class="modal-body text-start">
                         <div class="input-group">
                             <input type="text" class="form-control " placeholder="Nama Pegawai" name="namapegawai" id="namapegawai">
                         </div><br>
                         <div class="input-group">
                             <input type="text" class="form-control " placeholder="Tempat & Tanggal Lahir" name="tl1" id="tl1">
-
                             <input type="DATE" class="form-control " placeholder="" name="tl2" id="tl2">
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="jeniskelamin" id="jeniskelamin">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="jeniskelamin" name="jeniskelamin" id="jeniskelamin">
                                 <option value="">---JENIS KELAMIN---</option>';
                                 <option value="LAKI-LAKI">LAKI-LAKI</option>
                                 <option value="PEREMPUAN">PEREMPUAN</option>
                             </select>
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="agama" id="agama">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="agama" name="agama" id="agama">
                                 <option value="">PILIH AGAMA</option>';
                                 <option value="ISLAM">ISLAM</option>
                                 <option value="KRISTEN">KRISTEN</option>
@@ -172,7 +160,7 @@ include 'component/pengaturantampilan.view.php';
                             <input type="text" class="form-control " placeholder="NIP Pegawai" name="nippegawai" id="nippegawai">
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="jabatan" id="jabatan">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="jabatan" name="jabatan" id="jabatan">
                                 <option value="">PILIH JABATAN</option>';
                                 <?php
                                 // include '../../lib/conn.php';
@@ -199,7 +187,7 @@ include 'component/pengaturantampilan.view.php';
                             <input type="file" class="form-control form-control-sm" name="filegambar" id="filegambar">
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="status" id="status">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="status" name="status" id="status">
                                 <option value="">---STATUS JABATAN---</option>';
                                 <option value="aktif">AKTIF</option>
                                 <option value="nonaktif">NON AKTIF</option>
@@ -251,26 +239,26 @@ include 'component/pengaturantampilan.view.php';
                     <h6 class="modal-title">Form Edit Pegawai</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <!-- <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"></button> -->
-                <form method="post" id="editForm">
+                 <form  method="post" id="editForm" enctype="multipart/form-data">
                     <div class="modal-body text-start">
                         <input type="hidden" name="id" id="id">
                         <div class="input-group">
-                            <input type="text" class="form-control " placeholder="Nama Pegawai" name="namapegawai" id="namapegawai">
+                            <input type="text" class="form-control " placeholder="Nama Pegawai" name="namapegawai1" id="namapegawai1">
                         </div><br>
                         <div class="input-group">
-                            <input type="text" class="form-control " placeholder="Tempat & Tanggal Lahir" name="tl1" id="tl1">
+                            <input type="text" class="form-control " placeholder="Tempat & Tanggal Lahir" name="tl11" id="tl11">
 
-                            <input type="DATE" class="form-control " placeholder="" name="tl2" id="tl2">
+                            <input type="DATE" class="form-control " placeholder="" name="tl21" id="tl21">
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="jeniskelamin" id="jeniskelamin">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="jeniskelamin1" id="jeniskelamin1">
                                 <option value="">---JENIS KELAMIN---</option>';
                                 <option value="LAKI-LAKI">LAKI-LAKI</option>
                                 <option value="PEREMPUAN">PEREMPUAN</option>
                             </select>
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="agama" id="agama">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="agama1" id="agama1">
                                 <option value="">PILIH AGAMA</option>';
                                 <option value="ISLAM">ISLAM</option>
                                 <option value="KRISTEN">KRISTEN</option>
@@ -280,10 +268,10 @@ include 'component/pengaturantampilan.view.php';
                             </select>
                         </div><br>
                         <div class="input-group">
-                            <input type="text" class="form-control " placeholder="NIP Pegawai" name="nippegawai" id="nippegawai">
+                            <input type="text" class="form-control " placeholder="NIP Pegawai" name="nippegawai1" id="nippegawai1">
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="jabatan" id="jabatan">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="jabatan1" id="jabatan1">
                                 <option value="">PILIH JABATAN</option>';
                                 <?php
                                 // include '../../lib/conn.php';
@@ -295,7 +283,7 @@ include 'component/pengaturantampilan.view.php';
                             </select>
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="pangkat" id="pangkat">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="pangkat1" id="pangkat1">
                                 <option value="">PILIH PANGKAT</option>';
                                 <?php
                                 // include '../../lib/conn.php';
@@ -307,20 +295,20 @@ include 'component/pengaturantampilan.view.php';
                             </select>
                         </div><br>
                         <div class="input-group">
-                            <input type="file" class="form-control form-control-sm" name="filegambar1" id="filegambar1">
+                            <input type="file" class="form-control form-control-sm" name="filegambar11" id="filegambar11">
                         </div><br>
                         <div class="input-group">
                             <img src="" width="300" class="thumbnail" name="filegmbr" id="filegmbr" width="100%" height="100%">
                         </div><br>
                         <div class="input-group">
-                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="status" id="status">
+                            <select class="form-control" class="form-select rounded-pill" aria-label="Default select example" name="status1" id="status1">
                                 <option value="">---STATUS JABATAN---</option>';
                                 <option value="aktif">AKTIF</option>
                                 <option value="nonaktif">NON AKTIF</option>
                             </select>
                         </div><br>
                         <div class="input-group">
-                            <input type="text" class="form-control " placeholder="urutan" name="urutan" id="urutan">
+                            <input type="text" class="form-control " placeholder="urutan" name="urutan1" id="urutan1">
                         </div><br>
 
                     </div>
@@ -336,18 +324,15 @@ include 'component/pengaturantampilan.view.php';
 
     </div>
 
-    <?php
-    include 'component/footer.view.php';
-    ?>
-
-
 
     <script>
         $(document).ready(function() {
+            
+            let table = new DataTable("#mytablepegawai");
             fetchData();
             kosong();
 
-            let table = new DataTable("#mytablepegawai");
+            
 
             // function to fetch data from database
             function fetchData() {
@@ -367,11 +352,11 @@ include 'component/pengaturantampilan.view.php';
                                     value.tempat,
                                     value.tanggal,
                                     value.jk,
-                                    value.Agama,
+                                    value.agama,
                                     value.nip,
                                     value.pangkat,
                                     value.jabatan,
-                                     '<img src="imagepegawai/' + value.gambar + '" alt="img" width="100" height="100">',
+                                    '<img src="imagepegawai/' + value.gambar + '" alt="img" width="100" height="100">',
                                     // value.gambar,
                                     value.status,
                                     value.urutan,
@@ -382,8 +367,6 @@ include 'component/pengaturantampilan.view.php';
                                     value.id +
                                     '"><i class="las la-trash"></i></Button>'
                                 ])
-
-
                                 .draw(false);
                             counter++;
                             // data.innerhtml();
@@ -473,18 +456,18 @@ include 'component/pengaturantampilan.view.php';
                         var data = response.data;
 
                         $(" #modaldemo8edit #editForm #id").val(data.id);
-                        $("#modaldemo8edit #editForm input[name='namapegawai']").val(data.nama);
-                        $("#modaldemo8edit #editForm input[name='tl1']").val(data.tempat);
-                        $("#modaldemo8edit #editForm input[name='tl2']").val(data.tanggal);
-                        $("#modaldemo8edit #editForm select[name='jeniskelamin']").val(data.jk);
-                        $("#modaldemo8edit #editForm select[name='agama']").val(data.Agama);
-                        $("#modaldemo8edit #editForm input[name='nippegawai']").val(data.nip);
-                        $("#modaldemo8edit #editForm select[name='jabatan']").val(data.jabatan);
-                        $("#modaldemo8edit #editForm select[name='pangkat']").val(data.pangkat);
-                        $("#modaldemo8edit #editForm select[name='status']").val(data.status);
+                        $("#modaldemo8edit #editForm input[name='namapegawai1']").val(data.nama);
+                        $("#modaldemo8edit #editForm input[name='tl11']").val(data.tempat);
+                        $("#modaldemo8edit #editForm input[name='tl21']").val(data.tanggal);
+                        $("#modaldemo8edit #editForm select[name='jeniskelamin1']").val(data.jk);
+                        $("#modaldemo8edit #editForm select[name='agama1']").val(data.agama);
+                        $("#modaldemo8edit #editForm input[name='nippegawai1']").val(data.nip);
+                        $("#modaldemo8edit #editForm select[name='jabatan1']").val(data.jabatan);
+                        $("#modaldemo8edit #editForm select[name='pangkat1']").val(data.pangkat);
+                        $("#modaldemo8edit #editForm select[name='status1']").val(data.status);
                         $("#modaldemo8edit #editForm img[name='filegmbr']").attr("src", 'imagepegawai/' + data.gambar);
                         // $("#modaldemo8edit #editForm input[name='link']").val(data.link);
-                        $("#modaldemo8edit #editForm input[name='urutan']").val(data.urutan);
+                        $("#modaldemo8edit #editForm input[name='urutan1']").val(data.urutan);
 
                         $("#modaldemo8edit").modal("show");
 
@@ -506,16 +489,21 @@ include 'component/pengaturantampilan.view.php';
                     success: function(response) {
                         var response = JSON.parse(response);
                         if (response.statusCode == 200) {
-                            alert('Data Sukses terupdate')
+                            // alert('Data Sukses terupdate')
                             // Swal.fire("!", "Data Sukses Terupdate", "success");
+                            window.location.replace("/admin/pegawai");
                             fetchData();
                             kosong();
+                            
                             // $("#offcanvasEditUser").modal("hide");
                         } else if (response.statusCode == 500) {
-                            alert('Failed to update data');
+                            alert('format bermasalah');
                             kosong();
                         } else if (response.statusCode == 400) {
                             alert('isi Yang Kosong');
+                        }
+                         else if (response.statusCode == 302) {
+                           fetchData();
                         }
                     }
                 });
