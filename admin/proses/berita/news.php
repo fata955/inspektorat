@@ -1,6 +1,6 @@
 <?php
 session_start();
-$username = $_SESSION['username'];
+// $username = $_SESSION['username'];
 // echo $username ;
 // include '../../../lib/dbh.inc.php';
 include '../../../lib/dbh.inc.php';
@@ -8,6 +8,19 @@ include '../../../lib/dbh.inc.php';
 
 
 if ($_GET["action"] === "fetchData") {
+    $sql = "SELECT * FROM berita ORDER BY tanggal asc";
+    $result = mysqli_query($koneksi, $sql);
+    $data = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+    mysqli_close($koneksi);
+    header('Content-Type: application/json');
+    echo json_encode([
+        "data" => $data
+    ]);
+}
+if ($_GET["action"] === "fetchDatafront") {
     $sql = "SELECT * FROM berita ORDER BY tanggal asc";
     $result = mysqli_query($koneksi, $sql);
     $data = [];

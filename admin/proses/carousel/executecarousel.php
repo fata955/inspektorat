@@ -1,12 +1,26 @@
 <?php
 session_start();
-$username = $_SESSION['username'];
+// $username = $_SESSION['username'];
 // include '../../../lib/dbh.inc.php';
 include '../../../lib/dbh.inc.php';
 
 
 
 if ($_GET["action"] === "fetchData") {
+  $sql = "SELECT * FROM carousel";
+  $result = mysqli_query($koneksi, $sql);
+  $data = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $data[] = $row;
+  }
+  mysqli_close($koneksi);
+  header('Content-Type: application/json');
+  echo json_encode([
+    "data" => $data
+  ]);
+}
+
+if ($_GET["action"] === "fetchDatafront") {
   $sql = "SELECT * FROM carousel";
   $result = mysqli_query($koneksi, $sql);
   $data = [];

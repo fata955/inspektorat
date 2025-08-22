@@ -2,6 +2,7 @@
 session_start();
 include 'component/header.view.php';
 include 'component/pengaturantampilan.view.php';
+
 ?>
 <div class="page">
     <?php
