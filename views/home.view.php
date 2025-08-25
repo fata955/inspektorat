@@ -158,124 +158,41 @@ include 'components/navbar.comp.php';
         </div><!-- End Section Title -->
 
         <div class="row gy-4">
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100" id="berita">
-            <?php
-            include_once 'lib/dbh.inc.php';
-            $sql = mysqli_query($koneksi, "SELECT * FROM berita") or die(mysqli_error($koneksi));
 
+          <?php $sql = mysqli_query($koneksi, "SELECT * FROM berita ") or die(mysqli_error($koneksi));
+          $hitung = mysqli_num_rows($sql);
+          if (!empty($hitung)) {
             while ($data = mysqli_fetch_array($sql)) {
-            ?>
+              $isi = $data['isi'];
+              $judul = $data['judul_berita'];
+              $user = $data['user'];
+              $tanggal = $data['tanggal'];
+              $image = $data['gambar'];
+          ?>
 
-              <div class="service-item position-relative">
-                <img src="admin/imageberita/<?php echo $data['gambar']; ?>" class="img-thumbnail" alt="...">
-                <a href="#" class="stretched-link">
-                  <h3><?php echo $data['judul_berita']; ?></h3>
-                </a>
-           
-                <a href="#" class="stretched-link"></a>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+              <img src="../admin/imageberita/<?=$image;?>" class="img-thumbnail" alt="...">
+              <a href="#" class="stretched-link">
+                <h3><?=$judul;?></h3>
+              </a>
+              <p><?=$isi;?></p>
+              <a href="#" class="stretched-link"></a>
 
-                <p class="position-absolute bottom-0 start-50 translate-middle-x">100 Views</p> <br>
-                <div class="text-center"><a href="#" class="buy-btn">
-                    <p>Baca Selengkapnya ... </p>
-                  </a></div>
-              </div>
+              <p class="position-absolute bottom-0 start-50 translate-middle-x">100 Views</p> <br>
+              <div class="text-center"><a href="#" class="buy-btn">
+                  <p>Baca Selengkapnya ... </p>
+                </a></div>
+            </div>
 
-            <?php
-
+          </div><!-- End Service Item -->
+          <?php
             }
-            ?>
-            <?php
-            $data = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM berita"));
-            while ($data) {
-            ?>
-
-            <?php } ?>
-
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <img src="assets/img/about.jpg" class="img-thumbnail" alt="...">
-              <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="stretched-link"></a>
-
-              <p class="position-absolute bottom-0 start-50 translate-middle-x">100 Views</p> <br>
-              <div class="text-center"><a href="#" class="buy-btn">
-                  <p>Baca Selengkapnya ... </p>
-                </a></div>
-            </div>
-
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <img src="assets/img/about.jpg" class="img-thumbnail" alt="...">
-              <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="stretched-link"></a>
-
-              <p class="position-absolute bottom-0 start-50 translate-middle-x">100 Views</p> <br>
-              <div class="text-center"><a href="#" class="buy-btn">
-                  <p>Baca Selengkapnya ... </p>
-                </a></div>
-            </div>
-
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <img src="assets/img/about.jpg" class="img-thumbnail" alt="...">
-              <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="stretched-link"></a>
-
-              <p class="position-absolute bottom-0 start-50 translate-middle-x">100 Views</p> <br>
-              <div class="text-center"><a href="#" class="buy-btn">
-                  <p>Baca Selengkapnya ... </p>
-                </a></div>
-            </div>
-
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <img src="assets/img/about.jpg" class="img-thumbnail" alt="...">
-              <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="stretched-link"></a>
-
-              <p class="position-absolute bottom-0 start-50 translate-middle-x">100 Views</p> <br>
-              <div class="text-center"><a href="#" class="buy-btn">
-                  <p>Baca Selengkapnya ... </p>
-                </a></div>
-            </div>
-
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <img src="assets/img/about.jpg" class="img-thumbnail" alt="...">
-              <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="stretched-link"></a>
-
-              <p class="position-absolute bottom-0 start-50 translate-middle-x">100 Views</p> <br>
-              <div class="text-center"><a href="#" class="buy-btn">
-                  <p>Baca Selengkapnya ... </p>
-                </a></div>
-            </div>
-          </div><!-- End Service Item -->
+          }else{
+            echo "Data Tidak Ada";
+          }
+          ?>
+    
 
         </div>
 
@@ -350,50 +267,3 @@ include 'components/navbar.comp.php';
   <?php
   include 'components/footer.comp.php';
   ?>
-  <script src="admin/assets/js/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      fetchData();
-      // function to fetch data from database
-      function fetchData() {
-        $.ajax({
-          url: "admin/proses/berita/news.php?action=fetchDatafront",
-          type: "POST",
-          dataType: "json",
-          success: function(response) {
-            var data = response.data;
-            table.clear().draw();
-            var counter = 1;
-            $.each(data, function(index, value) {
-              $("#berita").innerhtml('<h5>tes</h5>')
-              // table.row
-              //   .add([
-              //     counter,
-              //     value.nama,
-              //     value.tempat,
-              //     value.tanggal,
-              //     value.jk,
-              //     value.agama,
-              //     value.nip,
-              //     value.pangkat,
-              //     value.jabatan,
-              //     '<img src="imagepegawai/' + value.gambar + '" alt="img" width="100" height="100">',
-              //     // value.gambar,
-              //     value.status,
-              //     value.urutan,
-              //     '<button type="button" data-bs-effect="effect-fall" data-bs-toggle="modal" href="#modaldemo8edit" class="btn btn-sm btn-info btn-b  editBtn" value="' +
-              //     value.id +
-              //     '"><i class="las la-pen"></i></button>' +
-              //     '<Button type="button" class="btn btn-sm btn-danger deleteBtn" value="' +
-              //     value.id +
-              //     '"><i class="las la-trash"></i></Button>'
-              //   ])
-              //   .draw(false);
-              // counter++;
-              // // data.innerhtml();
-            });
-          }
-        });
-      }
-    })
-  </script>

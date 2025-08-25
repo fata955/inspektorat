@@ -59,6 +59,9 @@ switch ($request) {
     case $me . 'home':
         require "views/home.view.php";
         break;
+    case $me . 'pegawai':
+        require "views/pegawai.view.php";
+        break;
     case $me . 'logout':
         require "proses/logout.php";
         break;
