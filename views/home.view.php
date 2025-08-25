@@ -121,7 +121,7 @@ include 'components/navbar.comp.php';
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <!-- <i class="bi bi-journal-richtext"></i> -->
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="31" data-purecounter-duration="1" class="purecounter"></span>
               <p><strong>AUDITOR</strong></p>
             </div>
           </div><!-- End Stats Item -->
@@ -129,15 +129,15 @@ include 'components/navbar.comp.php';
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <!-- <i class="bi bi-headset"></i> -->
-              <span data-purecounter-start="0" data-purecounter-end="14" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>PPUD</strong></p>
+              <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>PPUPD</strong></p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item">
               <!-- <i class="bi bi-people"></i> -->
-              <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="7" data-purecounter-duration="1" class="purecounter"></span>
               <p><strong>PELAKSANA</strong> </p>
             </div>
           </div><!-- End Stats Item -->

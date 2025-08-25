@@ -78,7 +78,7 @@ include 'components/navbar.comp.php';
                 <br>
                 <div class="row gy-4">
                     <?php 
-                        $sql = mysqli_query($koneksi, "SELECT a.nama,a.tempat,a.tanggal,a.jk,a.agama,a.nip,a.gambar,b.jenis,b.golongan,b.ruang,c.nama_jabatan FROM tb_pegawai a, pangkat b, jabatan c where a.pangkat=b.id AND a.jabatan=c.id AND  urutan>1 order by urutan asc ") or die(mysqli_error($koneksi));
+                        $sql = mysqli_query($koneksi, "SELECT a.nama,a.tempat,a.tanggal,a.jk,a.agama,a.nip,a.gambar,b.jenis,b.golongan,b.ruang,c.nama_jabatan FROM tb_pegawai a, pangkat b, jabatan c where a.pangkat=b.id AND a.jabatan=c.id AND  urutan > 1 order by urutan asc") or die(mysqli_error($koneksi));
                         $hitung = mysqli_num_rows($sql);
                         if (!empty($hitung)) {
                             while ($data = mysqli_fetch_array($sql)) {                          

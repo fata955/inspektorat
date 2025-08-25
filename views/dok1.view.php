@@ -45,9 +45,11 @@ include '../componentsub/navbar.comp.php';
                                <?php 
                         $sql = mysqli_query($koneksi, "SELECT * FROM dokumen  where status='aktif'") or die(mysqli_error($koneksi));
                         $hitung = mysqli_num_rows($sql);
-                        $con = 1;
+                         $con = 1;    
                         if (!empty($hitung)) {
-                            while ($data = mysqli_fetch_array($sql)) {                          
+                             
+                            while ($data = mysqli_fetch_array($sql)) {   
+                                             
                         ?>
                                <tr>
                                     <th scope="row"><?=$con;?></th>
@@ -56,9 +58,11 @@ include '../componentsub/navbar.comp.php';
                                     <td><a href="../admin/doc/<?=$data['dokumen'];?>">download</td>
                                 </tr>
                         <?php
+                        $con++;
                             }
-                            $con++;
+                           
                         }
+                         
                         
                         ?>
                         
