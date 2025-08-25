@@ -26,7 +26,7 @@ include '../componentsub/navbar.comp.php';
 
                 <div class="row gy-4">
                     <div class="col-lg-6 order-1 order-lg-2">
-                        <img src="../assets/img/about.jpg" class="img-fluid" alt="">
+                        <!-- <img src="../assets/img/about.jpg" class="img-fluid" alt=""> -->
                     </div>
                     <div class="col-lg-6 order-2 order-lg-1 content">
                         <h3>Dokumen</h3>
@@ -34,30 +34,35 @@ include '../componentsub/navbar.comp.php';
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Dokumen</th>
+                                    <th scope="col">Nama Dokumen</th>
                                     <th scope="col">Tahun</th>
+                                    <!-- <th scope="col">status</th> -->
                                     <th scope="col">Unduh/Download</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Laporan Akuntabilitas Kinerja Instansi Pemerintah (LAKIP) 2024</td>
-                                    <td>	2025</td>
-                                    <td><Button class="btn btn-secondary">download</Button></td>
+                                 
+                               <?php 
+                        $sql = mysqli_query($koneksi, "SELECT * FROM dokumen  where status='aktif'") or die(mysqli_error($koneksi));
+                        $hitung = mysqli_num_rows($sql);
+                        $con = 1;
+                        if (!empty($hitung)) {
+                            while ($data = mysqli_fetch_array($sql)) {                          
+                        ?>
+                               <tr>
+                                    <th scope="row"><?=$con;?></th>
+                                    <td><?=$data['nama_dokumen'];?></td>
+                                    <td><?=$data['tahun'];?></td>
+                                    <td><a href="../admin/doc/<?=$data['dokumen'];?>">download</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Rencana Strategis (RENSTRA) 2025-2026</td>
-                                    <td>2025</td>
-                                    <td><Button class="btn btn-secondary">download</Button></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Perjanjian Kinerja Tahun 2025</td>
-                                    <td>2025</td>
-                                    <td><Button class="btn btn-secondary">download</Button></td>
-                                </tr>
+                        <?php
+                            }
+                            $con++;
+                        }
+                        
+                        ?>
+                        
+                               
                             </tbody>
                         </table>
                         <!-- <p class="fst-italic">

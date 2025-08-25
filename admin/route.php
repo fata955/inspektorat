@@ -22,6 +22,9 @@ switch ($request) {
     case $me . '/inputsubmenu':
         require "content/submenu.view.php";
         break;
+         case $me . '/dokumen':
+        require "content/dokumen.view.php";
+        break;
 
     case $me . '/carousel':
         require "content/carousel.view.php";

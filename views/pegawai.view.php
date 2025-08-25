@@ -43,9 +43,9 @@ include 'components/navbar.comp.php';
                             <div class="member-info">
                                 <h4><?=$data['nama'];?></h4>
                                 <span><?=$jabatan['nama_jabatan'];?></span>
-                                <p>Pangkat : <?=$pangkat['jenis'], $pangkat['golongan'], $pangkat['ruang'];?></p>
+                                <p>Pangkat : <?=$pangkat['jenis'],  '&nbsp;','/', '&nbsp;' .$pangkat['golongan'], '.' . $pangkat['ruang'];?></p>
                                 <p>TTL <?=$data['tempat'], ',' . $data['tanggal'];?></p>
-                                 <p> Agama:  <?=$data['agama'];?></p>
+                                 <!-- <p> Agama:  <?=$data['agama'];?></p> -->
                                 <!-- <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>
@@ -90,9 +90,9 @@ include 'components/navbar.comp.php';
                             <div class="member-info">
                                 <h4><?=$data['nama'];?></h4>
                                 <span><?=$data['nama_jabatan'];?></span>
-                                <p>Pangkat : <?=$data['jenis'], $data['golongan'], $data['ruang'];?></p>
+                                <p>Pangkat : <?=$data['jenis'],'&nbsp;','/', '&nbsp;' . $data['golongan'], '.' . $data['ruang'];?></p>
                                 <p>TTL <?=$data['tempat'], ',' . $data['tanggal'];?></p>
-                                 <p> Agama:  <?=$data['agama'];?></p>
+                                 <!-- <p> Agama:  <?=$data['agama'];?></p> -->
                                 <div class="social">
                                     <a href=""><i class="bi bi-twitter-x"></i></a>
                                     <a href=""><i class="bi bi-facebook"></i></a>

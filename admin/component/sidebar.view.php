@@ -137,6 +137,9 @@
                          <li class="slide">
                              <a href="/admin/pegawai" class="side-menu__item">Data Pegawai</a>
                          </li>
+                          <li class="slide">
+                             <a href="/admin/dokumen" class="side-menu__item">Data upload dokumen</a>
+                         </li>
 
                      </ul>
                  </li>
