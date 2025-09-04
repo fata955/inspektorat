@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['username'])) {
+  header("Location: /admin/login");
+  exit();
+}
 include 'component/header.view.php';
 include 'component/pengaturantampilan.view.php';
 

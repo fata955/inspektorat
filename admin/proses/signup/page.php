@@ -12,6 +12,11 @@ $username = $_POST['username'] ?? '';
 $namalengkap   = $_POST['namalengkap'] ?? '';
 $password = $_POST['password'] ?? '';
 
+// Validasi input
+if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) {
+    die("Username tidak valid.");
+}
+
 // Validasi sederhana
 if (strlen($username) < 3 || strlen($password) < 6) {
   echo "❌ Username minimal 3 karakter dan password minimal 6 karakter.";

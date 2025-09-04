@@ -1,4 +1,11 @@
 <?php
+session_start();
+if ($_SESSION){
+ header("Location: /admin/home");
+}else {
+
+
+
 include 'component/header.view.php';
 
 include 'component/pengaturantampilan.view.php';
@@ -664,3 +671,7 @@ include 'component/footer.view.php';
         });
     });
 </script>
+
+<?php
+}
+?>

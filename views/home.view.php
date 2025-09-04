@@ -168,19 +168,20 @@ include 'components/navbar.comp.php';
               $user = $data['user'];
               $tanggal = $data['tanggal'];
               $image = $data['gambar'];
+              $tampil_sebagian=substr($isi, 0, 50);
           ?>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item position-relative">
-              <img src="../admin/imageberita/<?=$image;?>" class="img-thumbnail" alt="...">
-              <a href="#" class="stretched-link">
+              <img src="../admin/imageberita/<?=$image;?>" class="img-thumbnail" alt="" width="500" height="50">
+              <a href="/berita/<?=$judul;?>" class="stretched-link">
                 <h3><?=$judul;?></h3>
               </a>
-              <p><?=$isi;?></p>
-              <a href="#" class="stretched-link"></a>
+              <p ><?=$tampil_sebagian;?></p>
+              <a href="/berita/<?=$judul;?>" class="stretched-link"></a>
 
               <p class="position-absolute bottom-0 start-50 translate-middle-x">100 Views</p> <br>
-              <div class="text-center"><a href="#" class="buy-btn">
+              <div class="text-center"><a href="/berita/<?=$judul;?>" class="buy-btn">
                   <p>Baca Selengkapnya ... </p>
                 </a></div>
             </div>

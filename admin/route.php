@@ -50,7 +50,7 @@ switch ($request) {
    
     default:
         http_response_code(404);
-        require "views/about.view.php";
+        require "content/404.view.php";
         break;
 }
 return;
